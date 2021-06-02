@@ -4,23 +4,23 @@
   
     
     <entry>
-      <title>ros</title>
+      <title>ROS</title>
       <link href="2021/06/02/ros/"/>
       <url>2021/06/02/ros/</url>
       
-        <content type="html"><![CDATA[<p>机器人操作系统(ROS)是一个用于编写机器人软件的灵活框架。它是一个工具、库和约定的集合，旨在简化跨各种机器人平台创建复杂和健壮的机器人行为的任务。ROS操作系统是目前使用最广泛的开源机器人软件平台，在无人驾驶系统的实现上，ROS是开源框架中的最好的选择。它提供了操作系统应有的服务，包括硬件抽象，底层设备控制，常用函数的实现，进程间消息传递，以及包管理。它也提供用于获取、编译、编写、和跨计算机运行代码所需的工具和库函数。</p><span id="more"></span><p>ROS1.0的架构核心是基于message的松耦合、分布式架构。核心概念有：Node、Master、Message、Topic、Services等。因为ROS1.0在设计之初没有考虑到安全问题，所以ROS 1.0框架主要安全风险充分暴露：匿名通信无身份认证、消息明文传输、缺少访问控制等。</p>]]></content>
+        <content type="html"><![CDATA[<p>机器人操作系统(ROS)是一个用于编写机器人软件的灵活框架。它是一个工具、库和约定的集合，旨在简化跨各种机器人平台创建复杂和健壮的机器人行为的任务。ROS操作系统是目前使用最广泛的开源机器人软件平台，在无人驾驶系统的实现上，ROS是开源框架中的最好的选择。它提供了操作系统应有的服务，包括硬件抽象，底层设备控制，常用函数的实现，进程间消息传递，以及包管理。它也提供用于获取、编译、编写、和跨计算机运行代码所需的工具和库函数。</p><span id="more"></span><p>ROS1.0的架构核心是基于message的松耦合、分布式架构。核心概念有：Node、Master、Message、Topic、Services等。因为ROS1.0在设计之初没有考虑到安全问题，所以ROS 1.0框架主要安全风险充分暴露：匿名通信无身份认证、消息明文传输、缺少访问控制等。</p><p>ROS2.0采用DDS替换了ROS1.0的publish-subscribe通信机制，因为DDS本身是有Security安全协议规范的，因此ROS2.0的安全主要基于DDS-Security。</p><p>DDS-Security规范对DDS规范进行了扩展，通过定义服务插件接口(Service Plugin Interface，SPI)体系结构、SPI的一组内置实现以及SPI实施的安全模型，增加了安全增强功能。具体地说，定义了五个SPI：</p><p>身份验证：验证给定域参与者的身份。</p><p>访问控制：对可由验证域参与者执行的与DDS相关的操作实施限制。 </p><p>加密：处理所有必需的加密、签名和散列操作。</p><p>日志记录：提供审计与DDS安全相关的事件的能力。 </p><p>数据标记：提供向数据样本添加标记的功能。</p><p>ROS 2的安全功能目前只使用前三个功能。这是因为为了符合DDS-Security规范，既不需要日志记录，也不需要数据标记，因此并不是所有的DDS实现都支持它们。</p>]]></content>
       
       
       <categories>
           
-          <category> ros </category>
+          <category> ROS </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> ros </tag>
+            <tag> ROS </tag>
             
             <tag> 自动驾驶操作系统 </tag>
             
