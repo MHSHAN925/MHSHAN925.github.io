@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>ROS | Hexo</title>
+  <title>hexo常用命令 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/5.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/1.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['ROS'],
+              strings: ['hexo常用命令'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -737,12 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/ROS/" class="">
-              ROS
-            </a>
-          
-            <a href="/tags/%E8%87%AA%E5%8A%A8%E9%A9%BE%E9%A9%B6%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="">
-              自动驾驶操作系统
+            <a href="/tags/hexo/" class="">
+              hexo
             </a>
           
         </div>
@@ -751,26 +747,26 @@
         <div class="categories">
           <i class="iconfont iconbookmark1"></i>
           
-            <a href="/categories/ROS/" class="">
-              ROS
+            <a href="/categories/%E5%B0%8F%E7%9F%A5%E8%AF%86%E7%82%B9/" class="">
+              小知识点
             </a>
           
         </div>
         
       </div>
       <div class="post-content">
-        <p>机器人操作系统(ROS)是一个用于编写机器人软件的灵活框架。它是一个工具、库和约定的集合，旨在简化跨各种机器人平台创建复杂和健壮的机器人行为的任务。ROS操作系统是目前使用最广泛的开源机器人软件平台，在无人驾驶系统的实现上，ROS是开源框架中的最好的选择。它提供了操作系统应有的服务，包括硬件抽象，底层设备控制，常用函数的实现，进程间消息传递，以及包管理。它也提供用于获取、编译、编写、和跨计算机运行代码所需的工具和库函数。</p>
-<span id="more"></span>
+        <h1 id="新建文章步骤："><a href="#新建文章步骤：" class="headerlink" title="新建文章步骤："></a>新建文章步骤：</h1><p>1.在你的博客目录下，右键Git Bash Here。输入命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章的名字&quot;</span><br></pre></td></tr></table></figure>
 
-<p>ROS1.0的架构核心是基于message的松耦合、分布式架构。核心概念有：Node、Master、Message、Topic、Services等。因为ROS1.0在设计之初没有考虑到安全问题，所以ROS 1.0框架主要安全风险充分暴露：匿名通信无身份认证、消息明文传输、缺少访问控制等。</p>
-<p>ROS2.0采用DDS替换了ROS1.0的publish-subscribe通信机制，因为DDS本身是有Security安全协议规范的，因此ROS2.0的安全主要基于DDS-Security。</p>
-<p>DDS-Security规范对DDS规范进行了扩展，通过定义服务插件接口(Service Plugin Interface，SPI)体系结构、SPI的一组内置实现以及SPI实施的安全模型，增加了安全增强功能。具体地说，定义了五个SPI：</p>
-<p>身份验证：验证给定域参与者的身份。</p>
-<p>访问控制：对可由验证域参与者执行的与DDS相关的操作实施限制。 </p>
-<p>加密：处理所有必需的加密、签名和散列操作。</p>
-<p>日志记录：提供审计与DDS安全相关的事件的能力。 </p>
-<p>数据标记：提供向数据样本添加标记的功能。</p>
-<p>ROS 2的安全功能目前只使用前三个功能。这是因为为了符合DDS-Security规范，既不需要日志记录，也不需要数据标记，因此并不是所有的DDS实现都支持它们。</p>
+<p>2.在博客目录下/source/_posts/文件夹下，会生成”文章的名字.md”文件</p>
+<p>3.在文件中编辑博客内容。hexo发布的文章是Markdown格式的文件。我使用的Typora软件进行编辑的。Markdown语法可以参考如下网址：<a target="_blank" rel="noopener" href="http://www.markdown.cn/">语法网址</a>。</p>
+<p>4.给文章添加分类和标签：在md文件中设置tags和categories属性就行了。</p>
+<p>5.hexo s，启动本地服务器进行测试</p>
+<p>6.hexo clean：清楚命令</p>
+<p>hexo g：重新生成</p>
+<p>hexo d：发布命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
 
       </div>
       
@@ -781,7 +777,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/06/02/ros/" target="_blank" title="ROS">https://mhshan925.github.io/2021/06/02/ros/</a>
+    <a href="/2021/06/02/hexo常用命令/" target="_blank" title="hexo常用命令">https://mhshan925.github.io/2021/06/02/hexo常用命令/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -799,38 +795,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>hexo常用命令</div>
-      </div>
-      
-      <!-- <div class="content">
-        新建文章步骤：1.在你的博客目录下，右键Git Bash Here。输入命令：
-1hexo new &quot;文章的名
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/05/25/hello-world/" class="post-nav-link">
+    <a href="/2021/06/02/ros/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>Hello World</div>
+        <div>ROS</div>
       </div>
       <!-- <div class="content">
-        Welcome to Hexo! This is your very first post. Check documen
+        机器人操作系统(ROS)是一个用于编写机器人软件的灵活框架。它是一个工具、库和约定的集合，旨在简化跨各种机器人平台创建复
       </div> -->
     </a>
   </div>

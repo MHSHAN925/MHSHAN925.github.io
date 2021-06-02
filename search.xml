@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>hexo常用命令</title>
+      <link href="2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="新建文章步骤："><a href="#新建文章步骤：" class="headerlink" title="新建文章步骤："></a>新建文章步骤：</h1><p>1.在你的博客目录下，右键Git Bash Here。输入命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;文章的名字&quot;</span><br></pre></td></tr></table></figure><p>2.在博客目录下/source/_posts/文件夹下，会生成”文章的名字.md”文件</p><p>3.在文件中编辑博客内容。hexo发布的文章是Markdown格式的文件。我使用的Typora软件进行编辑的。Markdown语法可以参考如下网址：<a href="http://www.markdown.cn/">语法网址</a>。</p><p>4.给文章添加分类和标签：在md文件中设置tags和categories属性就行了。</p><p>5.hexo s，启动本地服务器进行测试</p><p>6.hexo clean：清楚命令</p><p>hexo g：重新生成</p><p>hexo d：发布命令</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 小知识点 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ROS</title>
       <link href="2021/06/02/ros/"/>
       <url>2021/06/02/ros/</url>
