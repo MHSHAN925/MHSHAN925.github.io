@@ -29,6 +29,25 @@
     
     
     <entry>
+      <title>rosDay1</title>
+      <link href="2021/06/03/rosDay1/"/>
+      <url>2021/06/03/rosDay1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="helloworld实现过程（C-）："><a href="#helloworld实现过程（C-）：" class="headerlink" title="helloworld实现过程（C++）："></a>helloworld实现过程（C++）：</h1><p>1.创建工作空间：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p 工作空间名称/src</span><br><span class="line">cd 工作空间</span><br><span class="line">catkin_make</span><br></pre></td></tr></table></figure><p>首先会创建一个工作空间和一个src子目录，进入工作空间调用catkin_make命令编译。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> ros </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo常用命令</title>
       <link href="2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
       <url>2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
