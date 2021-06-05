@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>linux常用命令</title>
+      <link href="2021/06/03/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+      <url>2021/06/03/linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h1 id="VIM常用命令："><a href="#VIM常用命令：" class="headerlink" title="VIM常用命令："></a>VIM常用命令：</h1><h2 id="vim介绍：共分三种模式，命令模式、输入模式、底线命令模式。"><a href="#vim介绍：共分三种模式，命令模式、输入模式、底线命令模式。" class="headerlink" title="vim介绍：共分三种模式，命令模式、输入模式、底线命令模式。"></a>vim介绍：共分三种模式，命令模式、输入模式、底线命令模式。</h2><p>命令模式（一般模式）：启动vim就进入了命令模式。此时键盘动作被识别为命令，比如：i切换到输入模式、x删除当前光标所在处的字符、：切换到底线命令模式、u撤回上一步的操作。</p><p>输入模式（编辑模式）：ESC键退出输入模式，切换到命令模式。</p><p>底线命令模式：命令模式下按:（英文）进入底线命令模式。q退出程序、w保存文件、ESC退出底线命令模式。</p><p>搜索替换：命令模式下，（/word，代表向光标之下寻找一个字符串）（？word，代表向光标之上寻找一个字符串），n代表重复前一个搜索动作，N反向搜索的动作。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hexo常用命令</title>
       <link href="2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
       <url>2021/06/02/hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</url>
