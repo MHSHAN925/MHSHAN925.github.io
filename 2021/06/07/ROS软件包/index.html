@@ -765,11 +765,32 @@
 </li>
 <li><p>catkin工作空间中的软件包</p>
 <ol>
-<li><img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source_posts\Snipaste_2021-06-07_21-47-46.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="Snipaste_2021-06-07_21-47-46"></li>
+<li><p>推荐使用catkin工作空间，也可以单独开发catkin软件包</p>
+</li>
+<li><p>创建软件包之前需要创建工作空间</p>
+</li>
+<li><pre><code>workspace_folder/        -- WORKSPACE
+  src/                   -- SOURCE SPACE
+    CMakeLists.txt       -- &#39;Toplevel&#39; CMake file, provided by catkin
+    package_1/
+      CMakeLists.txt     -- CMakeLists.txt file for package_1
+      package.xml        -- Package manifest for package_1
+    ...
+    package_n/
+      CMakeLists.txt     -- CMakeLists.txt file for package_n
+      package.xml        -- Package manifest for package_n
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">   </span><br><span class="line">3. 创建catkin软件包</span><br><span class="line"></span><br><span class="line">   1. 切换到catkin工作空间中的源文件空间目录</span><br><span class="line"></span><br><span class="line">   2. 使用catkin_create_pkg命令</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+catkin_create_pkg catkin软件包名 std_msgs rospy roscpp
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">      catkin软件包内包含[package.xml](http://wiki.ros.org/catkin/package.xml)文件和一个[CMakeLists.txt](http://wiki.ros.org/catkin/CMakeLists.txt)文件，文件中有执行catkin_create_pkg命令时提供的信息。</span><br><span class="line"></span><br><span class="line">      std_msgs rospy roscpp三个包是依赖。</span><br><span class="line"></span><br><span class="line">4. </span><br><span class="line"></span><br><span class="line">   ​      </span><br><span class="line"></span><br><span class="line"># 创建ROS工作空间</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+$ mkdir -p ~/工作空间名/src
+$ cd ~/catkin_ws/
+$ catkin_make
+</code></pre>
+</li>
 </ol>
 </li>
 </ol>
-<p>​            3.</p>
+<p>catkin_make命令：在工作空间第一次运行的时候，会在src目录下创建CMakeLists.txt链接。</p>
 
       </div>
       
