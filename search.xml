@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>Terminator常用快捷键</title>
+      <link href="2021/06/08/Terminator%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+      <url>2021/06/08/Terminator%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE/</url>
+      
+        <content type="html"><![CDATA[<h1 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Alt+Up                          //移动到上面的终端</span><br><span class="line">Alt+Down                        //移动到下面的终端</span><br><span class="line">Alt+Left                        //移动到左边的终端</span><br><span class="line">Alt+Right                       //移动到右边的终端</span><br><span class="line">Ctrl+Shift+O                    //水平分割终端</span><br><span class="line">Ctrl+Shift+E                    //垂直分割终端</span><br><span class="line">Ctrl+Shift+Right                //在垂直分割的终端中将分割条向右移动</span><br><span class="line">Ctrl+Shift+Left                 //在垂直分割的终端中将分割条向左移动</span><br><span class="line">Ctrl+Shift+Up                   //在水平分割的终端中将分割条向上移动</span><br><span class="line">Ctrl+Shift+Down                 //在水平分割的终端中将分割条向下移动</span><br><span class="line">Ctrl+Shift+S                    //隐藏/显示滚动条</span><br><span class="line">Ctrl+Shift+F                    //搜索</span><br><span class="line">Ctrl+Shift+C                    //复制选中的内容到剪贴板</span><br><span class="line">Ctrl+Shift+V                    //粘贴剪贴板的内容到此处</span><br><span class="line">Ctrl+Shift+W                    //关闭当前终端</span><br><span class="line">Ctrl+Shift+Q                    //退出当前窗口，当前窗口的所有终端都将被关闭</span><br><span class="line">Ctrl+Shift+X                    //最大化显示当前终端</span><br><span class="line">Ctrl+Shift+Z                    //最大化显示当前终端并使字体放大</span><br><span class="line">Ctrl+Shift+N or Ctrl+Tab        //移动到下一个终端</span><br><span class="line">Ctrl+Shift+P or Ctrl+Shift+Tab  //Crtl+Shift+Tab 移动到之前的一个终端</span><br><span class="line"></span><br></pre></td></tr></table></figure><h1 id="标签之间的操作"><a href="#标签之间的操作" class="headerlink" title="标签之间的操作"></a>标签之间的操作</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">F11                             //全屏开关</span><br><span class="line">Ctrl+Shift+T                    //打开一个新的标签</span><br><span class="line">Ctrl+PageDown                   //移动到下一个标签</span><br><span class="line">Ctrl+PageUp                     //移动到上一个标签</span><br><span class="line">Ctrl+Shift+PageDown             //将当前标签与其后一个标签交换位置</span><br><span class="line">Ctrl+Shift+PageUp               //将当前标签与其前一个标签交换位置</span><br><span class="line">Ctrl+Plus (+)                   //增大字体</span><br><span class="line">Ctrl+Minus (-)                  //减小字体</span><br><span class="line">Ctrl+Zero (0)                   //恢复字体到原始大小</span><br><span class="line">Ctrl+Shift+R                    //重置终端状态</span><br><span class="line">Ctrl+Shift+G                    //重置终端状态并clear屏幕</span><br><span class="line">Super+g                         //绑定所有的终端，以便向一个输入能够输入到所有的终端</span><br><span class="line">Super+Shift+G                   //解除绑定</span><br><span class="line">Super+t                         //绑定当前标签的所有终端，向一个终端输入的内容会自动输入到其他终端</span><br><span class="line">Super+Shift+T                   //解除绑定</span><br><span class="line">Ctrl+Shift+I                    //打开一个窗口，新窗口与原来的窗口使用同一个进程</span><br><span class="line">Super+i                         //打开一个新窗口，新窗口与原来的窗口使用不同的进程</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>ROS软件包</title>
       <link href="2021/06/07/ROS%E8%BD%AF%E4%BB%B6%E5%8C%85/"/>
       <url>2021/06/07/ROS%E8%BD%AF%E4%BB%B6%E5%8C%85/</url>
