@@ -759,7 +759,12 @@
 <p>乌龟走动：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">一个新终端：roscore</span><br><span class="line">新终端：turtlesim</span><br><span class="line">新终端：rosrun turtlesim turtlesim_node</span><br><span class="line">新终端：rosrun turtlesim turtle_teleop_key</span><br></pre></td></tr></table></figure>
 
-<h2 id="ROS话题："><a href="#ROS话题：" class="headerlink" title="ROS话题："></a>ROS话题：</h2><p>​            </p>
+<h2 id="ROS话题："><a href="#ROS话题：" class="headerlink" title="ROS话题："></a>ROS话题：</h2><p>​            turtlesim_node节点和turtle_teleop_key节点之间通过ROS话题相互通信。turtle_teleop_key在话题上发布键盘按下的信息，turtlesim_node订阅该话题以接收消息。   </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rqt_graph rqt_graph</span><br></pre></td></tr></table></figure>
+
+<p>上述命令之后，rqt_graph会用动态的图显示系统中发生的事情。</p>
+<p><img "" class="lazyload placeholder" data-original="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics?action=AttachFile&do=get&target=rqt_graph_turtle_key.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="ROS/Tutorials/UnderstandingTopics/rqt_graph_turtle_key.png"></p>
+<p><img "" class="lazyload placeholder" data-original="http://wiki.ros.org/ROS/Tutorials/UnderstandingTopics?action=AttachFile&do=get&target=rqt_graph_turtle_key2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="ROS/Tutorials/UnderstandingTopics/rqt_graph_turtle_key2.png"></p>
 
       </div>
       
