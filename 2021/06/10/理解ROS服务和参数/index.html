@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>理解ROS话题 | Hexo</title>
+  <title>理解ROS服务和参数 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/15.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['理解ROS话题'],
+              strings: ['理解ROS服务和参数'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-09</span>
+        <span class="post-time">2021-06-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -755,42 +755,25 @@
         
       </div>
       <div class="post-content">
-        <h1 id="理解ROS话题（乌龟走动幕后的故事）"><a href="#理解ROS话题（乌龟走动幕后的故事）" class="headerlink" title="理解ROS话题（乌龟走动幕后的故事）"></a>理解ROS话题（乌龟走动幕后的故事）</h1><p>roscore：只运行一个roscore就够了。</p>
-<p>乌龟走动：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">一个新终端：roscore</span><br><span class="line">新终端：rosrun turtlesim turtlesim_node</span><br><span class="line">新终端：rosrun turtlesim turtle_teleop_key</span><br></pre></td></tr></table></figure>
+        <h2 id="ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。"><a href="#ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。" class="headerlink" title="ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。"></a>ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。</h2><h1 id="使用rosservice"><a href="#使用rosservice" class="headerlink" title="使用rosservice"></a>使用rosservice</h1><p>rosservice可以很容易通过服务附加到ROS客户端/服务器框架上。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rosservice list         输出活跃服务的信息</span><br><span class="line">rosservice call         用给定的参数调用服务</span><br><span class="line">rosservice type         输出服务的类型</span><br><span class="line">rosservice find         按服务的类型查找服务</span><br><span class="line">rosservice uri          输出服务的ROSRPC uri</span><br></pre></td></tr></table></figure>
 
-<h2 id="ROS话题："><a href="#ROS话题：" class="headerlink" title="ROS话题："></a>ROS话题：</h2><p>​            turtlesim_node节点和turtle_teleop_key节点之间通过ROS话题相互通信。turtle_teleop_key在话题上发布键盘按下的信息，turtlesim_node订阅该话题以接收消息。   </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosrun rqt_graph rqt_graph</span><br></pre></td></tr></table></figure>
+<p>rosservice type [service]:进一步查看服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rosservice type /clear</span><br><span class="line">结果是：std_srvs/Empty</span><br></pre></td></tr></table></figure>
 
-<p>上述命令之后，rqt_graph会用动态的图显示系统中发生的事情。</p>
-<h2 id="rostopic：rostopic命令工具能获取ROS话题的信息。"><a href="#rostopic：rostopic命令工具能获取ROS话题的信息。" class="headerlink" title="rostopic：rostopic命令工具能获取ROS话题的信息。"></a>rostopic：rostopic命令工具能获取ROS话题的信息。</h2><p>rostopic -h：查看可用的rostopic的子命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Commands:</span><br><span class="line">        rostopic bw     display bandwidth used by topic</span><br><span class="line">        rostopic delay  display delay of topic from timestamp in header</span><br><span class="line">        rostopic echo   print messages to screen</span><br><span class="line">        rostopic find   find topics by type</span><br><span class="line">        rostopic hz     display publishing rate of topic    </span><br><span class="line">        rostopic info   print information about active topic</span><br><span class="line">        rostopic list   list active topics</span><br><span class="line">        rostopic pub    publish data to topic</span><br><span class="line">        rostopic type   print topic or field type</span><br></pre></td></tr></table></figure>
+<p>服务的类型为empty，表明调用这个服务时不需要参数。（它在发出<strong>请求</strong>时不发送数据，在接收<strong>响应</strong>时也不接收数据）</p>
+<p>rosservice call [service] [args]:call命令调用服务，args是给定的参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /clear：</span><br><span class="line">call:表明调用clear服务</span><br></pre></td></tr></table></figure>
 
-<p>rostopic echo [topic]:查看在某个话题上发布的数据。（也就是去订阅了话题）</p>
-<p>rostopic list -h：查看可用的rostopic list子命令。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Options:</span><br><span class="line">  -h, --help            show this help message and exit</span><br><span class="line">  -b BAGFILE, --bag=BAGFILE</span><br><span class="line">                        list topics in .bag file</span><br><span class="line">  -v, --verbose         list full details about each topic</span><br><span class="line">  -p                    list only publishers</span><br><span class="line">  -s                    list only subscribers</span><br></pre></td></tr></table></figure>
+<p>查看spawn（产卵）服务的信息，此服务具有参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosservice type /spawn | rossrv show</span><br></pre></td></tr></table></figure>
 
-<p>rostopic list -v：会列出所有发布者和订阅的主题及其类型的相关信息。</p>
-<h1 id="ROS消息"><a href="#ROS消息" class="headerlink" title="ROS消息"></a>ROS消息</h1><p>话题的通信是通过节点间发送ROS消息实现的。为了使发布者和订阅者进行通信，发布者和订阅者必须发送和接收相同类型的消息。所以话题的类型是由发布在上面的消息的类型决定的。</p>
-<p>rostopic type 【topic】:查看所发布话题的消息类型。    </p>
-<p>​        使用rosmsg show  【geometry_msgs/Twist】查看消息的详细信息。</p>
-<h2 id="rostopic"><a href="#rostopic" class="headerlink" title="rostopic:"></a>rostopic:</h2><p>rostopic pub 【topic】【msg_type】【args】:把数据发布到当前某个正在广播的话题上。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">示例：</span><br><span class="line">rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- &#x27;[2.0, 0.0, 0.0]&#x27; &#x27;[0.0, 0.0, 1.8]&#x27;</span><br></pre></td></tr></table></figure>
+<p>​        spawn服务的参数：name字段是可选的        </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">float32 x</span><br><span class="line">float32 y</span><br><span class="line">float32 theta</span><br><span class="line">string name</span><br><span class="line">---</span><br><span class="line">string name</span><br></pre></td></tr></table></figure>
 
-<p>rostopic pub:将消息发布到指定的话题。</p>
-<p>-1：让rostopic只发布一条消息，然后退出</p>
-<p>/turtle1/cmd_vel：要发布到的话题的名称</p>
-<p>geometry_msgs/Twist：发布到话题时要使用的消息的类型</p>
-<p>–：两个破折号，用来告诉解析器，之后的参数都不是选项</p>
-<p>如前所述，一个turtlesim/Velocity消息有两个浮点型元素：<code>linear</code>和<code>angular</code>。在本例中，<code>&#39;[2.0, 0.0, 0.0]&#39;</code>表示<code>linear</code>的值为<code>x=2.0</code>, <code>y=0.0</code>, <code>z=0.0</code>，而<code>&#39;[0.0, 0.0, 1.8]&#39;</code>是说<code>angular</code>的值为<code>x=0.0</code>, <code>y=0.0</code>, <code>z=1.8</code>。这些参数实际上使用的是YAML语法，在<a target="_blank" rel="noopener" href="http://wiki.ros.org/ROS/YAMLCommandLine">YAML命令行文档</a>中有描述。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- &#x27;[2.0, 0.0, 0.0]&#x27; &#x27;[0.0, 0.0, -1.8]&#x27;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /spawn 2 2 0.2 &quot;&quot;</span><br><span class="line">调用spawn服务，并且需要参数。</span><br><span class="line">clear服务不需要参数</span><br></pre></td></tr></table></figure>
 
-<p>turtle以一个稳定的频率为1Hz的指令流才能保持移动状态。我们可以使用<code>rostopic pub -r</code>命令来发布源源不断的命令。</p>
-<p>rostopic hz 【topic】：报告数据发布的速率</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ rostopic type /turtle1/cmd_vel | rosmsg show</span><br></pre></td></tr></table></figure>
-
-<p>结合rostopic、type、rosmsg show、命令来获取关于某个话题的更深层次的信息。</p>
-<h1 id="使用rqt-plot"><a href="#使用rqt-plot" class="headerlink" title="使用rqt_plot"></a>使用rqt_plot</h1><p><code>rqt_plot</code>命令可以在滚动时间图上显示发布到某个话题上的数据。这里我们将使用<code>rqt_plot</code>命令来绘制正被发布到<code>/turtle1/pose</code>话题上的数据。</p>
+<h1 id="使用rosparam"><a href="#使用rosparam" class="headerlink" title="使用rosparam"></a>使用rosparam</h1><p><code>rosparam</code>能让我们在ROS[参数服务器（Parameter Server）](<a target="_blank" rel="noopener" href="http://wiki.ros.org/Parameter">http://wiki.ros.org/Parameter</a> Server)上存储和操作数据。参数服务器能够存储整型（integer）、浮点（float）、布尔（boolean）、字典（dictionaries）和列表（list）等数据类型。rosparam使用YAML标记语言的语法。一般而言，YAML的表述很自然：<code>1</code>是整型，<code>1.0</code>是浮点型，<code>one</code>是字符串，<code>true</code>是布尔型，<code>[1, 2, 3]</code>是整型组成的列表，<code>&#123;a: b, c: d&#125;</code>是字典。</p>
 
       </div>
       
@@ -801,7 +784,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/06/09/理解ROS话题/" target="_blank" title="理解ROS话题">https://mhshan925.github.io/2021/06/09/理解ROS话题/</a>
+    <a href="/2021/06/10/理解ROS服务和参数/" target="_blank" title="理解ROS服务和参数">https://mhshan925.github.io/2021/06/10/理解ROS服务和参数/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -819,37 +802,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/10/%E7%90%86%E8%A7%A3ROS%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%8F%82%E6%95%B0/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>理解ROS服务和参数</div>
-      </div>
-      
-      <!-- <div class="content">
-        ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。使用rosservicerosser
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/15.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/09/%E7%90%86%E8%A7%A3ROS%E8%8A%82%E7%82%B9/" class="post-nav-link">
+    <a href="/2021/06/09/%E7%90%86%E8%A7%A3ROS%E8%AF%9D%E9%A2%98/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>理解ROS节点</div>
+        <div>理解ROS话题</div>
       </div>
       <!-- <div class="content">
-        图的概念计算图是一个由ROS进程组成的点对点网络，能够共同处理数据。ROS的基本计算图概念有节点（Nodes）、主节点（
+        理解ROS话题（乌龟走动幕后的故事）roscore：只运行一个roscore就够了。
+乌龟走动：
+123一个新终端：ro
       </div> -->
     </a>
   </div>

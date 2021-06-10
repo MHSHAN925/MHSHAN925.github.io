@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>理解ROS服务和参数</title>
+      <link href="2021/06/10/%E7%90%86%E8%A7%A3ROS%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%8F%82%E6%95%B0/"/>
+      <url>2021/06/10/%E7%90%86%E8%A7%A3ROS%E6%9C%8D%E5%8A%A1%E5%92%8C%E5%8F%82%E6%95%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。"><a href="#ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。" class="headerlink" title="ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。"></a>ROS服务：服务是节点之间通讯的另一种方式。服务允许节点发送一个请求并获得一个响应。</h2><h1 id="使用rosservice"><a href="#使用rosservice" class="headerlink" title="使用rosservice"></a>使用rosservice</h1><p>rosservice可以很容易通过服务附加到ROS客户端/服务器框架上。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rosservice list         输出活跃服务的信息</span><br><span class="line">rosservice call         用给定的参数调用服务</span><br><span class="line">rosservice type         输出服务的类型</span><br><span class="line">rosservice find         按服务的类型查找服务</span><br><span class="line">rosservice uri          输出服务的ROSRPC uri</span><br></pre></td></tr></table></figure><p>rosservice type [service]:进一步查看服务</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rosservice type /clear</span><br><span class="line">结果是：std_srvs/Empty</span><br></pre></td></tr></table></figure><p>服务的类型为empty，表明调用这个服务时不需要参数。（它在发出<strong>请求</strong>时不发送数据，在接收<strong>响应</strong>时也不接收数据）</p><p>rosservice call [service] [args]:call命令调用服务，args是给定的参数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /clear：</span><br><span class="line">call:表明调用clear服务</span><br></pre></td></tr></table></figure><p>查看spawn（产卵）服务的信息，此服务具有参数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rosservice type /spawn | rossrv show</span><br></pre></td></tr></table></figure><p>​        spawn服务的参数：name字段是可选的        </p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">float32 x</span><br><span class="line">float32 y</span><br><span class="line">float32 theta</span><br><span class="line">string name</span><br><span class="line">---</span><br><span class="line">string name</span><br></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rosservice call /spawn 2 2 0.2 &quot;&quot;</span><br><span class="line">调用spawn服务，并且需要参数。</span><br><span class="line">clear服务不需要参数</span><br></pre></td></tr></table></figure><h1 id="使用rosparam"><a href="#使用rosparam" class="headerlink" title="使用rosparam"></a>使用rosparam</h1><p><code>rosparam</code>能让我们在ROS[参数服务器（Parameter Server）](<a href="http://wiki.ros.org/Parameter">http://wiki.ros.org/Parameter</a> Server)上存储和操作数据。参数服务器能够存储整型（integer）、浮点（float）、布尔（boolean）、字典（dictionaries）和列表（list）等数据类型。rosparam使用YAML标记语言的语法。一般而言，YAML的表述很自然：<code>1</code>是整型，<code>1.0</code>是浮点型，<code>one</code>是字符串，<code>true</code>是布尔型，<code>[1, 2, 3]</code>是整型组成的列表，<code>&#123;a: b, c: d&#125;</code>是字典。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ROS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ROS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>理解ROS话题</title>
       <link href="2021/06/09/%E7%90%86%E8%A7%A3ROS%E8%AF%9D%E9%A2%98/"/>
       <url>2021/06/09/%E7%90%86%E8%A7%A3ROS%E8%AF%9D%E9%A2%98/</url>
