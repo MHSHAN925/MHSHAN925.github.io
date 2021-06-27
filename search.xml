@@ -8,7 +8,7 @@
       <link href="2021/06/24/kotlin/"/>
       <url>2021/06/24/kotlin/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="Kotlin基础"><a href="#Kotlin基础" class="headerlink" title="Kotlin基础"></a>Kotlin基础</h1><p>声明变量：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var maximun:Int = 5</span><br><span class="line">变量定义关键字 变量名 类型定义 赋值运算符 赋值</span><br><span class="line">简写：var maximun = 5</span><br><span class="line">变量名关键字 变量名 赋值运算符 赋值（相比少了一个类型定义，因为kotlin可以进行类型推断）</span><br><span class="line"></span><br><span class="line">var关键字修饰的是可修改变量</span><br><span class="line">val关键字修饰的是只读变量</span><br><span class="line"></span><br><span class="line">类型推断：对与以声明并赋值的变量，允许省略类型定义</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>编译时常量：只能定义在函数之外，因为编译时常量必须在编译时赋值，函数都是在运行时才调用，函数内的变量是在运行时赋值，编译时常量要在这些变量赋值前就已经存在。</p><p>编译时常量只能是常见的基本数据类型：String、Int、Double、Float、Long、Short、Byte、Char、Boolean</p><p>kotlin只提供引用类型这一种数据类型，但是kotlin编译器会在java字节码中改用基本数据类型</p>]]></content>
       
       
       <categories>
