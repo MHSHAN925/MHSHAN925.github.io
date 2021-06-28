@@ -734,10 +734,37 @@
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/kotlin/" class="">
+              kotlin
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <p>基本类型：</p>
+<p>​        在kotlin中，所有东西都是对象，我们可以在任何变量上调用成员函数与属性。一些类型可以有特殊的内部表示–数字、字符、布尔值在运行时表示为原生类型值，但对于用户来说，看起来就像是普通的类。kotlin中的基本类型：数字、字符、布尔值、数组与字符串。</p>
+<p>数字：Byte、Short、Int、Long。</p>
+<p>​        所有未超出Int最大值的整形值且未显示指定类型，都会被推断为Int类型。如果初始值超过了其最大值且未显示指定类型会被推断为Long类型。</p>
+<p>浮点数：Float、Double。</p>
+<p>​        对于以小数初始化的变量，编译器会推断为Double类型。可以添加f或F将值显示指定为Float类型。</p>
+<p>​        kotlin没有隐式拓宽转换，具有Double参数的函数只能对Double值调用，而不能对Float、Int其他数字值调用 。</p>
+<p>字面值常量：</p>
+<p>​        十进制：123.  Long类型用大写L标记：123L</p>
+<p>​        十六进制：0x0F</p>
+<p>​        二进制：0b00001011</p>
+<p>​        不支持八进制</p>
+<p>支持浮点数的常规表示方法：</p>
+<p>​        默认double:123.5</p>
+<p>​        Float用f或者F标记：123.5f</p>
+<p> kotlin中，较小类型不是较大类型的子类型，所以较小类型不能隐式转换为较大类型。必须通过显示转换。toByte（）、toShort（）、toInt（）、toLong（）等</p>
+<p>字符：Char类型，用单引号括起来。</p>
+<p>布尔：布尔用Boolean类型表示，有两个值true和false</p>
+
       </div>
       
         <div class="copyright">
