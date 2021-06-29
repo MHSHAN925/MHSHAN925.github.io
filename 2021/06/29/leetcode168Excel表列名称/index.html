@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>kotlin基础 | Hexo</title>
+  <title>leetcode168Excel表列名称 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/5.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['kotlin基础'],
+              strings: ['leetcode168Excel表列名称'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-28</span>
+        <span class="post-time">2021-06-29</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,58 +737,19 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/kotlin/" class="">
-              kotlin
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
         
-        
-        <div class="categories">
-          <i class="iconfont iconbookmark1"></i>
-          
-            <a href="/categories/kotlin/" class="">
-              kotlin
-            </a>
-          
-        </div>
         
       </div>
       <div class="post-content">
-        <p>基本类型：</p>
-<p>​        在kotlin中，所有东西都是对象，我们可以在任何变量上调用成员函数与属性。一些类型可以有特殊的内部表示–数字、字符、布尔值在运行时表示为原生类型值，但对于用户来说，看起来就像是普通的类。kotlin中的基本类型：数字、字符、布尔值、数组与字符串。</p>
-<p>数字：Byte、Short、Int、Long。</p>
-<p>​        所有未超出Int最大值的整形值且未显示指定类型，都会被推断为Int类型。如果初始值超过了其最大值且未显示指定类型会被推断为Long类型。</p>
-<p>浮点数：Float、Double。</p>
-<p>​        对于以小数初始化的变量，编译器会推断为Double类型。可以添加f或F将值显示指定为Float类型。</p>
-<p>​        kotlin没有隐式拓宽转换，具有Double参数的函数只能对Double值调用，而不能对Float、Int其他数字值调用 。</p>
-<p>字面值常量：</p>
-<p>​        十进制：123.  Long类型用大写L标记：123L</p>
-<p>​        十六进制：0x0F</p>
-<p>​        二进制：0b00001011</p>
-<p>​        不支持八进制</p>
-<p>支持浮点数的常规表示方法：</p>
-<p>​        默认double:123.5</p>
-<p>​        Float用f或者F标记：123.5f</p>
-<p> kotlin中，较小类型不是较大类型的子类型，所以较小类型不能隐式转换为较大类型。必须通过显示转换。toByte（）、toShort（）、toInt（）、toLong（）等</p>
-<p>字符：Char类型，用单引号括起来。</p>
-<p>布尔：布尔用Boolean类型表示，有两个值true和false</p>
-<h1 id="Kotlin从入门到进阶实战"><a href="#Kotlin从入门到进阶实战" class="headerlink" title="Kotlin从入门到进阶实战"></a>Kotlin从入门到进阶实战</h1><h2 id="变量和标识符"><a href="#变量和标识符" class="headerlink" title="变量和标识符"></a>变量和标识符</h2><p>变量标识一个对象的地址，称之为标识符。具体存放的数据占用的内存的大小和存放的形式由其类型来决定。</p>
-<p>kotlin中所有的变量类型都是引用类型。kotlin变量分为</p>
-<p>​        val（不可变的）：只读的，仅能赋值一次</p>
-<p>​        var（可写的）：可以被多次赋值</p>
-<h2 id="关键字和修饰符"><a href="#关键字和修饰符" class="headerlink" title="关键字和修饰符"></a>关键字和修饰符</h2><p>关键字：类修饰符、成员修饰符、访问权限修饰符、协变逆变修饰符、函数修饰符、属性修饰符、参数修饰符等</p>
-<h2 id="流程控制语句"><a href="#流程控制语句" class="headerlink" title="流程控制语句"></a>流程控制语句</h2><p>分支语句（if、when）</p>
-<p>​        在Kotlin中，if是一个表达式，会返回一个值</p>
-<p>​        if的分支可以是代码块，最后的表达式作为该块的值</p>
-<p>​        when表达式类似于switch..case表达式</p>
-<p>循环语句（for、while）</p>
-<p>​        for循环可以对任何提供迭代器（iterator）的对象进行遍历</p>
-<p>​        while循环类似于java</p>
-<p>跳转语句（return、break、continue、throw）</p>
-<p>​        break：用于完全结束一个循环，直接跳出循环体，然后执行循环后面的语句。<br>​        continue：只终止本轮循环，但是还会继续下一轮循环。</p>
-<p>​        return：kotlin中除了表达式的值，有返回值的函数都要求显示使用return语句返回其值。kotlin中可以直接使用“=”符号返回一个函数的值，这样的函数称为函数字面量。</p>
-<h5 id="标签"><a href="#标签" class="headerlink" title="标签"></a>标签</h5><p>kotlin中任何表达式都可以用标签来标记。标签的格式为标识符后跟@符号，可以用标签来控制return、break、continue等语句的跳转行为。</p>
+        <h1 id="leetcode168：Excel表列名称"><a href="#leetcode168：Excel表列名称" class="headerlink" title="leetcode168：Excel表列名称"></a>leetcode168：Excel表列名称</h1><p>题目：给你一个整数，返回它在Excel表中相应的列名称。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">A -&gt; 1</span><br><span class="line">B -&gt; 2</span><br><span class="line">C -&gt; 3</span><br><span class="line">...</span><br><span class="line">Z -&gt; 26</span><br><span class="line">AA -&gt; 27</span><br><span class="line">AB -&gt; 28 </span><br><span class="line">例如：</span><br><span class="line">输入：columnNumber = 1</span><br><span class="line">输出：&quot;A&quot;</span><br><span class="line">输入：columnNumber = 28</span><br><span class="line">输出：&quot;AB&quot;</span><br><span class="line">输入：columnNumber = 2147483647</span><br><span class="line">输出：&quot;FXSHRXW&quot;</span><br></pre></td></tr></table></figure>
+
+<p>分析：这道题属于简单题。首先要能够意识这道题考察了进制之间的转换。</p>
 
       </div>
       
@@ -799,7 +760,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/06/28/kotlin基础/" target="_blank" title="kotlin基础">https://mhshan925.github.io/2021/06/28/kotlin基础/</a>
+    <a href="/2021/06/29/leetcode168Excel表列名称/" target="_blank" title="leetcode168Excel表列名称">https://mhshan925.github.io/2021/06/29/leetcode168Excel表列名称/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -817,38 +778,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/29/leetcode168Excel%E8%A1%A8%E5%88%97%E5%90%8D%E7%A7%B0/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>leetcode168Excel表列名称</div>
-      </div>
-      
-      <!-- <div class="content">
-        leetcode168：Excel表列名称题目：给你一个整数，返回它在Excel表中相应的列名称。
-1234567891
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/27/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="post-nav-link">
+    <a href="/2021/06/28/kotlin%E5%9F%BA%E7%A1%80/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>动态规划</div>
+        <div>kotlin基础</div>
       </div>
       <!-- <div class="content">
-        
+        基本类型：
+​        在kotlin中，所有东西都是对象，我们可以在任何变量上调用成员函数与属性。一些类型可以有
       </div> -->
     </a>
   </div>
