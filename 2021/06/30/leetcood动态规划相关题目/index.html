@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>程序员代码面试指南第一章题目 | Hexo</title>
+  <title>leetcood动态规划相关题目 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/3.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/13.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['程序员代码面试指南第一章题目'],
+              strings: ['leetcood动态规划相关题目'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,41 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-06-29</span>
+        <span class="post-time">2021-06-30</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
-              算法
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="设计一个有getMin功能的栈"><a href="#设计一个有getMin功能的栈" class="headerlink" title="设计一个有getMin功能的栈"></a>设计一个有getMin功能的栈</h1><h2 id="1-设计一个有getMin功能的栈，在栈的基本功能上，实现返回栈中最小元素的操作。"><a href="#1-设计一个有getMin功能的栈，在栈的基本功能上，实现返回栈中最小元素的操作。" class="headerlink" title="1.设计一个有getMin功能的栈，在栈的基本功能上，实现返回栈中最小元素的操作。"></a>1.设计一个有getMin功能的栈，在栈的基本功能上，实现返回栈中最小元素的操作。</h2><p>思路：因为要返回栈中最小的元素，所以需要找个地方把最小的元素给存起来。这个存起来的过程涉及到判断最小的元素。</p>
-<p>方法1：用两个栈、一个栈stackData实现正常的功能，另一个栈stackMin用来保存最小的元素。</p>
-<p>​            压入规则：1、判断stackData是否为空。</p>
-<p>​                                    1.1：为空，两个栈压入</p>
-<p>​                                    1.2：不为空，stackData压入，然后判断压入数据和stackMin栈顶元素的大小，如果压入数据小或等于，也压入stackMin中。压入数据大于stackMin栈顶的元素，则不用压入。</p>
-<p>​            弹出规则：压入规则的对应。</p>
-<p>​            查询当前栈最小值的操作：stackMin保存着最小值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public class GetMin &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stackNormal = new Stack();</span><br><span class="line">    Stack&lt;Integer&gt; stackSpecial = new Stack();</span><br><span class="line">//构造函数</span><br><span class="line">    public GetMin() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public GetMin(Stack&lt;Integer&gt; stackNormal, Stack&lt;Integer&gt; stackSpecial) &#123;</span><br><span class="line">        this.stackNormal = stackNormal;</span><br><span class="line">        this.stackSpecial = stackSpecial;</span><br><span class="line">    &#125;</span><br><span class="line">//压入规则</span><br><span class="line">    public void push(int input)&#123;</span><br><span class="line">       stackNormal.push(input);</span><br><span class="line">       if (stackSpecial.size() == 0)&#123;</span><br><span class="line">           stackSpecial.push(input);</span><br><span class="line">       &#125;</span><br><span class="line">       if (stackSpecial.size() != 0 &amp;&amp; input &lt;= stackSpecial.peek())&#123;</span><br><span class="line">           stackSpecial.push(input);</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">//弹出规则</span><br><span class="line">    public int pop()&#123;</span><br><span class="line">        if (stackSpecial.size() == 0)&#123;</span><br><span class="line">            throw new RuntimeException(&quot;stack is empty&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        int value = stackNormal.pop();</span><br><span class="line">        if (value == stackSpecial.peek())&#123;</span><br><span class="line">            stackSpecial.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        return value;</span><br><span class="line">    &#125;</span><br><span class="line">//查询规则</span><br><span class="line">    public int getMin()&#123;</span><br><span class="line">        if (stackSpecial.size() == 0)&#123;</span><br><span class="line">            throw new RuntimeException(&quot;stack is empty&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return stackSpecial.peek();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法2：用两个栈、一个栈stackData实现正常的功能，另一个栈stackMin用来保存最小的元素。</p>
-<p>​        压入规则：先判断stackData栈是否为空，为空的话两个栈同时压入。</p>
-<p>​                            不为空：stackData压入数据，然后判断压入的数据和stackMin栈顶的元素的大小。如果大于stackMin栈顶的元素，stackMin再次压入当前栈顶的元素，如果小于stackMin栈顶的元素，则也直接压入stackMin。</p>
-<p>​        弹出规则：压入规则的对应</p>
-<p>​        查询规则：stackMin栈的栈顶元素</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public class GetMin2 &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stackData = new Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;Integer&gt; stackMin = new Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public GetMin2(Stack&lt;Integer&gt; stackData, Stack&lt;Integer&gt; stackMin) &#123;</span><br><span class="line">        this.stackData = stackData;</span><br><span class="line">        this.stackMin = stackMin;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void push(int input)&#123;</span><br><span class="line">        stackData.push(input);</span><br><span class="line">        if (stackMin.size() == 0)&#123;</span><br><span class="line">            stackMin.push(input);</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            if (input &lt;= stackMin.peek())&#123;</span><br><span class="line">                stackMin.push(input);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                stackMin.push(stackMin.peek());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public int pop()&#123;</span><br><span class="line">        if (stackData.size() == 0)&#123;</span><br><span class="line">            throw new RuntimeException(&quot;stack is empty&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        stackMin.pop();</span><br><span class="line">        return stackData.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getMin()&#123;</span><br><span class="line">        if (stackMin.size() == 0)&#123;</span><br><span class="line">            throw new RuntimeException(&quot;stack is empty&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        return stackMin.peek();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="两个栈组成的队列"><a href="#两个栈组成的队列" class="headerlink" title="两个栈组成的队列"></a>两个栈组成的队列</h1><p>编写一个类，用两个栈实现队列，支持队列的基本操作</p>
-
+        
       </div>
       
         <div class="copyright">
@@ -773,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/06/29/程序员代码面试指南第一章题目/" target="_blank" title="程序员代码面试指南第一章题目">https://mhshan925.github.io/2021/06/29/程序员代码面试指南第一章题目/</a>
+    <a href="/2021/06/30/leetcood动态规划相关题目/" target="_blank" title="leetcood动态规划相关题目">https://mhshan925.github.io/2021/06/30/leetcood动态规划相关题目/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -791,23 +765,6 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/06/30/leetcode%E6%A0%88%E5%92%8C%E9%98%9F%E5%88%97%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>leetcode栈和队列相关题目</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
@@ -815,14 +772,13 @@
     <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/06/29/leetcode168Excel%E8%A1%A8%E5%88%97%E5%90%8D%E7%A7%B0/" class="post-nav-link">
+    <a href="/2021/06/30/leetcood%E9%93%BE%E8%A1%A8%E7%9B%B8%E5%85%B3%E9%A2%98%E7%9B%AE/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>leetcode168Excel表列名称</div>
+        <div>leetcood链表相关题目</div>
       </div>
       <!-- <div class="content">
-        leetcode168：Excel表列名称题目：给你一个整数，返回它在Excel表中相应的列名称。
-1234567891
+        
       </div> -->
     </a>
   </div>
