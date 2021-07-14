@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Flutter | Hexo</title>
+  <title>Flutter第二篇 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['Flutter'],
+              strings: ['Flutter第二篇'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-13</span>
+        <span class="post-time">2021-07-14</span>
       </div>
       
       <div class="post-tags-categories">
@@ -755,37 +755,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="Flutter完整开发实战详解系列"><a href="#Flutter完整开发实战详解系列" class="headerlink" title="Flutter完整开发实战详解系列"></a>Flutter完整开发实战详解系列</h1><p>flutter中所有的组件都是类。</p>
-<h5 id="Flutter-Widget："><a href="#Flutter-Widget：" class="headerlink" title="Flutter Widget："></a>Flutter Widget：</h5><p>在flutter中一切的显示都是widget，widget是一切的基础，利用响应式模式进行渲染。可以修改数据，再用setState设置数据，Flutter会自动通过绑定的数据更新Widget，所以开发者需要做的就是实现Widget，并且和数据绑定。</p>
-<p>Widget分为有状态和无状态两种，在Flutter中每个页面都是一帧，无状态就是保持在那一帧，有状态的Widget当数据更新时，其实是创建了新的Widget，只是State实现了跨帧的数据同步保存。</p>
-<h6 id="无状态的StatelessWidget"><a href="#无状态的StatelessWidget" class="headerlink" title="无状态的StatelessWidget"></a>无状态的StatelessWidget</h6><p>自定义的Widget（类），继承StatelessWidget（抽象类）。通过build方法返回一个布局好的控件。Widget和Widget之间通过child进行嵌套，有的Widget只能有一个child（比如container），有的可以有多个child（比如Column布局）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;package:flutter/material.dart&#x27;;</span><br><span class="line"></span><br><span class="line">class DemoWidget extends StatelessWidget&#123;</span><br><span class="line">  //数据可以通过构造方法传递进来</span><br><span class="line">  final String? text;</span><br><span class="line">  DemoWidget(this.text);</span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // TODO: implement build</span><br><span class="line">    //throw UnimplementedError();</span><br><span class="line">    //这里返回需要的控件</span><br><span class="line">    return Container(</span><br><span class="line">      //蓝色背景</span><br><span class="line">      color: Colors.blue,</span><br><span class="line">      //在Dart语法中，？？表示如果text为空，返回尾号后的内容</span><br><span class="line">      child: Text(text ?? &quot;这就是无状态的Demo&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h6 id="有状态的StatefulWidget"><a href="#有状态的StatefulWidget" class="headerlink" title="有状态的StatefulWidget"></a>有状态的StatefulWidget</h6><p>需要创建管理的主要是State，通过State的build方法构建控件。在State中可以动态改变数据，在setState之后，改变的数据会触发Widget重新构建刷新</p>
-<p>State中的声明周期有：initState：初始化，理论上只有一次，有特殊情况。</p>
-<p>didChangeDependencies：在initState之后调用，此时可以获取其他State</p>
-<p>dispose：销毁，只会调用一次</p>
-<p>综上：flutter中的关注点：创建StatelessWidget或者StatefulWidget，需要的就是在build中堆积你的布局，然后把数据添加到Widget中，最后通过setState改变数据，实现画面变化。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">import &#x27;dart:async&#x27;;</span><br><span class="line">import &#x27;package:flutter/material.dart&#x27;;</span><br><span class="line"></span><br><span class="line">class DemoStateWidget extends StatefulWidget&#123;</span><br><span class="line">  //通过构造方法传值</span><br><span class="line">  final String text;</span><br><span class="line">  DemoStateWidget(this.text);</span><br><span class="line"></span><br><span class="line">  //主要是负责创建state</span><br><span class="line">  @override</span><br><span class="line">  _DemoStateWidgetState createState() &#123;</span><br><span class="line">    // TODO: implement createState</span><br><span class="line">    throw UnimplementedError();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class _DemoStateWidgetState extends State&lt;DemoStateWidget&gt;&#123;</span><br><span class="line">  //同样通过构造方法传值</span><br><span class="line">  String text;</span><br><span class="line">  _DemoStateWidgetState(this.text);</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  void initState() &#123;</span><br><span class="line">    //初始化，这个函数在声明周期中只调用一次</span><br><span class="line">    // TODO: implement initState</span><br><span class="line">    super.initState();</span><br><span class="line">    //定时一秒</span><br><span class="line">    new Future.delayed(const Duration(seconds: 1),())&#123;</span><br><span class="line">      setState(() &#123;</span><br><span class="line">        text = &quot;这就遍历数值&quot;;</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  void dispose() &#123;</span><br><span class="line">    //销毁</span><br><span class="line">    // TODO: implement dispose</span><br><span class="line">    super.dispose();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  void didChangeDependencies() &#123;</span><br><span class="line">    //在initState之后</span><br><span class="line">    // TODO: implement didChangeDependencies</span><br><span class="line">    super.didChangeDependencies();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  @override</span><br><span class="line">  Widget build(BuildContext context) &#123;</span><br><span class="line">    // TODO: implement build</span><br><span class="line">    //throw UnimplementedError();</span><br><span class="line">    return Container(</span><br><span class="line">      child: Text(text ?? &quot;这就是有状态的Demo&quot;),</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h5 id="Flutter布局"><a href="#Flutter布局" class="headerlink" title="Flutter布局"></a>Flutter布局</h5><p>Flutter 中拥有需要将近 30 种内置的 布局 Widget ，其中常⽤有Container 、<br>Padding 、 Center 、 Flex 、 Stack 、 Row 、 Column 、 ListView 等，</p>
-<h6 id="Container：只有⼀个⼦Widget-。默认充满，包含了-padding-、"><a href="#Container：只有⼀个⼦Widget-。默认充满，包含了-padding-、" class="headerlink" title="Container：只有⼀个⼦Widget 。默认充满，包含了 padding 、"></a>Container：只有⼀个⼦Widget 。默认充满，包含了 padding 、</h6><p>margin 、 color 、宽⾼、 decoration 等配置</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">最常⽤的默认控件，但是实际上它是由多个内置控件组</span><br><span class="line">成的模版，只能包含⼀个child ，⽀持padding,margin,color, 宽</span><br><span class="line">⾼ ,decoration （⼀般配置边框和阴影）等配置，在Flutter 中，不是</span><br><span class="line">所有的控件都有宽⾼、 padding 、 margin 、 color 等属性，所以才会</span><br><span class="line">有Padding 、 Center 等Widget 的存在。</span><br><span class="line"></span><br><span class="line">new Container(</span><br><span class="line">/// 四周 10 ⼤⼩的 maring</span><br><span class="line">margin: EdgeInsets.all(10.0),</span><br><span class="line">height: 120.0,</span><br><span class="line">width: 500.0,</span><br><span class="line">/// 透明⿊⾊遮罩</span><br><span class="line">decoration: new BoxDecoration(</span><br><span class="line">/// 弧度为 4.0</span><br><span class="line">borderRadius: BorderRadius.all(Radius.circula</span><br><span class="line">/// 设置了 decoration 的 color ，就不能设置 Container 的</span><br><span class="line">color: Colors.black,</span><br><span class="line">/// 边框</span><br><span class="line">border: new Border.all(color: Color(GSYColors</span><br><span class="line">child:new Text(&quot;666666&quot;));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h6 id="Padding：只有⼀个⼦Widget-。只⽤于设置-Padding-，常⽤于嵌"><a href="#Padding：只有⼀个⼦Widget-。只⽤于设置-Padding-，常⽤于嵌" class="headerlink" title="Padding：只有⼀个⼦Widget 。只⽤于设置 Padding ，常⽤于嵌"></a>Padding：只有⼀个⼦Widget 。只⽤于设置 Padding ，常⽤于嵌</h6><p>套 child ，给 child 设置 padding </p>
-<h6 id="Center：只有⼀个⼦Widget-。只⽤于居中显示，常⽤于嵌套"><a href="#Center：只有⼀个⼦Widget-。只⽤于居中显示，常⽤于嵌套" class="headerlink" title="Center：只有⼀个⼦Widget 。只⽤于居中显示，常⽤于嵌套"></a>Center：只有⼀个⼦Widget 。只⽤于居中显示，常⽤于嵌套</h6><p>child ，给 child 设置居中</p>
-<h6 id="Stack：可以有多个⼦Widget-。⼦-Widget-堆叠在⼀起。"><a href="#Stack：可以有多个⼦Widget-。⼦-Widget-堆叠在⼀起。" class="headerlink" title="Stack：可以有多个⼦Widget 。⼦ Widget 堆叠在⼀起。"></a>Stack：可以有多个⼦Widget 。⼦ Widget 堆叠在⼀起。</h6><h6 id="Column：可以有多个⼦Widget-。垂直布局"><a href="#Column：可以有多个⼦Widget-。垂直布局" class="headerlink" title="Column：可以有多个⼦Widget 。垂直布局"></a>Column：可以有多个⼦Widget 。垂直布局</h6><h6 id="Row：可以有多个⼦Widget-。⽔平布局"><a href="#Row：可以有多个⼦Widget-。⽔平布局" class="headerlink" title="Row：可以有多个⼦Widget 。⽔平布局"></a>Row：可以有多个⼦Widget 。⽔平布局</h6><p>Column 、 Row 绝对是必备布局， 横竖布局也是⽇常中最常⻅的场<br>景。如下⽅所示，它们常⽤的有这些属性配置：主轴⽅向是 start 或<br>center 等；副轴⽅向⽅向是start 或center 等； mainAxisSize 是充满<br>最⼤尺⼨，或者只根据⼦Widget 显示最⼩尺⼨</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 主轴⽅向， Column 的竖向、 Row 我的横向</span><br><span class="line">mainAxisAlignment: MainAxisAlignment.start,</span><br><span class="line">// 默认是最⼤充满、还是根据 child 显示最⼩⼤⼩</span><br><span class="line">mainAxisSize: MainAxisSize.max,</span><br><span class="line">// 副轴⽅向， Column 的横向、 Row 我的竖向</span><br><span class="line">crossAxisAlignment :CrossAxisAlignment.center,</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h6 id="Expanded：只有⼀个⼦Widget-。在Column-和Row-中充满。"><a href="#Expanded：只有⼀个⼦Widget-。在Column-和Row-中充满。" class="headerlink" title="Expanded：只有⼀个⼦Widget 。在Column 和Row 中充满。"></a>Expanded：只有⼀个⼦Widget 。在Column 和Row 中充满。</h6><p>Expanded 在Column 和Row 中代表着平均充满的作⽤，当有两个存在的时候默认均分充满。同时⻚可以设置flex 属性决定⽐例。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">new Column(</span><br><span class="line">/// 主轴居中 , 即是竖直向居中</span><br><span class="line">mainAxisAlignment: MainAxisAlignment.center,</span><br><span class="line">/// ⼤⼩按照最⼩显示</span><br><span class="line">mainAxisSize : MainAxisSize.min,</span><br><span class="line">/// 横向也居中</span><br><span class="line">crossAxisAlignment : CrossAxisAlignment.center,</span><br><span class="line">children: &lt;Widget&gt;[</span><br><span class="line">///flex 默认为 1</span><br><span class="line">new Expanded(child: new Text(&quot;1111&quot;), flex: 2,),</span><br><span class="line">new Expanded(child: new Text(&quot;2222&quot;)),</span><br><span class="line">],</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h6 id="ListView：可以有多个子Widget"><a href="#ListView：可以有多个子Widget" class="headerlink" title="ListView：可以有多个子Widget"></a>ListView：可以有多个子Widget</h6><h5 id="Flutter页面"><a href="#Flutter页面" class="headerlink" title="Flutter页面"></a>Flutter页面</h5><p>Flutter 中除了布局的Widget ，还有交互显示的Widget 和完整⻚⾯呈现的<br>Widget ，其中常⻅的有MaterialApp 、 Scaffold 、 Appbar 、 Text 、 Image 、FlatButton 等</p>
-<h6 id="MaterialApp：⼀般作为-APP-顶层的主⻚⼊⼝，可配置主题，多语"><a href="#MaterialApp：⼀般作为-APP-顶层的主⻚⼊⼝，可配置主题，多语" class="headerlink" title="MaterialApp：⼀般作为 APP 顶层的主⻚⼊⼝，可配置主题，多语"></a>MaterialApp：⼀般作为 APP 顶层的主⻚⼊⼝，可配置主题，多语</h6><p>⾔，路由等</p>
-<h6 id="Scaffold：⼀般⽤户⻚⾯的承载-Widget-，包含-appbar-、snackbar-、-drawer-等-material-design-的设定"><a href="#Scaffold：⼀般⽤户⻚⾯的承载-Widget-，包含-appbar-、snackbar-、-drawer-等-material-design-的设定" class="headerlink" title="Scaffold：⼀般⽤户⻚⾯的承载 Widget ，包含 appbar 、snackbar 、 drawer 等 material design 的设定"></a>Scaffold：⼀般⽤户⻚⾯的承载 Widget ，包含 appbar 、snackbar 、 drawer 等 material design 的设定</h6><h6 id="Appbar：⼀般⽤于-Scaffold-的-appbar-，内有标题，⼆级⻚⾯返回按键等，当然不⽌这些，-tabbar-等也会需要它"><a href="#Appbar：⼀般⽤于-Scaffold-的-appbar-，内有标题，⼆级⻚⾯返回按键等，当然不⽌这些，-tabbar-等也会需要它" class="headerlink" title="Appbar：⼀般⽤于 Scaffold 的 appbar ，内有标题，⼆级⻚⾯返回按键等，当然不⽌这些， tabbar 等也会需要它"></a>Appbar：⼀般⽤于 Scaffold 的 appbar ，内有标题，⼆级⻚⾯返回按键等，当然不⽌这些， tabbar 等也会需要它</h6><h6 id="Text：显示⽂本，⼏乎都会⽤到，主要是通过-style-设置TextStyle-来设置字体样式等"><a href="#Text：显示⽂本，⼏乎都会⽤到，主要是通过-style-设置TextStyle-来设置字体样式等" class="headerlink" title="Text：显示⽂本，⼏乎都会⽤到，主要是通过 style 设置TextStyle 来设置字体样式等"></a>Text：显示⽂本，⼏乎都会⽤到，主要是通过 style 设置TextStyle 来设置字体样式等</h6><h6 id="RichText：富⽂本，通过设置TextSpan-，可以拼接出富⽂本场景。"><a href="#RichText：富⽂本，通过设置TextSpan-，可以拼接出富⽂本场景。" class="headerlink" title="RichText：富⽂本，通过设置TextSpan ，可以拼接出富⽂本场景。"></a>RichText：富⽂本，通过设置TextSpan ，可以拼接出富⽂本场景。</h6><h6 id="TextField：⽂本输⼊框-：new-TextField-controller-⽂本控制器-obscureText-“hint-⽂本-“"><a href="#TextField：⽂本输⼊框-：new-TextField-controller-⽂本控制器-obscureText-“hint-⽂本-“" class="headerlink" title="TextField：⽂本输⼊框 ：new TextField(controller: // ⽂本控制器 , obscureText: “hint ⽂本 “);"></a>TextField：⽂本输⼊框 ：new TextField(controller: // ⽂本控制器 , obscureText: “hint ⽂本 “);</h6><h6 id="Image：图⽚加载-new-FadeInImage-assetNetwork"><a href="#Image：图⽚加载-new-FadeInImage-assetNetwork" class="headerlink" title="Image：图⽚加载 : new FadeInImage.assetNetwork("></a>Image：图⽚加载 : new FadeInImage.assetNetwork(</h6><p>placeholder: “ 预览图 “, </p>
-<p>fit:BoxFit.fitWidth, </p>
-<p>image: “url”);</p>
-<h6 id="FlatButton：按键点击-new-FlatButton-onPressed-child-new-Container"><a href="#FlatButton：按键点击-new-FlatButton-onPressed-child-new-Container" class="headerlink" title="FlatButton：按键点击 : new FlatButton(onPressed: (){},child: new Container());"></a>FlatButton：按键点击 : new FlatButton(onPressed: (){},child: new Container());</h6>
+        
       </div>
       
         <div class="copyright">
@@ -795,7 +765,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/13/Flutter/" target="_blank" title="Flutter">https://mhshan925.github.io/2021/07/13/Flutter/</a>
+    <a href="/2021/07/14/Flutter第二篇/" target="_blank" title="Flutter第二篇">https://mhshan925.github.io/2021/07/14/Flutter第二篇/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -813,38 +783,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/13/7-13/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-13</div>
-      </div>
-      
-      <!-- <div class="content">
-        leetcode218天际线问题城市的天际线是从远处观看该城市中所有建筑物形成的轮廓的外部轮廓。给你所有建筑物的位置和高
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/12/DartDay2/" class="post-nav-link">
+    <a href="/2021/07/14/7-14/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>DartDay2</div>
+        <div>7-14</div>
       </div>
       <!-- <div class="content">
-        DartDay2静态属性和静态方法，可以通过类来访问不用通过实例Dart中的静态成员:
-  1、使用static 关键字
+        
       </div> -->
     </a>
   </div>
