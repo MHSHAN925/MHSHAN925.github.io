@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>Flutter第二篇 | Hexo</title>
+  <title>Flutter实战 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['Flutter第二篇'],
+              strings: ['Flutter实战'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -755,7 +755,42 @@
         
       </div>
       <div class="post-content">
-        
+        <h1 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h1><h5 id="原生开发："><a href="#原生开发：" class="headerlink" title="原生开发："></a>原生开发：</h5><p>原生应用程序是指某一个移动平台（比如iOS或安卓）所特有的应用，使用相应平台支持的开发工具和语言，并直接调用系统提供的SDK API。比如Android原生应用就是指使用Java或Kotlin语言直接调用Android SDK开发的应用程序；而iOS原生应用就是指通过Objective-C或Swift语言直接调用iOS SDK开发的应用程序。原生开发有以下主要优势：</p>
+<ul>
+<li>可访问平台全部功能（GPS、摄像头）；</li>
+<li>速度快、性能高、可以实现复杂动画及绘制，整体用户体验好；</li>
+</ul>
+<p>主要缺点：</p>
+<ul>
+<li>平台特定，开发成本高；不同平台必须维护不同代码，人力成本随之变大；</li>
+<li>内容固定，动态化弱，大多数情况下，有新功能更新时只能发版；</li>
+</ul>
+<p>在移动互联网发展初期，业务场景并不复杂，原生开发还可以应对产品需求迭代。 但近几年，随着物联网时代到来、移动互联网高歌猛进，日新月异，在很多业务场景中，传统的纯原生开发已经不能满足日益增长的业务需求。主要表现在：</p>
+<ul>
+<li>动态化内容需求增大；当需求发生变化时，纯原生应用需要通过版本升级来更新内容，但应用上架、审核是需要周期的，这对高速变化的互联网时代来说是很难接受的，所以，对应用动态化(不发版也可以更新应用内容)的需求就变的迫在眉睫。</li>
+<li>业务需求变化快，开发成本变大；由于原生开发一般都要维护Android、iOS两个开发团队，版本迭代时，无论人力成本，还是测试成本都会变大。</li>
+</ul>
+<p>总结一下，纯原生开发主要面临动态化和开发成本两个问题，而针对这两个问题，诞生了一些跨平台的动态化框架。</p>
+<h5 id="跨平台技术"><a href="#跨平台技术" class="headerlink" title="跨平台技术"></a>跨平台技术</h5><p>针对原生开发面临问题，人们一直都在努力寻找好的解决方案，而时至今日，已经有很多跨平台框架(注意，本书中所指的“跨平台”若无特殊说明，即特指Android和iOS两个平台)，根据其原理，主要分为三类：</p>
+<ul>
+<li>H5+原生（Cordova、Ionic、微信小程序）</li>
+<li>JavaScript开发+原生渲染 （React Native、Weex、快应用）</li>
+<li>自绘UI+原生(QT for mobile、Flutter)</li>
+</ul>
+<p>Flutter是Google发布的一个用于创建跨平台、高性能移动应用的框架。Flutter和QT mobile一样，都没有使用原生控件，相反都实现了一个自绘引擎，使用自身的布局、绘制系统。那么，我们会担心，QT mobile面对的问题Flutter是否也一样，Flutter会不会步入QT mobile后尘，成为另一个烈士？要回到这个问题，我们先来看看Flutter诞生过程：</p>
+<ul>
+<li>2017 年 Google I/O 大会上，Google 首次推出了一款新的用于创建跨平台、高性能的移动应用框架——Flutter。</li>
+<li>2018年2月，Flutter发布了第一个Beta版本，同年五月， 在2018年Google I/O 大会上，Flutter 更新到了 beta 3 版本。</li>
+<li>2018年6月，Flutter发布了首个预览版本，这意味着 Flutter 进入了正式版（1.0）发布前的最后阶段。</li>
+</ul>
+<p>观其发展，在2018年5月份，Flutter 进入了 GitHub stars 排行榜前 100 名，已有 27k star。而今天(2019年5月29日)，已经有65K的Star。经历了短短2年多的时间，Flutter 生态系统得以快速增长，由此可见，Flutter在开发者中受到了热烈的欢迎，其未来发展值得期待！</p>
+<p>现在，我们来和QT mobile做一个对比：</p>
+<ol>
+<li>生态：从Github上来看，目前Flutter活跃用户正在高速增长。从Stackoverflow上提问来看，Flutter社区现在已经很庞大。Flutter的文档、资源也越来越丰富，开发过程中遇到的很多问题都可以在Stackoverflow或其github issue中找到答案。</li>
+<li>技术支持：现在Google正在大力推广Flutter，Flutter的作者中很多人都是来自Chromium团队，并且github上活跃度很高。另一个角度，从今年上半年Flutter频繁的版本发布也可以看出Google对Flutter的投入的资源不小，所以在官方技术支持这方面，大可不必担心。</li>
+<li>开发效率：Flutter的热重载可帮助开发者快速地进行测试、构建UI、添加功能并更快地修复错误。在iOS和Android模拟器或真机上可以实现毫秒级热重载，并且不会丢失状态。这真的很棒，相信我，如果你是一名原生开发者，体验了Flutter开发流后，很可能就不想重新回去做原生了，毕竟很少有人不吐槽原生开发的编译速度。</li>
+</ol>
+
       </div>
       
         <div class="copyright">
@@ -765,7 +800,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/14/Flutter实战/" target="_blank" title="Flutter第二篇">https://mhshan925.github.io/2021/07/14/Flutter实战/</a>
+    <a href="/2021/07/14/Flutter实战/" target="_blank" title="Flutter实战">https://mhshan925.github.io/2021/07/14/Flutter实战/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
