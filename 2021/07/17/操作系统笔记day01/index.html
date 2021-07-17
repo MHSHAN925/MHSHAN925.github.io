@@ -755,12 +755,12 @@
         
       </div>
       <div class="post-content">
-        <h1 id="操作系统笔记01"><a href="#操作系统笔记01" class="headerlink" title="操作系统笔记01"></a>操作系统笔记01</h1><h2 id="Hello-OS："><a href="#Hello-OS：" class="headerlink" title="Hello OS："></a>Hello OS：</h2><p>引导程序：机器加电启动后，整个计算机第一个启动的程序就是固化在PC主板上的BIOS固件，它启动之后检测系统参数，如内存的大小、日期和时间、磁盘设备以及这些磁盘设备用来引导的顺序。BIOS寻找用于装载操作系统的指令。装载操作系统的这个程序就是boot loader。Linux系统默认的boot loader就是GRUB（GRand Unified Bootloader），于是PC上电以后系统启动流程如下。<br><img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source\images\操作引导图.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="操作引导图"></p>
+        <h1 id="操作系统笔记01"><a href="#操作系统笔记01" class="headerlink" title="操作系统笔记01"></a>操作系统笔记01</h1><h2 id="Hello-OS："><a href="#Hello-OS：" class="headerlink" title="Hello OS："></a>Hello OS：</h2><p>引导程序：机器加电启动后，整个计算机第一个启动的程序就是固化在PC主板上的BIOS固件，它启动之后检测系统参数，如内存的大小、日期和时间、磁盘设备以及这些磁盘设备用来引导的顺序。BIOS寻找用于装载操作系统的指令。装载操作系统的这个程序就是boot loader。Linux系统默认的boot loader就是GRUB（GRand Unified Bootloader），于是PC上电以后系统启动流程如下。<br><img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source\images\操作引导图.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="lable"></p>
 <p>接下来我们要做的就是写一个由GRUB引导的“操作系统”——它会在屏幕上显示“Hello OS“。**注：**其实操作系统归根结底也是一个程序，只不过它在开机之后已经运行，并且权限和功能高的吓人，你可以将它看成是整个计算机应用的**管家角色**。</p>
 <p>1.下载源代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://gitee.com/lmos/cosmos/tree/master/</span><br></pre></td></tr></table></figure>
 
-<p><img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source\images\helloOs代码结构.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif"></p>
+<p><img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source\images\helloOs代码结构.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="lable"></p>
 <p>entry.asm:汇编代码，用作GRUB引导调用，关掉中断，设定CPU工作模式，初始化寄存器及c语言运行环境。</p>
 <p>hello.lds:进行链接调用。</p>
 <p>install.md:需要将这个文件里的内容复制到GRUB的cfg配置文件中，才能使电脑开机时找到我们的HelloOS</p>
@@ -769,7 +769,7 @@
 
 <p>vgastr.h:控制计算机屏幕VGABIOS固件程序显示特定的字符</p>
 <p>Makefile：利用make工具来实现编译源代码主要是将entry.asm、main.c、vgastr.h编译并链接。</p>
-<h2 id="编译操作系统：Makefile文件中已经写了如何编译-操作系统，只是自己目前看不懂"><a href="#编译操作系统：Makefile文件中已经写了如何编译-操作系统，只是自己目前看不懂" class="headerlink" title="编译操作系统：Makefile文件中已经写了如何编译 操作系统，只是自己目前看不懂"></a>编译操作系统：Makefile文件中已经写了如何编译 操作系统，只是自己目前看不懂<img "" class="lazyload placeholder" data-original="D:\MyBolgWindows\blog\source\images\哭2.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" style="zoom: 25%;" /></h2>
+<h2 id="编译操作系统：Makefile文件中已经写了如何编译-操作系统，只是自己目前看不懂。"><a href="#编译操作系统：Makefile文件中已经写了如何编译-操作系统，只是自己目前看不懂。" class="headerlink" title="编译操作系统：Makefile文件中已经写了如何编译 操作系统，只是自己目前看不懂。"></a>编译操作系统：Makefile文件中已经写了如何编译 操作系统，只是自己目前看不懂。</h2>
       </div>
       
         <div class="copyright">
