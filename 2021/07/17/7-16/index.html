@@ -734,10 +734,27 @@
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <h1 id="剑指offer53：在排序数组中查找数字1"><a href="#剑指offer53：在排序数组中查找数字1" class="headerlink" title="剑指offer53：在排序数组中查找数字1"></a>剑指offer53：在排序数组中查找数字1</h1><p>统计一个数字在排序数组中出现的次数。</p>
+<p>示例 1:</p>
+<p>输入: nums = [5,7,7,8,8,10], target = 8<br>输出: 2<br>示例 2:</p>
+<p>输入: nums = [5,7,7,8,8,10], target = 6</p>
+<p>第一种可以放在一个map中，第二种可以遍历。这两种的时间复杂度都是o（n）的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public static int search(int[] nums, int target)&#123;</span><br><span class="line">        HashMap&lt;Integer, Integer&gt; hashMap = new HashMap&lt;&gt;();</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            hashMap.put(nums[i], hashMap.getOrDefault(nums[i], 0) + 1);</span><br><span class="line">        &#125;</span><br><span class="line">        return hashMap.get(target) != null ? hashMap.get(target) : 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>利用数组已经排序的特点。</p>
+
       </div>
       
         <div class="copyright">
@@ -777,7 +794,7 @@
       </div>
       
       <!-- <div class="content">
-        
+        剑指offer42：连续子数组的最大和输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大
       </div> -->
     </a>
   </div>
