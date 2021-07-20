@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>java面试day02 | Hexo</title>
+  <title>7-20 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['java面试day02'],
+              strings: ['7-20'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-19</span>
+        <span class="post-time">2021-07-20</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/java/" class="">
-              java
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,7 +746,16 @@
         
       </div>
       <div class="post-content">
-        
+        <h1 id="1877：数组中最大数对和的最小值"><a href="#1877：数组中最大数对和的最小值" class="headerlink" title="1877：数组中最大数对和的最小值"></a>1877：数组中最大数对和的最小值</h1><p>一个数对 (a,b) 的 数对和 等于 a + b 。最大数对和 是一个数对数组中最大的 数对和 。</p>
+<p>比方说，如果我们有数对 (1,5) ，(2,3) 和 (4,4)，最大数对和 为 max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8 。<br>给你一个长度为 偶数 n 的数组 nums ，请你将 nums 中的元素分成 n / 2 个数对，使得：</p>
+<p>nums 中每个元素 恰好 在 一个 数对中，且<br>最大数对和 的值 最小 。<br>请你在最优数对划分的方案下，返回最小的 最大数对和 。</p>
+<p>示例 1：</p>
+<p>输入：nums = [3,5,2,3]<br>输出：7<br>解释：数组中的元素可以分为数对 (3,3) 和 (5,2) 。<br>最大数对和为 max(3+3, 5+2) = max(6, 7) = 7 。<br>示例 2：</p>
+<p>输入：nums = [3,5,4,2,4,6]<br>输出：8<br>解释：数组中的元素可以分为数对 (3,5)，(4,4) 和 (6,2) 。<br>最大数对和为 max(3+5, 4+4, 6+2) = max(8, 8, 8) = 8 。</p>
+<p>思路：第一反应就是最大和最小的配对。证明过程可以参考leetcode官方题解，反证法。<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimize-maximum-pair-sum-in-array/solution/shu-zu-zhong-zui-da-shu-dui-he-de-zui-xi-cvll/">https://leetcode-cn.com/problems/minimize-maximum-pair-sum-in-array/solution/shu-zu-zhong-zui-da-shu-dui-he-de-zui-xi-cvll/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(nums);</span><br><span class="line">     int ans = Integer.MIN_VALUE;</span><br><span class="line">     int left = 0, right = nums.length - 1;</span><br><span class="line">     while (left &lt; right)&#123;</span><br><span class="line">         int now = nums[left] +nums[right];</span><br><span class="line">         ans = Math.max(ans, now);</span><br><span class="line">         left++;</span><br><span class="line">         right--;</span><br><span class="line">     &#125;</span><br><span class="line">     return ans;</span><br></pre></td></tr></table></figure>
+
+
       </div>
       
         <div class="copyright">
@@ -756,7 +765,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/19/java面试day02/" target="_blank" title="java面试day02">https://mhshan925.github.io/2021/07/19/java面试day02/</a>
+    <a href="/2021/07/20/7-20/" target="_blank" title="7-20">https://mhshan925.github.io/2021/07/20/7-20/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -774,38 +783,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/20/7-20/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-20</div>
-      </div>
-      
-      <!-- <div class="content">
-        1877：数组中最大数对和的最小值一个数对 (a,b) 的 数对和 等于 a + b 。最大数对和 是一个数对数组中最大
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/19/java%E9%9D%A2%E8%AF%95/" class="post-nav-link">
+    <a href="/2021/07/19/java%E9%9D%A2%E8%AF%95day02/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>java面试</div>
+        <div>java面试day02</div>
       </div>
       <!-- <div class="content">
-        环境变量CLASSPATH的作用考点：classpath环境变量的作用、类的搜索和加载原理。
-classpath环境变量
+        
       </div> -->
     </a>
   </div>

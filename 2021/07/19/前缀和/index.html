@@ -746,7 +746,9 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1480：一维数组的动态和"><a href="#1480：一维数组的动态和" class="headerlink" title="1480：一维数组的动态和"></a>1480：一维数组的动态和</h1><p>给你一个数组 nums 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。</p>
+        <p>找关键字。比如题目中有连续，就应该条件反射想到滑动窗口和前缀和。比如题目求最大最小就想到动态规划和贪心等等。想到之后，就可以和题目信息对比快速排除错误的算法，找到可行解。这个思考的时间会随着你的题感增加而降低。</p>
+<p>先写出暴力解，然后找暴力解的瓶颈， 根据瓶颈就很容易知道应该用什么数据结构和算法去优化。</p>
+<h1 id="1480：一维数组的动态和"><a href="#1480：一维数组的动态和" class="headerlink" title="1480：一维数组的动态和"></a>1480：一维数组的动态和</h1><p>给你一个数组 nums 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。</p>
 <p>请返回 nums 的动态和。</p>
 <p>示例 1：</p>
 <p>输入：nums = [1,2,3,4]<br>输出：[1,3,6,10]<br>解释：动态和计算过程为 [1, 1+2, 1+2+3, 1+2+3+4] 。<br>示例 2：</p>
@@ -754,6 +756,40 @@
 <p>输入：nums = [3,1,2,10,1]<br>输出：[3,4,6,16,17]</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static int[] runningSum(int[] nums)&#123;</span><br><span class="line">    int[] numsSum = new int[nums.length];</span><br><span class="line">    if (nums.length &lt;= 0)&#123;</span><br><span class="line">        return numsSum;</span><br><span class="line">    &#125;</span><br><span class="line">    numsSum[0] = nums[0];</span><br><span class="line">    for (int i = 1; i &lt; nums.length; i++)&#123;</span><br><span class="line">        numsSum[i] = numsSum[i - 1] + nums[i];</span><br><span class="line">    &#125;</span><br><span class="line">    return numsSum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="母题1"><a href="#母题1" class="headerlink" title="母题1"></a>母题1</h1><p>如果让你求一个数组的连续子数组总个数，你会如何求？其中连续指的是数组的索引连续。 比如 [1,3,4]，其连续子数组有：<code>[1], [3], [4], [1,3], [3,4] , [1,3,4]</code>，你需要返回 6。</p>
+<p>一种思路是总的连续子数组个数等于：<strong>以索引为 0 结尾的子数组个数 + 以索引为 1 结尾的子数组个数 + … + 以索引为 n - 1 结尾的子数组个数</strong>，这无疑是完备的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static int lianXuZiShuZu(int[] nums)&#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        int pre = 0;</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            pre = pre + 1;</span><br><span class="line">            ans = ans + pre;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="母题2"><a href="#母题2" class="headerlink" title="母题2"></a>母题2</h1><p>求一个数组相邻差为 1 连续子数组的总个数呢？其实就是<strong>索引差 1 的同时，值也差 1。</strong>和上面思路类似，无非就是增加差值的判断。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static int qianZhui(int[] nums)&#123;</span><br><span class="line">    int ans = 0;</span><br><span class="line">    int pre = 0;</span><br><span class="line">    for (int i = 0; i &lt; nums.length - 1; i++)&#123;</span><br><span class="line">        if (nums[i + 1] - nums[i] == 1)&#123;</span><br><span class="line">            pre = pre + 1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            pre = 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ans += pre;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="母题3"><a href="#母题3" class="headerlink" title="母题3"></a>母题3</h1><p>求出不大于 k 的子数组的个数呢？不大于 k 指的是子数组的全部元素都不大于 k。 比如 [1,3,4] 子数组有 <code>[1], [3], [4], [1,3], [3,4] , [1,3,4]</code>，不大于 3 的子数组有 <code>[1], [3], [1,3]</code> ，那么 [1,3,4] 不大于 3 的子数组个数就是 3。 实现函数 atMostK(k, nums)。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public static int atMostK(int[] nums, int k)&#123;</span><br><span class="line">    int ans = 0, pre = 0;</span><br><span class="line">    for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">        if (nums[i] &lt;= k)&#123;</span><br><span class="line">            pre += 1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            pre = 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ans += pre;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="母题4"><a href="#母题4" class="headerlink" title="母题4"></a>母题4</h1><p>求出子数组最大值刚好是 k 的子数组的个数呢？ 比如 [1,3,4] 子数组有 <code>[1], [3], [4], [1,3], [3,4] , [1,3,4]</code>，子数组最大值刚好是 3 的子数组有 <code>[3], [1,3]</code> ，那么 [1,3,4] 子数组最大值刚好是 3 的子数组个数就是 2。实现函数 exactK(k, nums)。</p>
+<p>实际上是 exactK 可以直接利用 atMostK，即 atMostK(k) - atMostK(k - 1)，</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"> public static int exactK(int[] nums, int k)&#123;</span><br><span class="line">        return atMostK(nums, k) - atMostK(nums, k -  1);</span><br><span class="line">    &#125;</span><br><span class="line">//</span><br><span class="line">    public static int atMostK(int[] nums, int k)&#123;</span><br><span class="line">        int ans = 0, pre = 0;</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            if (nums[i] &lt;= k)&#123;</span><br><span class="line">                pre += 1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                pre = 0;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            ans += pre;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="母题5"><a href="#母题5" class="headerlink" title="母题5"></a>母题5</h1><p>求出子数组最大值刚好是 介于 k1 和 k2 的子数组的个数呢？实现函数 betweenK(k1, k2, nums)。</p>
+<p>实际上是 betweenK 可以直接利用 atMostK，即 atMostK(k1, nums) - atMostK(k2 - 1, nums)，其中 k1 &gt; k2。前提是值是离散的， 比如上面我出的题都是整数。 因此我可以直接 减 1，因为 <strong>1 是两个整数最小的间隔</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int betweenK(int k1, int k2, int[] nums)&#123;</span><br><span class="line">    return atMostK(nums, k1) - atMostK(nums, k2 - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static int atMostK(int[] nums, int k)&#123;</span><br><span class="line">    int ans = 0, pre = 0;</span><br><span class="line">    for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">        if (nums[i] &lt;= k)&#123;</span><br><span class="line">            pre += 1;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            pre = 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        ans += pre;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="724-寻找数组的中心下标"><a href="#724-寻找数组的中心下标" class="headerlink" title="724.寻找数组的中心下标"></a>724.寻找数组的中心下标</h1><p>给你一个整数数组 nums ，请计算数组的 中心下标 。</p>
+<p>数组 中心下标 是数组的一个下标，其左侧所有元素相加的和等于右侧所有元素相加的和。</p>
+<p>如果中心下标位于数组最左端，那么左侧数之和视为 0 ，因为在下标的左侧不存在元素。这一点对于中心下标位于数组最右端同样适用。</p>
+<p>如果数组有多个中心下标，应该返回 最靠近左边 的那一个。如果数组不存在中心下标，返回 -1 。</p>
+<p>示例 1：</p>
+<p>输入：nums = [1, 7, 3, 6, 5, 6]<br>输出：3<br>解释：<br>中心下标是 3 。<br>左侧数之和 sum = nums[0] + nums[1] + nums[2] = 1 + 7 + 3 = 11 ，<br>右侧数之和 sum = nums[4] + nums[5] = 5 + 6 = 11 ，二者相等。<br>示例 2：</p>
+<p>输入：nums = [1, 2, 3]<br>输出：-1<br>解释：<br>数组中不存在满足此条件的中心下标。</p>
+<h1 id="467-环绕字符串中唯一的字字符串"><a href="#467-环绕字符串中唯一的字字符串" class="headerlink" title="467.环绕字符串中唯一的字字符串"></a>467.环绕字符串中唯一的字字符串</h1><p>把字符串 s 看作是“abcdefghijklmnopqrstuvwxyz”的无限环绕字符串，所以 s 看起来是这样的：”…zabcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyzabcd….”. </p>
+<p>现在我们有了另一个字符串 p 。你需要的是找出 s 中有多少个唯一的 p 的非空子串，尤其是当你的输入是字符串 p ，你需要输出字符串 s 中 p 的不同的非空子串的数目。 </p>
+<p>注意: p 仅由小写的英文字母组成，p 的大小可能超过 10000。</p>
+<p>示例 1:</p>
+<p>输入: “a”<br>输出: 1<br>解释: 字符串 S 中只有一个”a”子字符。</p>
+<p>示例 2:</p>
+<p>输入: “cac”<br>输出: 2<br>解释: 字符串 S 中的字符串“cac”只有两个子串“a”、“c”。.</p>
+<p>示例 3:</p>
+<p>输入: “zab”<br>输出: 6<br>解释: 在字符串 S 中有六个子串“z”、“a”、“b”、“za”、“ab”、“zab”。.</p>
 
       </div>
       
@@ -813,7 +849,7 @@ classpath环境变量
         <div>Flutter实战Day02</div>
       </div>
       <!-- <div class="content">
-        第三章：基础组件
+        第三章：基础组件Widget：在Flutter中几乎所有的对象都是一个Widget。与原生开发中“控件”不同的是，Flu
       </div> -->
     </a>
   </div>
