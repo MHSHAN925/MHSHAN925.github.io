@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-20 | Hexo</title>
+  <title>7-21 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/5.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-20'],
+              strings: ['7-21'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-20</span>
+        <span class="post-time">2021-07-21</span>
       </div>
       
       <div class="post-tags-categories">
@@ -746,15 +746,20 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1877：数组中最大数对和的最小值"><a href="#1877：数组中最大数对和的最小值" class="headerlink" title="1877：数组中最大数对和的最小值"></a>1877：数组中最大数对和的最小值</h1><p>一个数对 (a,b) 的 数对和 等于 a + b 。6最大数对和 是一个数对数组中最大的 数对和 。</p>
-<p>比方说，如果我们有数对 (1,5) ，(2,3) 和 (4,4)，最大数对和 为 max(1+5, 2+3, 4+4) = max(6, 5, 8) = 8 。<br>给你一个长度为 偶数 n 的数组 nums ，请你将 nums 中的元素分成 n / 2 个数对，使得：</p>
-<p>nums 中每个元素 恰好 在 一个 数对中，且<br>最大数对和 的值 最小 。<br>请你在最优数对划分的方案下，返回最小的 最大数对和 。</p>
-<p>示例 1：</p>
-<p>输入：nums = [3,5,2,3]<br>输出：7<br>解释：数组中的元素可以分为数对 (3,3) 和 (5,2) 。<br>最大数对和为 max(3+3, 5+2) = max(6, 7) = 7 。<br>示例 2：</p>
-<p>输入：nums = [3,5,4,2,4,6]<br>输出：8<br>解释：数组中的元素可以分为数对 (3,5)，(4,4) 和 (6,2) 。<br>最大数对和为 max(3+5, 4+4, 6+2) = max(8, 8, 8) = 8 。</p>
-<p>思路：第一反应就是最大和最小的配对。证明过程可以参考leetcode官方题解，反证法。<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimize-maximum-pair-sum-in-array/solution/shu-zu-zhong-zui-da-shu-dui-he-de-zui-xi-cvll/">https://leetcode-cn.com/problems/minimize-maximum-pair-sum-in-array/solution/shu-zu-zhong-zui-da-shu-dui-he-de-zui-xi-cvll/</a></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Arrays.sort(nums);</span><br><span class="line">     int ans = Integer.MIN_VALUE;</span><br><span class="line">     int left = 0, right = nums.length - 1;</span><br><span class="line">     while (left &lt; right)&#123;</span><br><span class="line">         int now = nums[left] +nums[right];</span><br><span class="line">         ans = Math.max(ans, now);</span><br><span class="line">         left++;</span><br><span class="line">         right--;</span><br><span class="line">     &#125;</span><br><span class="line">     return ans;</span><br></pre></td></tr></table></figure>
+        <h1 id="剑指offer52"><a href="#剑指offer52" class="headerlink" title="剑指offer52."></a>剑指offer52.</h1><p>输入两个链表找出他们的第一个公共节点</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/">https://leetcode-cn.com/problems/liang-ge-lian-biao-de-di-yi-ge-gong-gong-jie-dian-lcof/</a></p>
+<p>大家注意一点，这里的公共节点是两个节点的内存地址一样，并不知道节点所存储的val相等就是公共节点。</p>
+<p>解法一：栈解法，将两个链表分别压栈。对于两个栈的操作为，一起出栈然后判断出栈的元素是否equals。并且需要保存前一个出栈的元素。第一个弹栈元素不相等的前一个元素就是公共节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode getIntersectionNode(ListNode headA, ListNode headB)&#123;</span><br><span class="line">    Stack&lt;ListNode&gt; stackA = new Stack&lt;&gt;();</span><br><span class="line">    Stack&lt;ListNode&gt; stackB = new Stack&lt;&gt;();</span><br><span class="line">    while (headA != null)&#123;</span><br><span class="line">        stackA.push(headA);</span><br><span class="line">        headA = headA.next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    while (headB != null)&#123;</span><br><span class="line">        stackB.push(headB);</span><br><span class="line">        headB = headB.next;</span><br><span class="line">    &#125;</span><br><span class="line">    ListNode ans = null;</span><br><span class="line">    while (!stackA.isEmpty() &amp;&amp; !stackB.isEmpty())&#123;</span><br><span class="line">        ListNode a = stackA.pop();</span><br><span class="line">        ListNode b = stackB.pop();</span><br><span class="line">        if (a.equals(b))&#123;</span><br><span class="line">            ans = a;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>解法二：数学解法，两个链表的分别长度为lengthA和lengthB.将两个链表连接起来，也就是链表A后边连接上链表B，链表B后边连接上链表A。这样长度就相等了，可以从头开始按顺序遍历了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode getIntersectionNode(ListNode headA, ListNode headB)&#123;</span><br><span class="line"></span><br><span class="line">       if (headA == null || headB == null)&#123;</span><br><span class="line">           return null;</span><br><span class="line">       &#125;</span><br><span class="line">       ListNode A = headA;</span><br><span class="line">       ListNode B = headB;</span><br><span class="line">       while (A != B)&#123;</span><br><span class="line">           A = A != null ? A.next : headB;</span><br><span class="line">           B = B != null ? B.next : headA;</span><br><span class="line">       &#125;</span><br><span class="line">       return A;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+
+<p>数学解法二：先对两条链表扫描一遍，取得两者长度，然后让长的链表先走「两者的长度差值」，然后再同时走，遇到第一个节点即是答案</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode getIntersectionNode(ListNode headA, ListNode headB)&#123;</span><br><span class="line">    int lengthA = 0, lengthB = 0;</span><br><span class="line">    ListNode a = headA, b = headB;</span><br><span class="line">    while (a != null)&#123;</span><br><span class="line">        a = a.next;</span><br><span class="line">        lengthA++;</span><br><span class="line">    &#125;</span><br><span class="line">    while (b != null)&#123;</span><br><span class="line">        b = b.next;</span><br><span class="line">        lengthB++;</span><br><span class="line">    &#125;</span><br><span class="line">    int abs = Math.abs(lengthA - lengthB);</span><br><span class="line">    while (abs &gt; 0)&#123;</span><br><span class="line">        if (lengthA &gt; lengthB)&#123;</span><br><span class="line">            headA = headA.next;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            headB = headB.next;</span><br><span class="line">        &#125;</span><br><span class="line">        abs--;</span><br><span class="line">    &#125;</span><br><span class="line">    while (headA != null &amp;&amp; headB != null)&#123;</span><br><span class="line">        if (headA.equals(headB))&#123;</span><br><span class="line">            return headA;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            headA = headA.next;</span><br><span class="line">            headB = headB.next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解法三：哈希表。先将链表A放入哈希表中，然后遍历链表B，判断节点是否存在，不存在的话继续遍历。存在就返回此节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode getIntersectionNode(ListNode headA, ListNode headB)&#123;</span><br><span class="line">    HashMap&lt;ListNode, Integer&gt; hashMap = new HashMap&lt;&gt;();</span><br><span class="line">    while (headA != null)&#123;</span><br><span class="line">        hashMap.put(headA, hashMap.getOrDefault(headA, 0) + 1);</span><br><span class="line">        headA = headA.next;</span><br><span class="line">    &#125;</span><br><span class="line">    while (headB != null)&#123;</span><br><span class="line">        if (hashMap.containsKey(headB))&#123;</span><br><span class="line">            return headB;</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            headB = headB.next;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    return null;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -765,7 +770,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/20/7-20/" target="_blank" title="7-20">https://mhshan925.github.io/2021/07/20/7-20/</a>
+    <a href="/2021/07/21/7-21/" target="_blank" title="7-21">https://mhshan925.github.io/2021/07/21/7-21/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -785,18 +790,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/20/%E7%9E%8E%E8%81%8A%E7%BD%91%E7%BB%9C/" class="post-nav-link">
+    <a href="/2021/07/21/%E9%93%BE%E8%A1%A8%E4%B8%93%E9%A2%98/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>瞎聊网络</div>
+        <div>链表专题</div>
       </div>
       
       <!-- <div class="content">
-        计算机网络体系结构以五层结构为例：
-1）应用层：应用程序收到”传输层”的数据，接下来就要进行解读。由于互联网是开放架构，
+        
       </div> -->
     </a>
   </div>
@@ -805,13 +809,13 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/19/java%E9%9D%A2%E8%AF%95day02/" class="post-nav-link">
+    <a href="/2021/07/20/%E7%9E%8E%E8%81%8AHTTP%E5%92%8CHTTPS/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>java面试day02</div>
+        <div>瞎聊HTTP和HTTPS</div>
       </div>
       <!-- <div class="content">
         
