@@ -4,6 +4,38 @@
   
     
     <entry>
+      <title>贪心</title>
+      <link href="2021/07/22/%E8%B4%AA%E5%BF%83/"/>
+      <url>2021/07/22/%E8%B4%AA%E5%BF%83/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>leetcode树</title>
+      <link href="2021/07/22/leetcode%E6%A0%91/"/>
+      <url>2021/07/22/leetcode%E6%A0%91/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>笔试题</title>
       <link href="2021/07/22/%E7%AC%94%E8%AF%95%E9%A2%98/"/>
       <url>2021/07/22/%E7%AC%94%E8%AF%95%E9%A2%98/</url>
@@ -27,7 +59,7 @@
       <link href="2021/07/22/7-22/"/>
       <url>2021/07/22/7-22/</url>
       
-        <content type="html"><![CDATA[<h1 id="138-复制带随机指针的链表"><a href="#138-复制带随机指针的链表" class="headerlink" title="138.复制带随机指针的链表"></a>138.复制带随机指针的链表</h1><p>给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。</p><p>构造这个链表的 深拷贝。 深拷贝应该正好由 n 个 全新 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 next 指针和 random 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。复制链表中的指针都不应指向原链表中的节点 。</p><p>例如，如果原链表中有 X 和 Y 两个节点，其中 X.random –&gt; Y 。那么在复制链表中对应的两个节点 x 和 y ，同样有 x.random –&gt; y 。</p><p>返回复制链表的头节点。</p><p>用一个由 n 个节点组成的链表来表示输入/输出中的链表。每个节点用一个 [val, random_index] 表示：</p><p>val：一个表示 Node.val 的整数。<br>random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如果不指向任何节点，则为  null 。<br>你的代码 只 接受原链表的头节点 head 作为传入参数。</p>]]></content>
+        <content type="html"><![CDATA[<h1 id="138-复制带随机指针的链表"><a href="#138-复制带随机指针的链表" class="headerlink" title="138.复制带随机指针的链表"></a>138.复制带随机指针的链表</h1><p>给你一个长度为 n 的链表，每个节点包含一个额外增加的随机指针 random ，该指针可以指向链表中的任何节点或空节点。</p><p>构造这个链表的 深拷贝。 深拷贝应该正好由 n 个 全新 节点组成，其中每个新节点的值都设为其对应的原节点的值。新节点的 next 指针和 random 指针也都应指向复制链表中的新节点，并使原链表和复制链表中的这些指针能够表示相同的链表状态。复制链表中的指针都不应指向原链表中的节点 。</p><p>例如，如果原链表中有 X 和 Y 两个节点，其中 X.random –&gt; Y 。那么在复制链表中对应的两个节点 x 和 y ，同样有 x.random –&gt; y 。</p><p>返回复制链表的头节点。</p><p>用一个由 n 个节点组成的链表来表示输入/输出中的链表。每个节点用一个 [val, random_index] 表示：</p><p>val：一个表示 Node.val 的整数。<br>random_index：随机指针指向的节点索引（范围从 0 到 n-1）；如果不指向任何节点，则为  null 。<br>你的代码 只 接受原链表的头节点 head 作为传入参数。</p><p>思路：先遍历原链表，遍历过程中创建的新节点和对应的老节点用map保留着对应关系。第二次遍历的时候把next和random关系给补上</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static Node copyRandomList(Node head)&#123;</span><br><span class="line">      HashMap&lt;Node, Node&gt; hashMap = new HashMap&lt;&gt;();</span><br><span class="line">      Node temp = head;</span><br><span class="line">      while (temp != null)&#123;</span><br><span class="line">          Node newNode = new Node(temp.val);</span><br><span class="line">          hashMap.put(temp, newNode);</span><br><span class="line">          temp = temp.next;</span><br><span class="line">      &#125;</span><br><span class="line">      temp = head;</span><br><span class="line">      while (temp != null)&#123;</span><br><span class="line">          Node newNode = hashMap.get(temp);</span><br><span class="line">          if (temp.next != null)&#123;</span><br><span class="line">              newNode.next = hashMap.get(temp.next);</span><br><span class="line">          &#125;</span><br><span class="line">          if (temp.random != null)&#123;</span><br><span class="line">              newNode.random = hashMap.get(temp.random);</span><br><span class="line">          &#125;</span><br><span class="line">          temp = temp.next;</span><br><span class="line">      &#125;</span><br><span class="line">      return hashMap.get(head);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure><p>宫水三叶大佬的原地算法：显然时间复杂度上无法优化，考虑如何降低空间（不使用「哈希表」）。</p><p>我们使用「哈希表」的目的为了实现原节点和新节点的映射关系，更进一步的是为了快速找到某个节点 random 在新链表的位置。</p><p>那么我们可以利用原链表的 next 做一个临时中转，从而实现映射。</p><p>具体的，我们可以按照如下流程进行：</p><p>对原链表的每个节点节点进行复制，并追加到原节点的后面；<br>完成 11 操作之后，链表的奇数位置代表了原链表节点，链表的偶数位置代表了新链表节点，且每个原节点的 next 指针执行了对应的新节点。这时候，我们需要构造新链表的 random 指针关系，可以利用 link[i + 1].random = link[i].random.next，ii 为奇数下标，含义为 新链表节点的 random 指针指向旧链表对应节点的 random 指针的下一个值；<br>对链表进行拆分操作。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public Node copyRandomList(Node head) &#123;</span><br><span class="line">       if (head == null) return null;</span><br><span class="line">       Node dummy = new Node(-1);</span><br><span class="line">       dummy.next = head;</span><br><span class="line">       while (head != null) &#123;</span><br><span class="line">           Node node = new Node(head.val);</span><br><span class="line">           node.next = head.next;</span><br><span class="line">           head.next = node;</span><br><span class="line">           head = node.next;</span><br><span class="line">       &#125;</span><br><span class="line">       head = dummy.next;</span><br><span class="line">       while (head != null) &#123;</span><br><span class="line">           if (head.random != null) &#123;</span><br><span class="line">               head.next.random = head.random.next;</span><br><span class="line">           &#125;</span><br><span class="line">           head = head.next.next;</span><br><span class="line">       &#125;</span><br><span class="line">       head = dummy.next;</span><br><span class="line">       Node ans = head.next;</span><br><span class="line">       while (head != null) &#123;</span><br><span class="line">           Node tmp = head.next;</span><br><span class="line">           if (head.next != null) head.next = head.next.next;</span><br><span class="line">           head = tmp;</span><br><span class="line">       &#125;</span><br><span class="line">       return ans;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>]]></content>
       
       
       
@@ -826,9 +858,15 @@
       <link href="2021/07/01/leetcode%E5%9B%BE/"/>
       <url>2021/07/01/leetcode%E5%9B%BE/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id=""><a href="#" class="headerlink" title=""></a></h1>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -839,9 +877,15 @@
       <link href="2021/06/30/leetcodeBFS/"/>
       <url>2021/06/30/leetcodeBFS/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="LCP07-传递信息"><a href="#LCP07-传递信息" class="headerlink" title="LCP07.传递信息"></a>LCP07.传递信息</h1><p>小朋友 A 在和 ta 的小伙伴们玩传信息游戏，游戏规则如下：</p><p>有 n 名玩家，所有玩家编号分别为 0 ～ n-1，其中小朋友 A 的编号为 0<br>每个玩家都有固定的若干个可传信息的其他玩家（也可能没有）。传信息的关系是单向的（比如 A 可以向 B 传信息，但 B 不能向 A 传信息）。<br>每轮信息必须需要传递给另一个人，且信息可重复经过同一个人<br>给定总玩家数 n，以及按 [玩家编号,对应可传递玩家编号] 关系组成的二维数组 relation。返回信息从小 A (编号 0 ) 经过 k 轮传递到编号为 n-1 的小伙伴处的方案数；若不能到达，返回 0。</p><p>示例 1：</p><p>输入：n = 5, relation = [[0,2],[2,1],[3,4],[2,3],[1,4],[2,0],[0,4]], k = 3</p><p>输出：3</p><p>解释：信息从小 A 编号 0 处开始，经 3 轮传递，到达编号 4。共有 3 种方案，分别是 0-&gt;2-&gt;0-&gt;4， 0-&gt;2-&gt;1-&gt;4， 0-&gt;2-&gt;3-&gt;4。</p><p>示例 2：</p><p>输入：n = 3, relation = [[0,2],[2,1]], k = 2</p><p>输出：0</p><p>解释：信息不能从小 A 处经过 2 轮传递到编号 2</p><p>思路：n 和 k 的数据范围都很小，并且根据题目对 relation 的定义可以知道这是一个边权相等的图。</p><p>对于边权相等的图，统计有限步数的到达某个节点的方案数，最常见的方式是使用 BFS 或 DFS。</p>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
       
     </entry>
     
@@ -855,6 +899,12 @@
         <content type="html"><![CDATA[]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
       
     </entry>
     
