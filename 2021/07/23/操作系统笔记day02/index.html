@@ -755,9 +755,50 @@
         
       </div>
       <div class="post-content">
-        <h1 id="操作系统笔记02"><a href="#操作系统笔记02" class="headerlink" title="操作系统笔记02"></a>操作系统笔记02</h1><p>操作系统课程过程图：</p>
+        <h1 id="操作系统笔记02"><a href="#操作系统笔记02" class="headerlink" title="操作系统笔记02"></a>操作系统笔记02</h1><p>操作系统课程图：</p>
 <p>操作系统知识体系图：</p>
-<h2 id="程序的运行过程-从代码到机器运行"><a href="#程序的运行过程-从代码到机器运行" class="headerlink" title="程序的运行过程:从代码到机器运行"></a>程序的运行过程:从代码到机器运行</h2><h4 id="程序的编译过程："><a href="#程序的编译过程：" class="headerlink" title="程序的编译过程："></a>程序的编译过程：</h4>
+<h2 id="程序的运行过程-从代码到机器运行"><a href="#程序的运行过程-从代码到机器运行" class="headerlink" title="程序的运行过程:从代码到机器运行"></a>程序的运行过程:从代码到机器运行</h2><h4 id="程序的编译过程：使用GCC相关工具链"><a href="#程序的编译过程：使用GCC相关工具链" class="headerlink" title="程序的编译过程：使用GCC相关工具链"></a>程序的编译过程：使用GCC相关工具链</h4><p>gcc的编译过程：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0day02/GCC_CompilationProcess.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="GCC_CompilationProcess">
+
+<p>依次执行了：预处理（preprocessing）—&gt;编译（compilation）—-&gt;汇编（Assemble）—-&gt;链接（linking）。</p>
+<p><strong>预处理</strong>：以“#”号开头的预处理指令如包含#include,宏定义制定#define等。在源程序中这些指令都放在函数之外，而且一般放在源文件的前面。</p>
+<p>使用预处理器把源文件test.c经过预处理生成test.i文件。</p>
+<p>预处理的命令为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -E test.c -o test.i。</span><br></pre></td></tr></table></figure>
+
+<p>上述命令中-E是让编译器在预处理之后就退出，不进行后续编译过程；-o是指定输出文件名。在本例中，预处理结果就是将stdio.h 文件中的内容插入到test.c中了。</p>
+<p><strong>编译</strong>：这里的编译不是指程序从源文件到二进制程序的全部过程，而是指将经过预处理文件（test.i）之后的程序转换成特定汇编（test.s）代码的过程。</p>
+<p>编译的命令为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -S test.i -o test.s</span><br></pre></td></tr></table></figure>
+
+<p>上述命令中-S让编译器在编译之后停止，不进行后续过程；-o是指定输出文件名。编译过程完成后，将生成程序的汇编代码test.s，这也是文本文件。</p>
+<p><strong>汇编：</strong>汇编过程将上一步的汇编代码转换成机器码，这一步产生的文件叫做目标文件，是二进制格式。</p>
+<p>编译的命令为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -c test.s -o test.o</span><br></pre></td></tr></table></figure>
+
+<p><strong>链接</strong></p>
+<p>链接过程使用链接器将该目标文件与其他目标文件、库文件、启动文件等链接起来生成可执行文件。附加的目标文件包括静态连接库和动态连接库。</p>
+<p>链接过程的命令为：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc test.o -o test</span><br></pre></td></tr></table></figure>
+
+<p><strong>总结：</strong>生成可执行程序过程为成四个步骤：</p>
+<p>1、由.c文件到.i文件，这个过程叫预处理。<br>2、由.i文件到.s文件，这个过程叫编译。<br>3、由.s文件到.o文件，这个过程叫汇编。<br>4、由.o文件到可执行文件，这个过程叫链接。</p>
+<p>源文件生成可执行文件：gcc test.c -o test</p>
+
+
+<h2 id="程序装载执行："><a href="#程序装载执行：" class="headerlink" title="程序装载执行："></a>程序装载执行：</h2><h4 id="图灵机："><a href="#图灵机：" class="headerlink" title="图灵机："></a>图灵机：</h4><h4 id="冯诺依曼体系结构：电子计算机使用二进制数制系统和储存程序，并按照程序顺序执行。"><a href="#冯诺依曼体系结构：电子计算机使用二进制数制系统和储存程序，并按照程序顺序执行。" class="headerlink" title="冯诺依曼体系结构：电子计算机使用二进制数制系统和储存程序，并按照程序顺序执行。"></a>冯诺依曼体系结构：电子计算机使用二进制数制系统和储存程序，并按照程序顺序执行。</h4><p>根据冯诺依曼体系结构构成的计算机，必须具有如下功能：</p>
+<p>把程序和数据装入到计算机中；</p>
+<p>必须具有长期记住程序、数据的中间结果及最终运算结果；</p>
+<p>完成各种算术、逻辑运算和数据传送等数据加工处理；</p>
+<p>根据需要控制程序走向，并能根据指令控制机器的各部件协调操作；</p>
+<p>能够按照要求将处理的数据结果显示给用户。</p>
+<p>为了完成上述的功能，计算机必须具备五大基本组成部件：</p>
+<p>装载数据和程序的输入设备；</p>
+<p>记住程序和数据的存储器；</p>
+<p>完成数据加工处理的运算器；</p>
+<p>控制程序执行的控制器；</p>
+<p>显示处理结果的输出设备。</p>
+
       </div>
       
         <div class="copyright">
@@ -784,6 +825,23 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/07/24/7-24/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>7-24</div>
+      </div>
+      
+      <!-- <div class="content">
+        1736.替换隐藏数字得到的最晚时间给你一个字符串 time ，格式为 hh:mm（小时：分钟），其中某几位数字被隐藏（
+      </div> -->
+    </a>
+  </div>
 
 
 

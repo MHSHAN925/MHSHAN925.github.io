@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>链表专题 | Hexo</title>
+  <title>7-24 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['链表专题'],
+              strings: ['7-24'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-21</span>
+        <span class="post-time">2021-07-24</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E9%93%BE%E8%A1%A8/" class="">
-              链表
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,24 +746,16 @@
         
       </div>
       <div class="post-content">
-        <h1 id="两数相加"><a href="#两数相加" class="headerlink" title="两数相加"></a>两数相加</h1><p>给你两个 非空 的链表，表示两个非负的整数。它们每位数字都是按照 逆序 的方式存储的，并且每个节点只能存储 一位 数字。</p>
-<p>请你将两个数相加，并以相同形式返回一个表示和的链表。</p>
-<p>你可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
-<p>这种解法是：在当前节点中存入值，在不确定后边还有没有节点情况就创建节点。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">ListNode l3Head = null;</span><br><span class="line">ListNode l3 = null;</span><br><span class="line">l3Head = l3;</span><br><span class="line">int lingwai = 0;</span><br><span class="line">while (l1 != null || l2 != null)&#123;</span><br><span class="line">    int a, b;</span><br><span class="line">    if (l1 != null)&#123;</span><br><span class="line">        a = l1.val;</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        a = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    if (l2 != null)&#123;</span><br><span class="line">        b = l2.val;</span><br><span class="line">        l2 = l2.next;</span><br><span class="line">    &#125;else &#123;</span><br><span class="line">        b = 0;</span><br><span class="line">    &#125;</span><br><span class="line">    int c = a + b + lingwai;</span><br><span class="line">    int temp = c;</span><br><span class="line">    c = temp % 10;</span><br><span class="line">    lingwai = temp / 10;</span><br><span class="line">    l3.val = c;</span><br><span class="line">    ListNode next = new ListNode();</span><br><span class="line">    l3.next = next;</span><br><span class="line">    l3 = l3.next;</span><br><span class="line">&#125;</span><br><span class="line">if (lingwai != 0)&#123;</span><br><span class="line">    l3.val = lingwai;</span><br><span class="line">&#125;</span><br><span class="line">return l3Head;</span><br></pre></td></tr></table></figure>
-
-<p>咋办呢？就只能想方设法知道最后的位置。设置一个ListNode节点，当</p>
-<p>if (l1 == null &amp;&amp; l2 == null){<br>           text = l3;<br>   }这个时候，保存住最后的位置。</p>
-<p>在这也需要特殊判断。</p>
-<p> if (lingwai != 0){<br>       l3.val = lingwai;<br>   }else {<br>       text.next = null;<br>   }</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public static ListNode addTwoNums(ListNode l1, ListNode l2)&#123;</span><br><span class="line">   ListNode l3Head = null;</span><br><span class="line">   ListNode l3 = null;</span><br><span class="line">   ListNode text = new ListNode();</span><br><span class="line">   l3Head = l3;</span><br><span class="line">   int lingwai = 0;</span><br><span class="line">   while (l1 != null || l2 != null)&#123;</span><br><span class="line">       int a, b;</span><br><span class="line">       if (l1 != null)&#123;</span><br><span class="line">           a = l1.val;</span><br><span class="line">           l1 = l1.next;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           a = 0;</span><br><span class="line">       &#125;</span><br><span class="line">       if (l2 != null)&#123;</span><br><span class="line">           b = l2.val;</span><br><span class="line">           l2 = l2.next;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           b = 0;</span><br><span class="line">       &#125;</span><br><span class="line">       int c = a + b + lingwai;</span><br><span class="line">       int temp = c;</span><br><span class="line">       c = temp % 10;</span><br><span class="line">       lingwai = temp / 10;</span><br><span class="line">       l3.val = c;</span><br><span class="line">       ListNode next = new ListNode();</span><br><span class="line">       l3.next = next;</span><br><span class="line">       if (l1 == null &amp;&amp; l2 == null)&#123;</span><br><span class="line">           text = l3;</span><br><span class="line">       &#125;</span><br><span class="line">       l3 = l3.next;</span><br><span class="line">   &#125;</span><br><span class="line">   if (lingwai != 0)&#123;</span><br><span class="line">       l3.val = lingwai;</span><br><span class="line">   &#125;else &#123;</span><br><span class="line">       text.next = null;</span><br><span class="line">   &#125;</span><br><span class="line">   return l3Head;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>要想别这么绞尽脑汁，需要的是。如果有值需要加入的时候才创建节点加入。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ListNode head = new ListNode();</span><br><span class="line">ListNode current = head;</span><br><span class="line">int carry = 0;</span><br><span class="line">    while (l1 != null || l2 != null)&#123;</span><br><span class="line">    int val1 = l1 != null ? l1.val : 0;</span><br><span class="line">    int val2 = l2 != null ? l2.val : 0;</span><br><span class="line">    int sum = val1 +val2 + carry;</span><br><span class="line">    current.next = new ListNode(sum % 10);</span><br><span class="line">    current = current.next;</span><br><span class="line">    carry = sum / 10;</span><br><span class="line">    if (l1 != null)</span><br><span class="line">        l1 = l1.next;</span><br><span class="line">    if (l2 != null)</span><br><span class="line">        l2 = l2.next;</span><br><span class="line">&#125;</span><br><span class="line">    if (carry &gt; 0 )&#123;</span><br><span class="line">    current.next = new ListNode(carry);</span><br><span class="line">    current = current.next;</span><br><span class="line">&#125;</span><br><span class="line">    return head.next;</span><br></pre></td></tr></table></figure>
-
-<h1 id="删除链表的倒数第N个节点"><a href="#删除链表的倒数第N个节点" class="headerlink" title="删除链表的倒数第N个节点"></a>删除链表的倒数第N个节点</h1><p>给你一个链表，删除链表的倒数第 <code>n</code> 个结点，并且返回链表的头结点。</p>
-<p><strong>进阶：</strong>你能尝试使用一趟扫描实现吗？</p>
-<h1 id="链表某个题"><a href="#链表某个题" class="headerlink" title="链表某个题"></a>链表某个题</h1><p>意思：一个链表转换成：1–&gt;n–&gt;2–&gt;n-1–&gt;3…这个意思。</p>
+        <h1 id="1736-替换隐藏数字得到的最晚时间"><a href="#1736-替换隐藏数字得到的最晚时间" class="headerlink" title="1736.替换隐藏数字得到的最晚时间"></a>1736.替换隐藏数字得到的最晚时间</h1><p>给你一个字符串 time ，格式为 hh:mm（小时：分钟），其中某几位数字被隐藏（用 ? 表示）。</p>
+<p>有效的时间为 00:00 到 23:59 之间的所有时间，包括 00:00 和 23:59 。</p>
+<p>替换 time 中隐藏的数字，返回你可以得到的最晚有效时间。</p>
+<p>示例 1：</p>
+<p>输入：time = “2?:?0”<br>输出：”23:50”<br>解释：以数字 ‘2’ 开头的最晚一小时是 23 ，以 ‘0’ 结尾的最晚一分钟是 50 。<br>示例 2：</p>
+<p>输入：time = “0?:3?”<br>输出：”09:39”<br>示例 3：</p>
+<p>输入：time = “1?:22”<br>输出：”19:22”</p>
+<p>思路：我的想法就是枚举情况，注意点就是情况分类比较多需要注意。</p>
+<p>第一位：如果需要被替换，优先替换为 2，当然前提是第二位不能超过 4。否则会出现 24:xx、25:xx 等；<br>第二位：如果需要被替换，根据第一位是什么，决定替换为 9 还是 3；<br>第三位：固定为 :；<br>第四位：如果需要被替换，替换为 5；<br>第五位：如果需要被替换，替换为 9。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public String maximumTime(String time) &#123;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        sb.append(time.charAt(0) == &#x27;?&#x27; ? (time.charAt(1) == &#x27;?&#x27; || time.charAt(1) &lt; &#x27;4&#x27;) ? &#x27;2&#x27; : &#x27;1&#x27; : time.charAt(0));</span><br><span class="line">        sb.append(time.charAt(1) == &#x27;?&#x27; ? sb.charAt(0) == &#x27;2&#x27; ? &#x27;3&#x27; : &#x27;9&#x27; : time.charAt(1));</span><br><span class="line">        sb.append(&#x27;:&#x27;);</span><br><span class="line">        sb.append(time.charAt(3) == &#x27;?&#x27; ? &#x27;5&#x27; : time.charAt(3));</span><br><span class="line">        sb.append(time.charAt(4) == &#x27;?&#x27; ? &#x27;9&#x27; : time.charAt(4));</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static String maximumTime(String time)&#123;</span><br><span class="line">    char[] timeChar = time.toCharArray();</span><br><span class="line">    if (timeChar[0] == &#x27;?&#x27;)&#123;</span><br><span class="line">       if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;else if (timeChar[1] - &#x27;0&#x27; &gt;= 4)&#123;</span><br><span class="line">           timeChar[0] = &#x27;1&#x27;;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">        if (timeChar[0] == &#x27;1&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;2&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;3&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;0&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[3] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[3] = &#x27;5&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[4] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[4] = &#x27;9&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return new String(timeChar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       </div>
       
@@ -774,7 +766,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/21/链表专题/" target="_blank" title="链表专题">https://mhshan925.github.io/2021/07/21/链表专题/</a>
+    <a href="/2021/07/24/7-24/" target="_blank" title="7-24">https://mhshan925.github.io/2021/07/24/7-24/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -792,38 +784,22 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/21/ROS2-DDS/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>ROS2~DDS</div>
-      </div>
-      
-      <!-- <div class="content">
-        DDSDDS（数据分发服务）：是由OMG发布的分布式通信规范，采用了订阅发布模型，以中间件的形式提供通信服务，并提供多种
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/21/7-21/" class="post-nav-link">
+    <a href="/2021/07/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0day02/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-21</div>
+        <div>操作系统笔记day02</div>
       </div>
       <!-- <div class="content">
-        剑指offer52.输入两个链表找出他们的第一个公共节点
-https://leetcode-cn.com/problem
+        操作系统笔记02操作系统课程图：
+操作系统知识体系图：
+程序的运行过程:从代码到机器运行程序的编译过程：使用GCC相关工
       </div> -->
     </a>
   </div>
