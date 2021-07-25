@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-24 | Hexo</title>
+  <title>android_系统架构 | Hexo</title>
 
   
     
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-24'],
+              strings: ['android_系统架构'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-24</span>
+        <span class="post-time">2021-07-25</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/android/" class="">
+              android
             </a>
           
         </div>
@@ -746,16 +746,42 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1736-替换隐藏数字得到的最晚时间"><a href="#1736-替换隐藏数字得到的最晚时间" class="headerlink" title="1736.替换隐藏数字得到的最晚时间"></a>1736.替换隐藏数字得到的最晚时间</h1><p>给你一个字符串 time ，格式为 hh:mm（小时：分钟），其中某几位数字被隐藏（用 ? 表示）。</p>
-<p>有效的时间为 00:00 到 23:59 之间的所有时间，包括 00:00 和 23:59 。</p>
-<p>替换 time 中隐藏的数字，返回你可以得到的最晚有效时间。</p>
-<p>示例 1：</p>
-<p>输入：time = “2?:?0”<br>输出：”23:50”<br>解释：以数字 ‘2’ 开头的最晚一小时是 23 ，以 ‘0’ 结尾的最晚一分钟是 50 。<br>示例 2：</p>
-<p>输入：time = “0?:3?”<br>输出：”09:39”<br>示例 3：</p>
-<p>输入：time = “1?:22”<br>输出：”19:22”</p>
-<p>思路：我的想法就是枚举情况，注意点就是情况分类比较多需要注意。</p>
-<p>第一位：如果需要被替换，优先替换为 2，当然前提是第二位不能超过 4。否则会出现 24:xx、25:xx 等；<br>第二位：如果需要被替换，根据第一位是什么，决定替换为 9 还是 3；<br>第三位：固定为 :；<br>第四位：如果需要被替换，替换为 5；<br>第五位：如果需要被替换，替换为 9。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public String maximumTime(String time) &#123;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        sb.append(time.charAt(0) == &#x27;?&#x27; ? (time.charAt(1) == &#x27;?&#x27; || time.charAt(1) &lt; &#x27;4&#x27;) ? &#x27;2&#x27; : &#x27;1&#x27; : time.charAt(0));</span><br><span class="line">        sb.append(time.charAt(1) == &#x27;?&#x27; ? sb.charAt(0) == &#x27;2&#x27; ? &#x27;3&#x27; : &#x27;9&#x27; : time.charAt(1));</span><br><span class="line">        sb.append(&#x27;:&#x27;);</span><br><span class="line">        sb.append(time.charAt(3) == &#x27;?&#x27; ? &#x27;5&#x27; : time.charAt(3));</span><br><span class="line">        sb.append(time.charAt(4) == &#x27;?&#x27; ? &#x27;9&#x27; : time.charAt(4));</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static String maximumTime(String time)&#123;</span><br><span class="line">    char[] timeChar = time.toCharArray();</span><br><span class="line">    if (timeChar[0] == &#x27;?&#x27;)&#123;</span><br><span class="line">       if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;else if (timeChar[1] - &#x27;0&#x27; &gt;= 4)&#123;</span><br><span class="line">           timeChar[0] = &#x27;1&#x27;;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">        if (timeChar[0] == &#x27;1&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;2&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;3&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;0&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[3] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[3] = &#x27;5&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[4] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[4] = &#x27;9&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return new String(timeChar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="系统架构"><a href="#系统架构" class="headerlink" title="系统架构"></a>系统架构</h1><p>​        Android底层内核空间以Linux Kernel作为基石，上层用户空间由Native系统库、虚拟机运行环境、框架层组成，通过系统调用(Syscall)连通系统的内核空间与用户空间。对于用户空间主要采用C++和Java代码编写，通过JNI技术打通用户空间的Java层和Native层(C++/C)，从而连通整个系统。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-stack.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="android-stack">
+
+<p>​        Google提供的经典分层架构图，从下往上依次分为linux内核层、HAL、系统Native库和android运行时环境、java Framework、应用层。</p>
+<p>​        从进程角度诠释android系统的全貌。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/android-boot.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="android-boot">
+
+<p><strong>Loader层：</strong></p>
+<ul>
+<li>Boot ROM: 当手机处于关机状态时，长按Power键开机，引导芯片代码开始从固化在<code>ROM</code>里的预设代码开始执行，然后加载引导程序（BootLoader）到<code>RAM</code>；</li>
+<li>Boot Loader：这是启动Android系统之前的引导程序，主要是检查RAM，初始化硬件参数等功能，将操作系统OS拉起来并运行</li>
+</ul>
+<p><strong>Linux内核层：</strong>linux内核的安全机制为android提供相应的保障，也允许设备制造商为内核开发硬件驱动程序。</p>
+<ul>
+<li>swapper进程（pid=0）：又被称为idle进程，是系统初始化过程Kernel有无到有开创的第一个进程，用于初始化进程管理、内存管理、加载Display、Camera Driver、Binder Driver等工作。</li>
+<li>kthreadd进程（pid=2）：是linux系统的内核进程，会创建内核工作线程kworkder、软中断线程ksoftirqd、thermal等内核守护进程。kthreadd进程是所有内核进程的鼻祖。</li>
+</ul>
+<p><strong>硬件抽象层（HAL）：</strong></p>
+<p>​        硬件抽象层 (HAL) 提供标准接口，HAL包含多个库模块，其中每个模块都为特定类型的硬件组件实现一组接口，比如WIFI/蓝牙模块，当框架API请求访问设备硬件时，Android系统将为该硬件加载相应的库模块。</p>
+<p><strong>Android Runtime 和 系统库：</strong></p>
+<p>​        每个应用都在自己的进程中运行，都有自己的虚拟机实例。ART通过DEX文件可在设备运行多个虚拟机。DEX文件是一种专门为android设计的字节码格式文件。ART主要功能包括：预先（AOT）和即时编译（JIT），优化的垃圾回收（GC），以及相关调试的支持。</p>
+<p>​        Native系统库主要包括init孵化来的用户空间的守护进程、HAL层、开机动画等。init进程是所有用户进程的鼻祖。</p>
+<ul>
+<li>init进程会孵化出ueventd、logd、healthd、installd、adbd、lmkd等用户守护进程；</li>
+<li>init进程还启动<code>servicemanager</code>(binder服务管家)、<code>bootanim</code>(开机动画)等重要服务</li>
+<li>init进程孵化出Zygote进程，Zygote进程是Android系统的第一个Java进程(即虚拟机进程)，<code>Zygote是所有Java进程的父进程</code>，Zygote进程本身是由init进程孵化而来的。</li>
+</ul>
+<p><strong>Framework层：</strong></p>
+<p>​        （1）Zygote进程，是由init进程通过解析init.rc文件后fork生成的，Zygote进程主要包含：</p>
+<p>​        加载ZygoteInit类，注册Zygote Socket服务端套接字<br>​        加载虚拟机<br>​        提前加载类preloadClasses<br>​        提前加载资源preloadResouces</p>
+<p>​        （2）System Server进程，是由Zygote进程fork而来，System Server是Zygote孵化的第一个进程，System Server负责启动和管理整个Java framework，包含ActivityManager，WindowManager，PackageManager，PowerManager等服务。<br>​        （3）Media Server进程，是由init进程fork而来，负责启动和管理整个C++ framework，包含AudioFlinger，Camera Service等服务。</p>
+<p><strong>APP层：</strong></p>
+<p>​        Zygote进程孵化出的第一个App进程是Launcher，这是用户看到的桌面App；</p>
+<p>​        Zygote进程还会创建Browser，Phone，Email等App进程，每个App至少运行在一个进程上。<br>​        所有的App进程都是由Zygote进程fork生成的。</p>
+<p><strong>Native与Kernel之间有一层系统调用SysCall层。</strong></p>
+<p><strong>java层与Native层之间的纽带JNI。</strong></p>
 
       </div>
       
@@ -766,7 +792,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/24/7-24/" target="_blank" title="7-24">https://mhshan925.github.io/2021/07/24/7-24/</a>
+    <a href="/2021/07/25/android-系统架构/" target="_blank" title="android_系统架构">https://mhshan925.github.io/2021/07/25/android-系统架构/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -786,17 +812,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/25/7-25/" class="post-nav-link">
+    <a href="/2021/07/25/android-binder/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-25</div>
+        <div>android_binder</div>
       </div>
       
       <!-- <div class="content">
-        1743.从相邻元素对还原数组存在一个由 n 个不同元素组成的整数数组 nums ，但你已经记不清具体内容。好在你还记得
+        
       </div> -->
     </a>
   </div>
@@ -805,18 +831,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0day02/" class="post-nav-link">
+    <a href="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>操作系统笔记day02</div>
+        <div>android_系统启动</div>
       </div>
       <!-- <div class="content">
-        操作系统笔记02操作系统课程图：
-操作系统知识体系图：
-程序的运行过程:从代码到机器运行程序的编译过程：使用GCC相关工
+        系统启动​        Android系统底层基于Linux Kernel, 当Kernel启动过程会创建init进程
       </div> -->
     </a>
   </div>

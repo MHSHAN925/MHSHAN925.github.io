@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-24 | Hexo</title>
+  <title>android_activity | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/7.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-24'],
+              strings: ['android_activity'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-24</span>
+        <span class="post-time">2021-07-25</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/android/" class="">
+              android
             </a>
           
         </div>
@@ -746,16 +746,16 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1736-替换隐藏数字得到的最晚时间"><a href="#1736-替换隐藏数字得到的最晚时间" class="headerlink" title="1736.替换隐藏数字得到的最晚时间"></a>1736.替换隐藏数字得到的最晚时间</h1><p>给你一个字符串 time ，格式为 hh:mm（小时：分钟），其中某几位数字被隐藏（用 ? 表示）。</p>
-<p>有效的时间为 00:00 到 23:59 之间的所有时间，包括 00:00 和 23:59 。</p>
-<p>替换 time 中隐藏的数字，返回你可以得到的最晚有效时间。</p>
-<p>示例 1：</p>
-<p>输入：time = “2?:?0”<br>输出：”23:50”<br>解释：以数字 ‘2’ 开头的最晚一小时是 23 ，以 ‘0’ 结尾的最晚一分钟是 50 。<br>示例 2：</p>
-<p>输入：time = “0?:3?”<br>输出：”09:39”<br>示例 3：</p>
-<p>输入：time = “1?:22”<br>输出：”19:22”</p>
-<p>思路：我的想法就是枚举情况，注意点就是情况分类比较多需要注意。</p>
-<p>第一位：如果需要被替换，优先替换为 2，当然前提是第二位不能超过 4。否则会出现 24:xx、25:xx 等；<br>第二位：如果需要被替换，根据第一位是什么，决定替换为 9 还是 3；<br>第三位：固定为 :；<br>第四位：如果需要被替换，替换为 5；<br>第五位：如果需要被替换，替换为 9。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public String maximumTime(String time) &#123;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        sb.append(time.charAt(0) == &#x27;?&#x27; ? (time.charAt(1) == &#x27;?&#x27; || time.charAt(1) &lt; &#x27;4&#x27;) ? &#x27;2&#x27; : &#x27;1&#x27; : time.charAt(0));</span><br><span class="line">        sb.append(time.charAt(1) == &#x27;?&#x27; ? sb.charAt(0) == &#x27;2&#x27; ? &#x27;3&#x27; : &#x27;9&#x27; : time.charAt(1));</span><br><span class="line">        sb.append(&#x27;:&#x27;);</span><br><span class="line">        sb.append(time.charAt(3) == &#x27;?&#x27; ? &#x27;5&#x27; : time.charAt(3));</span><br><span class="line">        sb.append(time.charAt(4) == &#x27;?&#x27; ? &#x27;9&#x27; : time.charAt(4));</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static String maximumTime(String time)&#123;</span><br><span class="line">    char[] timeChar = time.toCharArray();</span><br><span class="line">    if (timeChar[0] == &#x27;?&#x27;)&#123;</span><br><span class="line">       if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;else if (timeChar[1] - &#x27;0&#x27; &gt;= 4)&#123;</span><br><span class="line">           timeChar[0] = &#x27;1&#x27;;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">        if (timeChar[0] == &#x27;1&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;2&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;3&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;0&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[3] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[3] = &#x27;5&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[4] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[4] = &#x27;9&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return new String(timeChar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="activity（应用）"><a href="#activity（应用）" class="headerlink" title="activity（应用）"></a>activity（应用）</h1><p>Activity：是一个应用程序组件（组件就是零件）、为应用程序提供了一个可视化界面（activity就是一个界面）、用户通过此页面与应用程序进行交互。</p>
+<p>启动activity要素：manifest.xml、MainActivity、layout</p>
+<p>setContentView：为Activity添加所需要的设置的内容，传入指定的Layout所对应的id。activity和布局文件XML进行绑定</p>
+<p>findViewById：获取控件的对象。</p>
+<h1 id="activity（底层）"><a href="#activity（底层）" class="headerlink" title="activity（底层）"></a>activity（底层）</h1><h2 id="activity的生命周期："><a href="#activity的生命周期：" class="headerlink" title="activity的生命周期："></a>activity的生命周期：</h2>
+
+<p>以下三种状态：长时间保持不变。</p>
+<p>onResume（）：activity处在前台，且用户可以交互。</p>
+<p>onPause（）：Activity被在前台中处于半透明状态或者未覆盖全屏的其他Activity部分遮挡。 暂停的Activity不会接收用户输入，也无法执行任何代码。</p>
+<p>onStop（）：Activity被完全隐藏，且对用户不可见；被视为后台Activity。 停止的Activity实例及其诸如成员变量等所有状态信息将保留，但它无法执行任何代码。</p>
 
       </div>
       
@@ -766,7 +766,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/24/7-24/" target="_blank" title="7-24">https://mhshan925.github.io/2021/07/24/7-24/</a>
+    <a href="/2021/07/25/android-activity/" target="_blank" title="android_activity">https://mhshan925.github.io/2021/07/25/android-activity/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -786,17 +786,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/25/7-25/" class="post-nav-link">
+    <a href="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-25</div>
+        <div>android_系统启动</div>
       </div>
       
       <!-- <div class="content">
-        1743.从相邻元素对还原数组存在一个由 n 个不同元素组成的整数数组 nums ，但你已经记不清具体内容。好在你还记得
+        系统启动​        Android系统底层基于Linux Kernel, 当Kernel启动过程会创建init进程
       </div> -->
     </a>
   </div>
@@ -805,18 +805,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0day02/" class="post-nav-link">
+    <a href="/2021/07/25/7-25/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>操作系统笔记day02</div>
+        <div>7-25</div>
       </div>
       <!-- <div class="content">
-        操作系统笔记02操作系统课程图：
-操作系统知识体系图：
-程序的运行过程:从代码到机器运行程序的编译过程：使用GCC相关工
+        1743.从相邻元素对还原数组存在一个由 n 个不同元素组成的整数数组 nums ，但你已经记不清具体内容。好在你还记得
       </div> -->
     </a>
   </div>

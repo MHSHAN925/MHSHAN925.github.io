@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-24 | Hexo</title>
+  <title>android_系统启动 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-24'],
+              strings: ['android_系统启动'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-24</span>
+        <span class="post-time">2021-07-25</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/android/" class="">
+              android
             </a>
           
         </div>
@@ -746,16 +746,52 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1736-替换隐藏数字得到的最晚时间"><a href="#1736-替换隐藏数字得到的最晚时间" class="headerlink" title="1736.替换隐藏数字得到的最晚时间"></a>1736.替换隐藏数字得到的最晚时间</h1><p>给你一个字符串 time ，格式为 hh:mm（小时：分钟），其中某几位数字被隐藏（用 ? 表示）。</p>
-<p>有效的时间为 00:00 到 23:59 之间的所有时间，包括 00:00 和 23:59 。</p>
-<p>替换 time 中隐藏的数字，返回你可以得到的最晚有效时间。</p>
-<p>示例 1：</p>
-<p>输入：time = “2?:?0”<br>输出：”23:50”<br>解释：以数字 ‘2’ 开头的最晚一小时是 23 ，以 ‘0’ 结尾的最晚一分钟是 50 。<br>示例 2：</p>
-<p>输入：time = “0?:3?”<br>输出：”09:39”<br>示例 3：</p>
-<p>输入：time = “1?:22”<br>输出：”19:22”</p>
-<p>思路：我的想法就是枚举情况，注意点就是情况分类比较多需要注意。</p>
-<p>第一位：如果需要被替换，优先替换为 2，当然前提是第二位不能超过 4。否则会出现 24:xx、25:xx 等；<br>第二位：如果需要被替换，根据第一位是什么，决定替换为 9 还是 3；<br>第三位：固定为 :；<br>第四位：如果需要被替换，替换为 5；<br>第五位：如果需要被替换，替换为 9。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">public String maximumTime(String time) &#123;</span><br><span class="line">        StringBuilder sb = new StringBuilder();</span><br><span class="line">        sb.append(time.charAt(0) == &#x27;?&#x27; ? (time.charAt(1) == &#x27;?&#x27; || time.charAt(1) &lt; &#x27;4&#x27;) ? &#x27;2&#x27; : &#x27;1&#x27; : time.charAt(0));</span><br><span class="line">        sb.append(time.charAt(1) == &#x27;?&#x27; ? sb.charAt(0) == &#x27;2&#x27; ? &#x27;3&#x27; : &#x27;9&#x27; : time.charAt(1));</span><br><span class="line">        sb.append(&#x27;:&#x27;);</span><br><span class="line">        sb.append(time.charAt(3) == &#x27;?&#x27; ? &#x27;5&#x27; : time.charAt(3));</span><br><span class="line">        sb.append(time.charAt(4) == &#x27;?&#x27; ? &#x27;9&#x27; : time.charAt(4));</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public static String maximumTime(String time)&#123;</span><br><span class="line">    char[] timeChar = time.toCharArray();</span><br><span class="line">    if (timeChar[0] == &#x27;?&#x27;)&#123;</span><br><span class="line">       if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;else if (timeChar[1] - &#x27;0&#x27; &gt;= 4)&#123;</span><br><span class="line">           timeChar[0] = &#x27;1&#x27;;</span><br><span class="line">       &#125;else &#123;</span><br><span class="line">           timeChar[0] = &#x27;2&#x27;;</span><br><span class="line">       &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[1] == &#x27;?&#x27;)&#123;</span><br><span class="line">        if (timeChar[0] == &#x27;1&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;2&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;3&#x27;;</span><br><span class="line">        &#125;else if (timeChar[0] == &#x27;0&#x27;)&#123;</span><br><span class="line">            timeChar[1] = &#x27;9&#x27;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[3] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[3] = &#x27;5&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    if (timeChar[4] == &#x27;?&#x27;)&#123;</span><br><span class="line">        timeChar[4] = &#x27;9&#x27;;</span><br><span class="line">    &#125;</span><br><span class="line">    return new String(timeChar);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="系统启动"><a href="#系统启动" class="headerlink" title="系统启动"></a>系统启动</h1><p>​        Android系统底层基于Linux Kernel, 当Kernel启动过程会创建init进程, 该进程是所有用户空间的鼻祖, init进程会启动servicemanager(binder服务管家), Zygote进程(Java进程的鼻祖). Zygote进程会创建 system_server进程以及各种app进程，</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/android-booting.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="android-booting">
+
+<p><strong>swapper进程（pid=0）</strong>：又被称为idle进程，是系统初始化过程Kernel有无到有开创的第一个进程，用于初始化进程管理、内存管理、加载Display、Camera Driver、Binder Driver等工作。</p>
+<p><strong>kthreadd进程（pid=2）</strong>：是linux系统的内核进程，会创建内核工作线程kworkder、软中断线程ksoftirqd、thermal等内核守护进程。kthreadd进程是所有内核进程的鼻祖。</p>
+<p>内核完成系统设置时，首先在系统文件中启动属性服务，并且启动Zygote进程。</p>
+<p><strong>init进程：</strong></p>
+<p>​        是什么？：init是linux系统中用户空间的第一个进程（pid=0）。</p>
+<p>​        来源：kerner启动后会调用system/core/init/init.cpp文件中的main（）方法来启动init进程。由多个源文件组成，对应的源码目录在system/core/init中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char** argv) &#123;</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line">    // 如果是初始化第一阶段，则需要执行下面的步骤1</span><br><span class="line">    if (is_first_stage) &#123;</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        // 清理umask</span><br><span class="line">        umask(0);</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        // 1、创建和挂载启动所需的文件目录</span><br><span class="line">        mount(&quot;tmpfs&quot;, &quot;/dev&quot;, &quot;tmpfs&quot;, MS_NOSUID, &quot;mode=0755&quot;);</span><br><span class="line">        mkdir(&quot;/dev/pts&quot;, 0755);</span><br><span class="line">        mkdir(&quot;/dev/socket&quot;, 0755);</span><br><span class="line">        mount(&quot;devpts&quot;, &quot;/dev/pts&quot;, &quot;devpts&quot;, 0, NULL);</span><br><span class="line">        #define MAKE_STR(x) __STRING(x)</span><br><span class="line">        mount(&quot;proc&quot;, &quot;/proc&quot;, &quot;proc&quot;, 0, &quot;hidepid=2,gid=&quot; MAKE_STR(AID_READPROC));</span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        // 初识化Kernel的Log，获取外界的Kernel日志</span><br><span class="line">        InitKernelLogging(argv);</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 初识化Kernel的Log，获取外界的Kernel日志</span><br><span class="line">    InitKernelLogging(argv);</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    // 2、初始化属性相关资源</span><br><span class="line">    property_init();</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    // 创建epoll句柄</span><br><span class="line">    epoll_fd = epoll_createl(EPOLL_CLOEXEC);</span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    // 3、设置子信号处理函数</span><br><span class="line">    sigchld_handler_init();</span><br><span class="line"></span><br><span class="line">    // 导入默认的环境变量</span><br><span class="line">    property_load_boot_defaults();</span><br><span class="line"></span><br><span class="line">    // 4、启动属性服务</span><br><span class="line">    start_property_service();</span><br><span class="line">    set_usb_controller();</span><br><span class="line"></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">    // 加载引导脚本</span><br><span class="line">    LoadBootScripts(am, sm);</span><br><span class="line"></span><br><span class="line">    ...   </span><br><span class="line">    while (true) &#123;</span><br><span class="line"></span><br><span class="line">        ...</span><br><span class="line"></span><br><span class="line">        if (!(waiting_for_prop || Service::is_exec_service_running())) &#123;</span><br><span class="line">            // 内部会偏离执行每个action中携带的command对应的执行函数</span><br><span class="line">            am.ExecuteOneCommand();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        if (!(waiting_for_prop || Service::is_exec_service_running())) &#123;</span><br><span class="line">            if (!shutting_down) &#123;</span><br><span class="line">                // 重启死去的子进程</span><br><span class="line">                auto next_process_restart_time = RestartProcesses();</span><br><span class="line"></span><br><span class="line">                ...</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            // If there&#x27;s more work to do, wake up again immediately.</span><br><span class="line">            if (am.HasMoreCommands()) epoll_timeout_ms = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        epoll_event ev;</span><br><span class="line">        int nr = TEMP_FAILURE_RETRY(epoll_wait(epoll_fd, &amp;ev, 1, epoll_timeout_ms));</span><br><span class="line">        if (nr == -1) &#123;</span><br><span class="line">            PLOG(ERROR) &lt;&lt; &quot;epoll_wait failed&quot;;</span><br><span class="line">        &#125; else if (nr == 1) &#123;</span><br><span class="line">            ((void (*)()) ev.data.ptr)();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void LoadBootScripts(ActionManager&amp;action_manager, ServiceList&amp; service_list) &#123;</span><br><span class="line">    Parser parser = CreateParser(action_manager, service_list);</span><br><span class="line"></span><br><span class="line">    std::string bootscript = GetProperty(&quot;ro.boot.init_rc&quot;, &quot;&quot;);</span><br><span class="line">    // bootscript默认是空的</span><br><span class="line">    if (bootscript.empty()) &#123;</span><br><span class="line">        // 5、解析init.rc配置文件</span><br><span class="line">        parser.ParseConfig(&quot;/init.rc&quot;);</span><br><span class="line">        if (!parser.ParseConfig(&quot;/system/etc/init&quot;)) &#123;</span><br><span class="line">            late_import_paths.emplace_back(&quot;/system/etc/init&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (!parser.ParseConfig(&quot;/product/etc/init&quot;)) &#123;</span><br><span class="line">            late_import_paths.emplace_back(&quot;/product/etc/init&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (!parser.ParseConfig(&quot;/odm/etc/init&quot;)) &#123;</span><br><span class="line">            late_import_paths.emplace_back(&quot;/odm/etc/init&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">        if (!parser.ParseConfig(&quot;/vendor/etc/init&quot;)) &#123;</span><br><span class="line">            late_import_paths.emplace_back(&quot;/vendor/etc/init&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        parser.ParseConfig(bootscript);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>​        功能：主要是初始化和启动属性服务，并且启动Zygote进程。</p>
+<ul>
+<li>分析和运行所有init.rc文件</li>
+</ul>
+<p>这是Android初始化语言编写的一个非常重要的配置脚本文件。Android初始化语言主要包含5种类型的语句：Action（常用）、Service（常用）、Command、Option、Import</p>
+<ul>
+<li><p>生成设备驱动节点（通过rc文件创建）</p>
+</li>
+<li><p>创建和挂载启动所需的文件目录：挂载了tmpsf、devpts、proc、sysfs和selinuxfs共5种文件系统（它们均是系统运行时目录</p>
+</li>
+<li><p>处理子进程的终止（signal方式）</p>
+</li>
+</ul>
+<p>设置子进程信号的处理函数，如果子进程（Zygote）异常退出，init进程会调用该函数中设定的信号处理函数—sigchld_handler_init()【防止子进程成为僵尸进程】。如果Zygote进程终止，sigchld_handler_init()会重启Zygote进程。</p>
+<ul>
+<li>对属性服务进行初始化（property service）：</li>
+</ul>
+<p>​        属性服务：Windows平台上有一个注册表管理器，注册表的内容采用键值对的形式来记录用户、软件等使用信息。如果系统或软件重启，还是能够根据这份注册表中的记录，进行相应的初识化工作。Android也提供了一个这样类型的机制，即属性服务。</p>
+<p>​        init进程启动时会启动属性服务，并为其分配内存，用来存储这些属性，如果需要就可以直接读取，具体在代码里就是执行了property_init()函数中的__system_property_area_init()函数去初始化属性内存区域。</p>
+<ul>
+<li>启动属性服务：（启动servicemanager【binder服务管家】、bootanim【开机动画服务】）、</li>
+</ul>
+<p>system/core/init/property_service.cpp源码中的start_property_service()函数来启动服务。</p>
+<p><strong>总结：1、创建和挂载启动所需的文件目录。2、初始化和启动属性服务。3、解析init.rc配置文件并启动Zygote进程</strong></p>
+<p><strong>Zygote进程：</strong>由init进程启动。（进入java世界）</p>
+<p>​        Zygote进程创建Java虚拟机,并注册JNI方法， 真正成为Java进程的母体，用于孵化Java进程. 在创建完system_server进程后,zygote功成身退，调用runSelectLoop()，随时待命，当接收到请求创建新进程请求时立即唤醒并执行相应工作。</p>
+<p>​        Zygote是在init进程启动时创建的，它又称为孵化器，它可以通过fork（复制进程）的形式来创建应用程序进程和SystemServer进程。并且，Zygote进程在启动的时候回创建DVM或者ART，因此通过fork而创建的应用程序进程和SystemServer进程可以在内部获取一个DVM或者ART的实例副本。</p>
+<p>​        Zygote进程的主要职责：</p>
+<ul>
+<li>1、创建AppRuntime，执行其start方法，启动Zygote进程。。</li>
+<li>2、创建JVM并为JVM注册JNI方法。</li>
+<li>3、使用JNI调用ZygoteInit的main函数进入Zygote的Java FrameWork层。</li>
+<li>4、使用registerZygoteSocket方法创建服务器端Socket，并通过runSelectLoop方法等等AMS的请求去创建新的应用进程。</li>
+<li>5、启动SystemServer进程。</li>
+</ul>
 
       </div>
       
@@ -766,7 +802,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/24/7-24/" target="_blank" title="7-24">https://mhshan925.github.io/2021/07/24/7-24/</a>
+    <a href="/2021/07/25/android-系统启动/" target="_blank" title="android_系统启动">https://mhshan925.github.io/2021/07/25/android-系统启动/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -786,17 +822,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/25/7-25/" class="post-nav-link">
+    <a href="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-25</div>
+        <div>android_系统架构</div>
       </div>
       
       <!-- <div class="content">
-        1743.从相邻元素对还原数组存在一个由 n 个不同元素组成的整数数组 nums ，但你已经记不清具体内容。好在你还记得
+        系统架构​        Android底层内核空间以Linux Kernel作为基石，上层用户空间由Native系统库
       </div> -->
     </a>
   </div>
@@ -805,18 +841,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/23/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%AC%94%E8%AE%B0day02/" class="post-nav-link">
+    <a href="/2021/07/25/android-activity/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>操作系统笔记day02</div>
+        <div>android_activity</div>
       </div>
       <!-- <div class="content">
-        操作系统笔记02操作系统课程图：
-操作系统知识体系图：
-程序的运行过程:从代码到机器运行程序的编译过程：使用GCC相关工
+        activity（应用）Activity：是一个应用程序组件（组件就是零件）、为应用程序提供了一个可视化界面（activ
       </div> -->
     </a>
   </div>
