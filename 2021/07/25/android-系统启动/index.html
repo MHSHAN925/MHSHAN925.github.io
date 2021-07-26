@@ -777,10 +777,13 @@
 <p>​        属性服务：Windows平台上有一个注册表管理器，注册表的内容采用键值对的形式来记录用户、软件等使用信息。如果系统或软件重启，还是能够根据这份注册表中的记录，进行相应的初识化工作。Android也提供了一个这样类型的机制，即属性服务。</p>
 <p>​        init进程启动时会启动属性服务，并为其分配内存，用来存储这些属性，如果需要就可以直接读取，具体在代码里就是执行了property_init()函数中的__system_property_area_init()函数去初始化属性内存区域。</p>
 <ul>
-<li>启动属性服务：（启动servicemanager【binder服务管家】、bootanim【开机动画服务】）、</li>
+<li>启动属性服务：（启动servicemanager【binder服务管家】、bootanim【开机动画服务】）。</li>
 </ul>
 <p>system/core/init/property_service.cpp源码中的start_property_service()函数来启动服务。</p>
 <p><strong>总结：1、创建和挂载启动所需的文件目录。2、初始化和启动属性服务。3、解析init.rc配置文件并启动Zygote进程</strong></p>
+<p>​        <strong>补充：servicemanager进程</strong>：ServiceManager是Binder IPC通信过程中的守护进程，本身也是一个Binder服务，但并没有采用libbinder中的多线程模型来与Binder驱动通信，而是自行编写了binder.c直接和Binder驱动来通信，并且只有一个循环binder_loop来进行读取和处理事务，这样的好处是简单而高效。</p>
+<p>​        ServiceManager本身工作相对简单，其功能：查询和注册服务。 对于Binder IPC通信过程中，其实更多的情形是BpBinder和BBinder之间的通信，比如ActivityManagerProxy和ActivityManagerService之间的通信等。</p>
+<p>​        ServiceManger集中管理系统内的所有服务，通过权限控制进程是否有权注册服务,通过字符串名称来查找对应的Service; 由于ServiceManger进程建立跟所有向其注册服务的死亡通知, 那么当服务所在进程死亡后, 会只需告知ServiceManager. 每个Client通过查询ServiceManager可获取Server进程的情况，降低所有Client进程直接检测会导致负载过重。</p>
 <p><strong>Zygote进程：</strong>由init进程启动。（进入java世界）</p>
 <p>​        Zygote进程创建Java虚拟机,并注册JNI方法， 真正成为Java进程的母体，用于孵化Java进程. 在创建完system_server进程后,zygote功成身退，调用runSelectLoop()，随时待命，当接收到请求创建新进程请求时立即唤醒并执行相应工作。</p>
 <p>​        Zygote是在init进程启动时创建的，它又称为孵化器，它可以通过fork（复制进程）的形式来创建应用程序进程和SystemServer进程。并且，Zygote进程在启动的时候回创建DVM或者ART，因此通过fork而创建的应用程序进程和SystemServer进程可以在内部获取一个DVM或者ART的实例副本。</p>
@@ -792,6 +795,59 @@
 <li>4、使用registerZygoteSocket方法创建服务器端Socket，并通过runSelectLoop方法等等AMS的请求去创建新的应用进程。</li>
 <li>5、启动SystemServer进程。</li>
 </ul>
+<p><strong>System_server进程：</strong>Zygote通过fork后创建system_server进程。承载着framework的核心服务。</p>
+<p>​        system_server进程中创建了SystemServerManager,作用是对系统服务进行创建、启动和声明周期管理。</p>
+<p>​        通过startBootstarpServices()方法中使用SystemServiceManager启动了ActivityManagerService、PackageManagerService、PowerManagerService等引导服务。</p>
+<p>​        通过startCoreServices()方法中则启动了BatteryService、WebViewUpdateService、DropBoxManagerService、UsageStatsService4个核心服务</p>
+<p>​        通过startOtherServices()方法中启动了WindowManagerService、InputManagerService、CameraService等其它服务。这些服务的父类都是SystemService。</p>
+<p>​        系统服务分为三类：引导服务、核心服务、其他服务。</p>
+<p>​                引导服务：ActivityManagerService，负责四大组件的启动、切换、调度。</p>
+<p>​                引导服务：PackageManagerService，负责对APK进行安装、解析、删除、卸载等操作。<br>​                引导服务：PowerManagerService，负责计算系统中与Power相关的计算，然后决定系统该如何反应。<br>​                核心服务：BatteryService，管理电池相关的服务。<br>​                其它服务：WindowManagerService，窗口管理服务。<br>​                其它服务：InputManagerService，管理输入事件。</p>
+<p>SystemService进程被创建后，主要的处理如下：</p>
+<ul>
+<li>1、启动Binder线程池，这样就可以与其他进程进行Binder跨进程通信。</li>
+<li>2、创建SystemServiceManager，它用来对系统服务进行创建、启动和生命周期管理。</li>
+<li>3、启动各种系统服务：引导服务、核心服务、其他服务，共100多种。应用开发主要关注引导服务ActivityManagerService、PackageManagerService和其他服务WindowManagerService、InputManagerService即可。</li>
+</ul>
+<p><strong>Launcher进程：</strong>Android系统启动的最后一步就是启动了一个Launcher应用程序来显示系统中已经安装的应用程序。<strong>Launcher在启动的过程中会请求请求PMS返回系统中已安装的应用程序的信息，并将这些信息封装成一个快捷图标列表显示在系统屏幕上，从而使得用户可以点击这些快捷图片来启动相应的应用程序。</strong></p>
+<p>​        1.作为android系统的启动器，用于启动应用程序。</p>
+<p>​        2.作为android系统的桌面，用于显示和管理应用程序的快捷图标或其他桌面组件。</p>
+<p>​        <strong>Launcher启动：</strong>SystemServer进程在启动的过程中会启动PMS，PMS启动后会将系统中的应用程序安装完成，先前已经启动的AMS会将Launcher启动起来。在SystemServer的startOtherServices()方法中，调用了AMS的systemReady()方法，此即为Launcher的入口。</p>
+<p>​        **Launcher应用图标的显示过程:**应用程序图标是进入应用程序的入口。Launcher是用工作区的形式来显示系统安装的应用程序快捷图标的，每一个工作区都是用来描述一个抽象桌面的，它由n个屏幕组成，每个屏幕又分为n个单元格，每个单元格用来显示一个应用程序的快捷图标。</p>
+<p><strong>APP进程：</strong>普通的app进程跟system_server进程的启动有些类似，不同的是app进程是发消息给system_server进程，由system_server向zygote进程发出创建进程的请求。</p>
+<p><strong>总结：</strong></p>
+<p>1、启动电源以及系统启动：当电源按下时引导芯片从预定义的订房（固化在ROM）开始执行，加载引导程序BootLoader到RAM，然后执行。<br>2、引导程序BootLoader：BootLoader是在Android系统开始运行前的一个小程序，主要用于把系统OS拉起来并运行。。<br>3、Linux内核启动：当内核启动时，设置缓存、被保护存储器、计划列表、加载驱动。当其完成系统设置时，会先在系统文件中寻找init.rc文件，并启动init进行。<br>4、init进程启动：初始化和启动属性服务，并且启动Zygote进程。<br>5、Zygote进程启动：创建JVM并为其注册JNI方法，创建服务器端Socket，启动SystemServer进程。<br>6、SystemServer进程启动：启动Binder线程池和SystemServiceManager，并且启动各种系统服务。<br>7、Launcher启动：被SystemServer进程启动的AMS会启动Launcher，Launcher启动后会将已安装应用的快捷图标显示到系统桌面上。</p>
+<p><strong>Android系统启动流程</strong></p>
+<p>​    Android系统的启动流程，从按power按键启动电源开始，到Launcher应用程序启动完成结束，这里大致可以分为如下7个步骤。</p>
+<p> 1、开启电源执行BootLoader引导程序</p>
+<p>​    当按下电源后，会引导芯片代码从预定义的地方开始执行（该预定义的地方固化在ROM中），将引导程序BootLoader加载到RAM中执行。ROM和RAM是内存的中的两个部分，前者是Read-Only-Memmory的缩写，顾名思义，就是只读的内存，这其中会预先存储一些信息，比如这里系统启动时需要的信息。后者是Random-Acess-Memmory的缩写，写入的内存，在程序运行过程中可以动态写入数据，系统关闭后，数据会被清除。</p>
+<p> 2、BootLoader拉起并执行操作系统</p>
+<p>​    BootLoader执行时，会拉起并运行操作系统。BootLoader是一个引导程序，是在Android操作系统开始运行前的一个小程序，它的作用就是拉起并运行操作系统。</p>
+<p> 3、操作系统启动init进程</p>
+<p>​    Android操作系统基于Linux内核实现，所以此时Linux内核开始启动，进行系统设置。当完成系统设置后，会首先在系统文件中寻找init.rc脚本文件，并启动init进程。</p>
+<p> 4、init进程启动</p>
+<p>​    init，通过名称可以判断它的作用是做一些初始化的工作。init进程是Android系统中用户空间的第一个进程，进程号为1，是Android系统启动中的一个关键进程，作为第一个进程，它被赋予了很多重要的职责，简单概括为：</p>
+<p>   （1）创建和挂载启动系统所需要的文件目录。</p>
+<p>   （2）初始化和启动属性服务。这里的属性服务，类似于Windows操作系统中的注册表管理器，用来记录用户、软件等的一些信息。</p>
+<p>   （3）解析init.rc配置文件，并启动Zygote进程。</p>
+<p> 5、Zygote进程启动</p>
+<p>​    Zygote的中文翻译为“受精卵”，是生命的开始，从字面意思，我们大致可以领会到它在Android系统中的地位。Dalvik/ART，应用程序进程以及运行系统的关键服务SystemServer都是由Zygote进程创建的，所以一般也称它为孵化器。Zygote需要做很多工作，归纳起来大致有如下几条：</p>
+<p>   （1）创建Dalvik/ART</p>
+<p>   （2）从Native层进入到Java框架层。也就是说Zygote开创了Java框架层，这一步是通过Native层通过JNI方式调用ZygoteInit类的main方法来实现。Zygote的路径为：frameworks/base/core/java/com/android/internal/os/ZygoteInit.java</p>
+<p>   （3）ZygoteInit的main方法中会创建一个Service端的Socket，名称为“zygote”，用于等待AMS请求Zygote创建新的应用程序进程。</p>
+<p>   （4）ZygoteInit的main方法中还会通过fork方式创建并启动SystemServer进程。</p>
+<p> 6、SytemServer进程启动</p>
+<p>​    SytemServer是运行系统的关键服务，主要用于创建系统服务，比如AMS，WMS，PMS等。它的主要职责为：</p>
+<p>   （1）启动Binder线程池。该过程主要通过ZygoteInit.nativeZygoteInit()来调用Native层的方法来实现启动Binder线程池的，这样SystemServer就可以使用Binder与其他进程进行通信。</p>
+<p>   （2）创建SystemServerManager（SSM），并启动各种服务。这个过程是在SystemServer的main方法中调用实现的，可以参考如下的源码。SystemServerManager用于对系统的服务进行创建、启动和生命周期管理。这里启动的各种服务包括引导服务、核心服务、其他服务三类：引导服务包括AMS、PowerMS、PackageMS等；核心服务包括BatteryService等；其他服务包括WMS等，SystemUI也是在这里启动的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"> 1 //=========SystemServer.java=========</span><br><span class="line"> 2 public static void main(String[] args) &#123;</span><br><span class="line"> 3     new SystemServer().run();</span><br><span class="line"> 4 &#125;</span><br><span class="line"> 5 private void run() &#123;</span><br><span class="line"> 6     ......</span><br><span class="line"> 7     //创建消息Looper</span><br><span class="line"> 8     Looper.prepareMainLooper();</span><br><span class="line"> 9     // 加载动态库libandroid_servers.so，初始化native服务</span><br><span class="line">10     System.loadLibrary(&quot;android_servers&quot;);</span><br><span class="line">11     ......</span><br><span class="line">12     //初始化系统context</span><br><span class="line">13     createSystemContext();</span><br><span class="line">14     //创建SystemServiceManager</span><br><span class="line">15     mSystemServiceManager = new SystemServiceManager(mSystemContext);</span><br><span class="line">16     ......</span><br><span class="line">17     //启动引导服务，如AMS等</span><br><span class="line">18     startBootstrapServices();</span><br><span class="line">19     //启动核心服务</span><br><span class="line">20     startCoreServices();</span><br><span class="line">21     //启动其它服务，如WMS，SystemUI等</span><br><span class="line">22     startOtherServices();</span><br><span class="line">23     ....</span><br><span class="line">24 &#125;</span><br></pre></td></tr></table></figure>
+
+<p>每一种服务类型包含哪些具体的服务，可以通过上述源码中第18、20、22行进入到对应的方法中查看。</p>
+<p> 7、启动Launcher</p>
+<p>​    系统启动的最后一步是启动一个应用程序来显示系统中已经安装的应用程序，这个应用程序就是Launcher。这一步由SystemServer创建的AMS来启动，前面第5点“Zygote进程启动”中讲过，创建一个Socket，来等待AMS请求Zygote创建新的应用程序。Launcher在启动过程中会请求PackageManagerService返回系统中已经安装的应用程序的信息，并将这些信息封装成一个快捷图标列表显示在系统屏幕上，这样用户可以通过点击这些图标来启动对应的应用程序。总结来说，就是两点：</p>
+<p>   （1）作为Android系统的启动器，用于启动应用程序。</p>
+<p>   （2）作为Android系统的桌面，用于显示和管理应用程序的快捷图标或者其它桌面组件。</p>
+
 
       </div>
       
