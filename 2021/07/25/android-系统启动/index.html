@@ -747,7 +747,7 @@
       </div>
       <div class="post-content">
         <h1 id="系统启动"><a href="#系统启动" class="headerlink" title="系统启动"></a>系统启动</h1><p>​        Android系统底层基于Linux Kernel, 当Kernel启动过程会创建init进程, 该进程是所有用户空间的鼻祖, init进程会启动servicemanager(binder服务管家), Zygote进程(Java进程的鼻祖). Zygote进程会创建 system_server进程以及各种app进程，</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/android-booting.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="android-booting">
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8/android-booting.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="android-booting">
 
 <p><strong>swapper进程（pid=0）</strong>：又被称为idle进程，是系统初始化过程Kernel有无到有开创的第一个进程，用于初始化进程管理、内存管理、加载Display、Camera Driver、Binder Driver等工作。</p>
 <p><strong>kthreadd进程（pid=2）</strong>：是linux系统的内核进程，会创建内核工作线程kworkder、软中断线程ksoftirqd、thermal等内核守护进程。kthreadd进程是所有内核进程的鼻祖。</p>

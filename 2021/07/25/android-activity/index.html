@@ -761,18 +761,18 @@
 <p>onResume（）：activity处在前台（任务栈的顶部），且用户可以交互。</p>
 <p>onPause（）：Activity被在前台中处于半透明状态或者未覆盖全屏的其他Activity部分遮挡。 暂停的Activity不会接收用户输入，也无法执行任何代码。</p>
 <p>onStop（）：Activity被完全隐藏，且对用户不可见；被视为后台Activity。 停止的Activity实例及其诸如成员变量等所有状态信息将保留，但它无法执行任何代码。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/activitylife.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: 什么EActivity @直徭翻译为：" alt="活动而在android中申多的是 代表手机的屏已是android的四大组件之一，重 要的组成元，提供了与用户交互的可视化界面 （GUI)，大多的App都是由多个屏组成的 @andr0id*Ff#Task(W)F储Activity, 可以理解为A（tivity钱，即后透先出；当在一个 ActivityE动另一个ActivityBg,%二个Activity 压入第一个Activityfi#中．此时两个Activity 是放在同一个Task中的，当我们帻下回退第 二个从中出，第一个A（tivi呼回判钱顶，即显 示到当前屏皂 养廊c歹／万后出 生命周期图鰩忻 @当A（tivi呼首次帔创津时，会调用on（reate() 方法，吾当显示朋户调用onStart0，如里 要让A（tivity位于前台的话就需要调用 onResume()方*IttdjActivity4ü于饯顶 @当有另一个Activitßfiä前ActivityN.i* 个时候调用onPau“0方法，将前一个A（tivity 的据保存起来 @此时，如里你想让前一个A（tivity不会再显示 的话，调用onStop()方法停止该A（tivity；但是如 里你恁让他回到前台的重新获得焦点的话 可以调用onResume()方法 @on-Stop后，你可以调用onDestory()方法来 钅肖毁iA（tivi也是该众（tivity最后一次帔调 用了，可以iMÄfinish()关fiActivity 0当丙存资源不足的时候，就可能杀死处于 onPau0的A（tivity所在的进程，但是这种极 端的佶况很少会友生 由用户作返回该 Activity,iM*E*Eapp 透程帔杀死 内存低： 申高伉卉级的ap 需要内存 A（tivity的生命周期及回调方法 Activity开始 。nS0 Activityi$行中 用户了回灘 前一个Activi新获得焦点 另一个Activi转入该 Activi之前，获得焦点， 前一个Activi处可见 刖一个Activi呼已轻 不可见了 Activi呼完成了要元成的 工作或由系统消了 Activity*止 Activity再次回到前台 我们不能够去调用，我们 面的内容，什么候调用 只有丽曲0方该方 法用于关闭冥个 A确Y！">
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/activitylife.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="计算机生成了可选文字: 什么EActivity @直徭翻译为：" alt="活动而在android中申多的是 代表手机的屏已是android的四大组件之一，重 要的组成元，提供了与用户交互的可视化界面 （GUI)，大多的App都是由多个屏组成的 @andr0id*Ff#Task(W)F储Activity, 可以理解为A（tivity钱，即后透先出；当在一个 ActivityE动另一个ActivityBg,%二个Activity 压入第一个Activityfi#中．此时两个Activity 是放在同一个Task中的，当我们帻下回退第 二个从中出，第一个A（tivi呼回判钱顶，即显 示到当前屏皂 养廊c歹／万后出 生命周期图鰩忻 @当A（tivi呼首次帔创津时，会调用on（reate() 方法，吾当显示朋户调用onStart0，如里 要让A（tivity位于前台的话就需要调用 onResume()方*IttdjActivity4ü于饯顶 @当有另一个Activitßfiä前ActivityN.i* 个时候调用onPau“0方法，将前一个A（tivity 的据保存起来 @此时，如里你想让前一个A（tivity不会再显示 的话，调用onStop()方法停止该A（tivity；但是如 里你恁让他回到前台的重新获得焦点的话 可以调用onResume()方法 @on-Stop后，你可以调用onDestory()方法来 钅肖毁iA（tivi也是该众（tivity最后一次帔调 用了，可以iMÄfinish()关fiActivity 0当丙存资源不足的时候，就可能杀死处于 onPau0的A（tivity所在的进程，但是这种极 端的佶况很少会友生 由用户作返回该 Activity,iM*E*Eapp 透程帔杀死 内存低： 申高伉卉级的ap 需要内存 A（tivity的生命周期及回调方法 Activity开始 。nS0 Activityi$行中 用户了回灘 前一个Activi新获得焦点 另一个Activi转入该 Activi之前，获得焦点， 前一个Activi处可见 刖一个Activi呼已轻 不可见了 Activi呼完成了要元成的 工作或由系统消了 Activity*止 Activity再次回到前台 我们不能够去调用，我们 面的内容，什么候调用 只有丽曲0方该方 法用于关闭冥个 A确Y！">
 
 <p>一个页面启动另一个页面的生命周期：</p>
 <p>​        第一步：A.一个activity被打开：onCreat—》onStart—-》onResume</p>
 <p>​        第二步：从一个activity启动另一个activity：A onPause—》B onCreate—》B onStart—-》B onResume—-》A onStop（只要stop说明就不可见了）</p>
 <p>​        也就是一开始A执行了onPause方法，然后B完全展现出来之后，A执行onStop。（这个B activity会完全遮盖住A activity）</p>
 <p>​        当B不会完全遮盖A的时候，</p>
-<p>​        <img "" class="lazyload placeholder" data-original="android-activity/clip_image001-16272835280171.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="clip_image001-16272835280171" style="zoom:200%;" /></p>
+<p>​        <img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/clip_image001-16272835280171.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="clip_image001-16272835280171" style="zoom:200%;"></p>
 <p>​        这个时候，A还是可见的。所以A没有执行onStop方法。</p>
 <p>​        然后B对画框消失：</p>
-<p>​        <img "" class="lazyload placeholder" data-original="android-activity/clip_image001-16272836096582.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 3Pau；0 A0》飞师e 3OnStOD" style="zoom:200%;" /></p>
-<h2 id="四种启动模式："><a href="#四种启动模式：" class="headerlink" title="四种启动模式："></a>四种启动模式：</h2><p>​        <img "" class="lazyload placeholder" data-original="android-activity/%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: standarc&t andard是默认的后动式，And℃id是便返回栈来管理活动的，下《每当后动一个新的活动，他就 系统不会在乎这个活动是否已经茌返回栈中存在每产 返回栈中入栈，葑处于栈顶的亻立舀对于便standard模式的活动 创亥活动的一的实例 stX嗵ard默，在不声行过内兄下，所0会凵心重叫抑扈。在aM3a 《认懦厩：下。孬当扈一个斯刊古，禎会伍屮入，再处于槿顶0．刈于叩snda閨」《活 鬲，衤不会在泫．±动岸百回中在．每欠0动都会釗亥±《一个新的． FirstActivity 启动新活动 D FirstActivity 启动新活动 0A山v叮 返回栈 singTopt*式 返回 返回 当活动的后动厦式指定为singTop，在宕动活动时如果发现返回栈的栈顶已经是该活动，则可以接便用它 的实例 当沽囟皂动僂式定为sig@T叩，在皂卉动时如顸回槿代顶已，处认可以自它，不会再 0建糟《动引．而0当0业、c肌岛于顶河，时的《眶t0彗，还巼0创新圈《。 不冉创建活动 检查栈顶判 是否需要 启动新活动 启动新活动 FirstActiVlty SecondActiV'ty FirstActivity 返回栈 返回 返回" style="zoom:200%;" /></p>
+<p>​        <img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/clip_image001-16272836096582.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 3Pau；0 A0》飞师e 3OnStOD" style="zoom:200%;"></p>
+<h2 id="四种启动模式："><a href="#四种启动模式：" class="headerlink" title="四种启动模式："></a>四种启动模式：</h2><p>​        <img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: standarc&t andard是默认的后动式，And℃id是便返回栈来管理活动的，下《每当后动一个新的活动，他就 系统不会在乎这个活动是否已经茌返回栈中存在每产 返回栈中入栈，葑处于栈顶的亻立舀对于便standard模式的活动 创亥活动的一的实例 stX嗵ard默，在不声行过内兄下，所0会凵心重叫抑扈。在aM3a 《认懦厩：下。孬当扈一个斯刊古，禎会伍屮入，再处于槿顶0．刈于叩snda閨」《活 鬲，衤不会在泫．±动岸百回中在．每欠0动都会釗亥±《一个新的． FirstActivity 启动新活动 D FirstActivity 启动新活动 0A山v叮 返回栈 singTopt*式 返回 返回 当活动的后动厦式指定为singTop，在宕动活动时如果发现返回栈的栈顶已经是该活动，则可以接便用它 的实例 当沽囟皂动僂式定为sig@T叩，在皂卉动时如顸回槿代顶已，处认可以自它，不会再 0建糟《动引．而0当0业、c肌岛于顶河，时的《眶t0彗，还巼0创新圈《。 不冉创建活动 检查栈顶判 是否需要 启动新活动 启动新活动 FirstActiVlty SecondActiV'ty FirstActivity 返回栈 返回 返回" style="zoom:200%;"></p>
 
 
 
@@ -791,7 +791,7 @@
 <p> （4）AMS调度应用进程创建和启动根Activity。根Activity所在的应用程序进程被创建后，AMS在SystemServer进程中也经过层层调用，最终又通过Binder方式实现IPC，将启动Activity的任务交给应用程序进程中的ApplicationThread本地代理，此后，流程进入到根Activity所在的应用程序进程中。这部分流程中，SystemServer中所做的工作主要是根Actifity创建和启动前的一些准备工作，比如判单当前用户权限，判断目标进程是否存在，判断activity是否已经创建，判断启动模式，判断是否注册等。</p>
 <p> （5）在应用进程中完成根Activity的创建和启动。在这里将创建根Activity实例、Applicaiton实例，调用各个生命周期方法，并将DecorView（布局文件中的View会添加到DecorView中）添加到Window中显示出来。 </p>
 <p>如下图所示：</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/start_activity_process.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="start_activity_process">
+<img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/start_activity_process.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="start_activity_process">
 
 <ol>
 <li>点击桌面App图标，Launcher进程采用Binder IPC向system_server进程发起startActivity请求；</li>
@@ -805,7 +805,7 @@
 <h1 id="activity问题"><a href="#activity问题" class="headerlink" title="activity问题"></a>activity问题</h1><h2 id="两个activity之间传递数据："><a href="#两个activity之间传递数据：" class="headerlink" title="两个activity之间传递数据："></a>两个activity之间传递数据：</h2><p>1、intent、broadcast receiver、content provider</p>
 <p>2、利用static静态数据</p>
 <p>3、利用外部存储进行传输，例如file文件存储。SP和Sqlite数据库</p>
-<h2 id=""><a href="#" class="headerlink" title=""></a></h2>
+<h2 id><a href="#" class="headerlink" title></a></h2>
       </div>
       
         <div class="copyright">
