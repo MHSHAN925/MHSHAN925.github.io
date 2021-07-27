@@ -751,11 +751,11 @@
 <h6 id="方法递归："><a href="#方法递归：" class="headerlink" title="方法递归："></a>方法递归：</h6><p>​        方法自己调用自己，递归一定要有结束条件。</p>
 <p>​        先检查递归的结束条件对不对</p>
 <p>​        手动调整JVM栈内存初始化大小，将栈内存大小调大</p>
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/digui.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="递归"></p>
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/digui.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="递归"></p>
 <h6 id="变量："><a href="#变量：" class="headerlink" title="变量："></a>变量：</h6><p>​        变量根据出现的位置：局部变量、成员变量（实例变量和静态变量）</p>
 <p>​        局部变量：方法体内声明，不会默认赋值。变量必须先声明再赋值才能访问。局部变量只在方法体（在自己的作用域）中有效，方法结束，内存释放。</p>
 <p>​        实例变量：方法体外声明，实例变量没有手动赋值，系统会默认赋值（构造方法执行的时候）。实例变量时对象级别的变量，必须先创建对象才能访问，不能通过类名直接访问。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/morenzhi.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="默认值" style="zoom:150%;">
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/morenzhi.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="默认值" style="zoom:150%;">
 
 <p>​        静态变量：类变量。</p>
 <h6 id="对象和引用的区别？"><a href="#对象和引用的区别？" class="headerlink" title="对象和引用的区别？"></a>对象和引用的区别？</h6><p>​        对象是通过new出来的，在堆内存中存储。</p>
@@ -814,14 +814,14 @@
 <p>类方法在该类被加载到内存时，就分配了相应的入口地址。</p>
 <p>从而类方法不仅可以被类创建的任何对象调用执行，也可以直接通过类名调用。</p>
 <p>类方法的入口地址直到程序退出时才被取消。</p>
-<h2 id="静态代码块和动态代码块："><a href="#静态代码块和动态代码块：" class="headerlink" title="静态代码块和动态代码块："></a>静态代码块和动态代码块：</h2><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticCode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块" style="zoom:150%;">
+<h2 id="静态代码块和动态代码块："><a href="#静态代码块和动态代码块：" class="headerlink" title="静态代码块和动态代码块："></a>静态代码块和动态代码块：</h2><img "" class="lazyload placeholder" data-original="/2021/07/27/java/staticCode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块" style="zoom:150%;">
 
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticCodeUse.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块的作用" style="zoom:150%;">
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/staticCodeUse.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块的作用" style="zoom:150%;">
 
 <p>静态变量和静态代码块都是类加载的时候执行，只能根据代码的先后来判断</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticandstatic.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态变量和静态代码块" style="zoom:150%;">
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/staticandstatic.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态变量和静态代码块" style="zoom:150%;">
 
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/dongtaicode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="动态代码块" style="zoom:150%;">
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/dongtaicode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="动态代码块" style="zoom:150%;">
 
 <h2 id="this关键字和super关键字："><a href="#this关键字和super关键字：" class="headerlink" title="this关键字和super关键字："></a>this关键字和super关键字：</h2><p>1.1、this是一个关键字，是一个引用，保存内存地址指向自身。</p>
 <p>1.2、this可以使用在实例方法中，也可以使用在构造方法中。</p>
@@ -829,15 +829,15 @@
 <p>1.4、this不能使用在静态方法中。</p>
 <p>1.5、this. 大部分情况下可以省略，但是用来区分局部变量和实例变量的时候不能省略。</p>
 <p>1.6、this() 这种语法只能出现在构造方法第一行，表示当前构造方法调用本类其他的构造方法，目的是代码复用。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/this.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="dogntai">
 
-
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/thisMem.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="this"></p>
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/thisMem.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="this"></p>
 <p>super关键字（构造方法默认是有super（））。super代表当前对象的父类型特征</p>
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/super.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="计算机生成了可选文字: 1、super是一个关键字．全部小写“ 2～super和this对比着学习· this： this能出现在实例方法和构造方法中。 this的语法是：" alt="this． ”this0“ th这不能使用在静态方法中． th“．大部分情况下是可以省略的“ th．什么时候不能省略呢？在区分局部变量和实例变量的时候不能省略。 publicvoidset-Name(Stringname》{ this·name this()只能出现在构造方法第一行，通过当前的构造方法去调用">
 
 <h2 id="final关键字："><a href="#final关键字：" class="headerlink" title="final关键字："></a>final关键字：</h2><p>final：关键字，表示的是最后的、不能变的、不能改的</p>
 <p>可以修饰变量、方法、类</p>
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/final.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="计算机生成了可选文字: final “nal是java语言中的一个关键字． final表示最终的，不可变的。 2、 3、“nal可以修饰变量以及方法，还有类等。 final修饰的变量？ final修饰的方法？ final修饰的类？ 6、">
 
 <p>final修饰的类无法被继承</p>
 <p>final修饰的方法无法被覆盖，被重新 </p>
@@ -860,7 +860,7 @@
 <p>方法输出的是一个java对象的内存地址。</p>
 <p>至于toString()方法具体怎么进行覆盖？</p>
 <p>格式可以自己定义，或者听需求的。（听项目要求的。）</p>
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/toString.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="计算机生成了可选文字: 关于Object类中的tostring0方法 1、t。string()方法的作用是什么？ 作用：将”艹对象" alt="转换成”字符串的形式 2、Obje。t类中t。string()方法的默认实现是什么？ publicStringtoString0{ returngetC1ass0.getName()+@+Integer．toHexString(hashCode0）， tostring：方法名的意思是转换成string 含义：调用一个艹a对象的st“ng()方法就可以将该j艹a对象转换成字符串的表示 3、那么t。st“ng()方法给的默认实现够用吗？ public01as5OverrideTest04{ publicstaticvoidmaid(String囗args){ &#x2F;／创建一个日期对象 MyDatet1-newMyDate0， &#x2F;&#x2F;调用tostring()方法（将对象转换成字符串形式。） &#x2F;&#x2F;向：你对这个输出结果满意吗？不满意，希望输出：xxxx年“月“曰 &#x2F;&#x2F;重写MyDa的t。singo方法之前结果 &#x2F;&#x2F;System.out．printlnt1toString0）；&#x2F;&#x2F;MyDate@28a418f0 &#x2F;&#x2F;重写Date的t。st“ng()方法之后的结果 System，out，printin()1，toString0》， &#x2F;&#x2F;大家是否还记得：当输出一个引用的时候， System．out.println(t1)； MyDatet2-new心Date（2008，8，8）， System．out．print-In〈t2）；&#x2F;／2008噁月8日 会自动用引用的">
 
 <p>public String toString(){</p>
 <p>​        return year + “年” + month + “月” + day + “日”；</p>
@@ -874,7 +874,7 @@
 
 
 
-<h2 id="抽象类和接口："><a href="#抽象类和接口：" class="headerlink" title="抽象类和接口："></a>抽象类和接口：</h2><p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8A%BD%E8%B1%A1%E7%B1%BB.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 类到对象是实例化。对象到类是抽象“ 抽象类： 、什么是抽象类？ 类和类之间具有共同特征，将这贱共同特征提取出来，形成的就是楠象类“ 类本身是不存在的，所以抽象类无法创建对象《无法实例化》“ 抽象类属于什么类型？ 2、 抽象类也属于引用数据类型“ 《能把基础语法先学会》 [修饰符列表]abstract。la艹类名{ 类休；I 、抽象类是无法实例化的，无法创建对象的，所以抽象类是用来被子类继承的“ 5、fin和abstr艹t不能联合使用，这两个关键字是对立的。 6、抽象类的子类可以是抽象类“ 7、抽象类虽然无法实例化，但是抽象类有构造方法，这个构造方法是供子类使用的“"></p>
+<h2 id="抽象类和接口："><a href="#抽象类和接口：" class="headerlink" title="抽象类和接口："></a>抽象类和接口：</h2><p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/%E6%8A%BD%E8%B1%A1%E7%B1%BB.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 类到对象是实例化。对象到类是抽象“ 抽象类： 、什么是抽象类？ 类和类之间具有共同特征，将这贱共同特征提取出来，形成的就是楠象类“ 类本身是不存在的，所以抽象类无法创建对象《无法实例化》“ 抽象类属于什么类型？ 2、 抽象类也属于引用数据类型“ 《能把基础语法先学会》 [修饰符列表]abstract。la艹类名{ 类休；I 、抽象类是无法实例化的，无法创建对象的，所以抽象类是用来被子类继承的“ 5、fin和abstr艹t不能联合使用，这两个关键字是对立的。 6、抽象类的子类可以是抽象类“ 7、抽象类虽然无法实例化，但是抽象类有构造方法，这个构造方法是供子类使用的“"></p>
 
 
 
@@ -889,12 +889,12 @@
 <p>}</p>
 <p>【修饰符列表】abstract class 类名{</p>
 <p>}</p>
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8E%A5%E5%8F%A3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 、接凵也是一种”引用数据类型“。编译之后也是一个cl艹s字节码文件。 2、接凵是完全抽象的·（抽象类是半抽象·）或者也可以说接凵是特殊的抽象类． 接口怎么定义，语法是什么？ 3、 [修饰符列表]interface接凵名0 接口支持多继承，一个接口可以继承多个接口“ 4、 5、接凵中只包含两部分内容，一部分是：常量·一都分是：抽象方法“接囗中没有其它 接口中所有的元素都是publi。修饰的“（都是公开的“） 6、 接凵中的抽象方法定义时：publicabstrac上修饰符可以省略。 7、 趴接口中的方法都是抽象方法，所以接囗中的方法不能有方法休“ 接口中的常量的publicst以。final可以省略。 9、"></p>
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/%E6%8E%A5%E5%8F%A3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 、接凵也是一种”引用数据类型“。编译之后也是一个cl艹s字节码文件。 2、接凵是完全抽象的·（抽象类是半抽象·）或者也可以说接凵是特殊的抽象类． 接口怎么定义，语法是什么？ 3、 [修饰符列表]interface接凵名0 接口支持多继承，一个接口可以继承多个接口“ 4、 5、接凵中只包含两部分内容，一部分是：常量·一都分是：抽象方法“接囗中没有其它 接口中所有的元素都是publi。修饰的“（都是公开的“） 6、 接凵中的抽象方法定义时：publicabstrac上修饰符可以省略。 7、 趴接口中的方法都是抽象方法，所以接囗中的方法不能有方法休“ 接口中的常量的publicst以。final可以省略。 9、"></p>
 
 
 
 
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%8E%A5%E5%8F%A34.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 1.2、接口的基础谙法 1、接凵是一种”引用数据类型““ 接口是完全抽象的。 2、 3、接口怎么定义：[修饰符列表]interface接口名0 、接口支持多继承． 接口中只有常量+抽象方法“ 5、 6、接口中所有的元素都是publi。修饰的 接口中抽象方法的publi。abstract可以省略“ 7、 接凵中常量的publi。噁tat-igfinal可以省略 9、接口中方法不能有方法休· 10、一个非抽象的类，实现接囗的时候，必须将接口中所有方法加以实现“ 11、一个类可以实现多个接口“ extends和implementsüT以丿存，，imlements:在．后“ 12、 13、使用接口，写代码的时候，可以使用多态〈父类霜引用指向子类型对象）“"></p>
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/%E6%8E%A5%E5%8F%A34.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 1.2、接口的基础谙法 1、接凵是一种”引用数据类型““ 接口是完全抽象的。 2、 3、接口怎么定义：[修饰符列表]interface接口名0 、接口支持多继承． 接口中只有常量+抽象方法“ 5、 6、接口中所有的元素都是publi。修饰的 接口中抽象方法的publi。abstract可以省略“ 7、 接凵中常量的publi。噁tat-igfinal可以省略 9、接口中方法不能有方法休· 10、一个非抽象的类，实现接囗的时候，必须将接口中所有方法加以实现“ 11、一个类可以实现多个接口“ extends和implementsüT以丿存，，imlements:在．后“ 12、 13、使用接口，写代码的时候，可以使用多态〈父类霜引用指向子类型对象）“"></p>
 <p>抽象类和接口有什么区别？</p>
 <p>在这里我们只说一下抽象类和接口在语法上的区别。</p>
 <p>至于以后抽象类和接口应该怎么进行选择，通过后面的项目去体会/学习。</p>
@@ -920,18 +920,18 @@
 <h2 id="内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰"><a href="#内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰" class="headerlink" title="内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰"></a>内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰</h2><p>匿名内部类：是局部内部类的一种</p>
 
 
-<h2 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h2><p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B21.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 六5亡四表质乒型，．灯干/，不干基本数型。 2、j口“中殖用双号起都走S亡rg．对。．．&quot;abc&quot; &quot;def&quot;，&quot;helloworld!&quot;，汶，是3个5亡r讠ng。 3、j艹口定，双弓/号起某乒串，走变，也走％bc&quot;出生野死亡，不孑，不影变成％b&quot;，也不 4、在K兰双/号起乒，：&quot;abc&quot;&quot;d&quot;走存话“。左兴&quot;，&#39;乒，&#39;兰中。 为么s公寻乒串存在一个“乒常满彪”当齿为乒在荚尹用太景。为7疔敷爭， 所以把乒野的亨医乒满彪兰中。 publicclassStringTest01{ publicstaticvoidmain(String[]args){ //过疔芸示层创73．个乒串对，都在乒串常满彪当 Strxng s1 String s2 《abcdef&quot; &quot;abcdef&quot;+xy&quot;; //分了这走葩门“方芄创乒对。这个码&#39;&#39;xy&quot;走0里菸？ //刀走双号起在乒串常彪中有一 //n“对时一定在内存当尹。 String s3"></p>
+<h2 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h2><p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/%E5%AD%97%E7%AC%A6%E4%B8%B21.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 六5亡四表质乒型，．灯干/，不干基本数型。 2、j口“中殖用双号起都走S亡rg．对。．．&quot;abc&quot; &quot;def&quot;，&quot;helloworld!&quot;，汶，是3个5亡r讠ng。 3、j艹口定，双弓/号起某乒串，走变，也走％bc&quot;出生野死亡，不孑，不影变成％b&quot;，也不 4、在K兰双/号起乒，：&quot;abc&quot;&quot;d&quot;走存话“。左兴&quot;，&#39;乒，&#39;兰中。 为么s公寻乒串存在一个“乒常满彪”当齿为乒在荚尹用太景。为7疔敷爭， 所以把乒野的亨医乒满彪兰中。 publicclassStringTest01{ publicstaticvoidmain(String[]args){ //过疔芸示层创73．个乒串对，都在乒串常满彪当 Strxng s1 String s2 《abcdef&quot; &quot;abcdef&quot;+xy&quot;; //分了这走葩门“方芄创乒对。这个码&#39;&#39;xy&quot;走0里菸？ //刀走双号起在乒串常彪中有一 //n“对时一定在内存当尹。 String s3"></p>
 
 
 <p>见双引号，字符串常量池中就有一份。</p>
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B23.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: publicclassUserTest{ publicstaticvoidmain(String[]args){ new id:110， Useruser name:"></p>
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/%E5%AD%97%E7%AC%A6%E4%B8%B23.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: publicclassUserTest{ publicstaticvoidmain(String[]args){ new id:110， Useruser name:"></p>
 
 
 <p>构造方法：</p>
 
 
-<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/String6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: publicclassStringTest02{ publicstaticvoidmain(String[]args) St&#39;、Ingsl &quot;he110《 ／/&quot;he艮。&quot;走存锗在兴医乒串彪兰 //所以这&quot;he艮。&quot;不。了为这对已在/丿 String52 &quot;he110《 //、分果走亡rue.还走说se？ //==双号此走不走变满存内存？走。 System-out.println(sl //true newStringoriginal:&quot;xyz&quot;); St&#39;、ingx StringY=newStringoriginal:&quot;xyz&quot;); //．分析走u巳还走fse？ //==双号此走不走变中疾存内存老2走。 System.ou±.println(x //false ／/．也泣这个0学习，涝0知了，乒对之不影用“： //&quot;：：&quot;不保。应该两S亡尸讠eq“以．。 System．out.println().); //true"></p>
-
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java/String6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: publicclassStringTest02{ publicstaticvoidmain(String[]args) St&#39;、Ingsl &quot;he110《 ／/&quot;he艮。&quot;走存锗在兴医乒串彪兰 //所以这&quot;he艮。&quot;不。了为这对已在/丿 String52 &quot;he110《 //、分果走亡rue.还走说se？ //==双号此走不走变满存内存？走。 System-out.println(sl //true newStringoriginal:&quot;xyz&quot;); St&#39;、ingx StringY=newStringoriginal:&quot;xyz&quot;); //．分析走u巳还走fse？ //==双号此走不走变中疾存内存老2走。 System.ou±.println(x //false ／/．也泣这个0学习，涝0知了，乒对之不影用“： //&quot;：：&quot;不保。应该两S亡尸讠eq“以．。 System．out.println().); //true"></p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java/string7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class title="计算机生成了可选文字: newString(testString丿； &#x2F;&#x2F;String隘 Stringk null, &#x2F;&#x2F;亡es巧tr讠ng，汶个乒串孑以后面" alt="．“纥？ &#x2F;&#x2F;为">
 
 <h1 id="常见错误积累"><a href="#常见错误积累" class="headerlink" title="常见错误积累"></a>常见错误积累</h1><h6 id="1-空指针异常"><a href="#1-空指针异常" class="headerlink" title="1.空指针异常"></a>1.空指针异常</h6>
 
@@ -948,7 +948,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/java复习笔记/" target="_blank" title="java">https://mhshan925.github.io/2021/07/27/java复习笔记/</a>
+    <a href="/2021/07/27/java/" target="_blank" title="java">https://mhshan925.github.io/2021/07/27/java/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
