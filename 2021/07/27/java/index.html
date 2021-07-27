@@ -856,7 +856,7 @@
 <p>方法重载是一个类中，方法名相同，参数列表不同。</p>
 <p>方法覆盖是具有继承关系的父子类，并且重写之后的方法必须和之前的方法一致：</p>
 <p>方法名一致、参数列表一致、返回值类型一致。</p>
-<h2 id="Object类中的相关方法：toString（）方法"><a href="#Object类中的相关方法：toString（）方法" class="headerlink" title="Object类中的相关方法：toString（）方法"></a>Object类中的相关方法：toString（）方法</h2><p>toString()方法存在的作用就是：将java对象转换成字符串形式。</p>
+<h2 id="Object类中的相关方法：toString（）方法、equals（）方法"><a href="#Object类中的相关方法：toString（）方法、equals（）方法" class="headerlink" title="Object类中的相关方法：toString（）方法、equals（）方法"></a>Object类中的相关方法：toString（）方法、equals（）方法</h2><p>toString()方法存在的作用就是：将java对象转换成字符串形式。</p>
 <p>大多数的java类toString()方法都是需要覆盖的。因为Object类中提供的toString()</p>
 <p>方法输出的是一个java对象的内存地址。</p>
 <p>至于toString()方法具体怎么进行覆盖？</p>
@@ -866,6 +866,15 @@
 <p>public String toString(){</p>
 <p>​        return year + “年” + month + “月” + day + “日”；</p>
 <p>}</p>
+
+
+<p>equals方法里边内容为空，会出现空指针异常</p>
+<p>判断两个基本数据类型直接使用“==”</p>
+<p>判断两个java对象是否相等，不能使用“==”，其实双等号比较的两个对象的内存地址</p>
+
+
+
+
 <h2 id="抽象类和接口："><a href="#抽象类和接口：" class="headerlink" title="抽象类和接口："></a>抽象类和接口：</h2><p><img "" class="lazyload placeholder" data-original="java/%E6%8A%BD%E8%B1%A1%E7%B1%BB.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: 类到对象是实例化。对象到类是抽象“ 抽象类： 、什么是抽象类？ 类和类之间具有共同特征，将这贱共同特征提取出来，形成的就是楠象类“ 类本身是不存在的，所以抽象类无法创建对象《无法实例化》“ 抽象类属于什么类型？ 2、 抽象类也属于引用数据类型“ 《能把基础语法先学会》 [修饰符列表]abstract。la艹类名{ 类休；I 、抽象类是无法实例化的，无法创建对象的，所以抽象类是用来被子类继承的“ 5、fin和abstr艹t不能联合使用，这两个关键字是对立的。 6、抽象类的子类可以是抽象类“ 7、抽象类虽然无法实例化，但是抽象类有构造方法，这个构造方法是供子类使用的“"></p>
 
 
@@ -903,7 +912,16 @@
 <p>以后接口使用的比抽象类多。一般抽象类使用的还是少。</p>
 <p>接口一般都是对“行为”的抽象。</p>
 <p>接口的祖先也是object</p>
-<h1 id="常见错误积累"><a href="#常见错误积累" class="headerlink" title="常见错误积累"></a>常见错误积累</h1><h6 id="1-空指针异常"><a href="#1-空指针异常" class="headerlink" title="1.空指针异常"></a>1.空指针异常</h6>
+<h2 id="访问控制权限："><a href="#访问控制权限：" class="headerlink" title="访问控制权限："></a>访问控制权限：</h2>
+
+
+
+
+
+<h2 id="内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰"><a href="#内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰" class="headerlink" title="内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰"></a>内部类：内部类在类的内部又定义了一个新的类，可以用public、private、protected修饰</h2><p>匿名内部类：是局部内部类的一种</p>
+
+
+<h2 id="字符串："><a href="#字符串：" class="headerlink" title="字符串："></a>字符串：</h2><h1 id="常见错误积累"><a href="#常见错误积累" class="headerlink" title="常见错误积累"></a>常见错误积累</h1><h6 id="1-空指针异常"><a href="#1-空指针异常" class="headerlink" title="1.空指针异常"></a>1.空指针异常</h6>
 
 <p>空指针异常只有在空应用访问实例相关的才会出现</p>
 <p>但是用空引用或者引用访问静态相关的，实际运行的时候还是会变成类名.的访问方式。</p>
