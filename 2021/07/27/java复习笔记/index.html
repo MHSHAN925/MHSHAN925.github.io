@@ -751,12 +751,11 @@
 <h6 id="方法递归："><a href="#方法递归：" class="headerlink" title="方法递归："></a>方法递归：</h6><p>​        方法自己调用自己，递归一定要有结束条件。</p>
 <p>​        先检查递归的结束条件对不对</p>
 <p>​        手动调整JVM栈内存初始化大小，将栈内存大小调大</p>
-
-
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/digui.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="递归"></p>
 <h6 id="变量："><a href="#变量：" class="headerlink" title="变量："></a>变量：</h6><p>​        变量根据出现的位置：局部变量、成员变量（实例变量和静态变量）</p>
 <p>​        局部变量：方法体内声明，不会默认赋值。变量必须先声明再赋值才能访问。局部变量只在方法体（在自己的作用域）中有效，方法结束，内存释放。</p>
 <p>​        实例变量：方法体外声明，实例变量没有手动赋值，系统会默认赋值（构造方法执行的时候）。实例变量时对象级别的变量，必须先创建对象才能访问，不能通过类名直接访问。</p>
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/morenzhi.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="默认值" style="zoom:150%;">
 
 <p>​        静态变量：类变量。</p>
 <h6 id="对象和引用的区别？"><a href="#对象和引用的区别？" class="headerlink" title="对象和引用的区别？"></a>对象和引用的区别？</h6><p>​        对象是通过new出来的，在堆内存中存储。</p>
@@ -815,14 +814,14 @@
 <p>类方法在该类被加载到内存时，就分配了相应的入口地址。</p>
 <p>从而类方法不仅可以被类创建的任何对象调用执行，也可以直接通过类名调用。</p>
 <p>类方法的入口地址直到程序退出时才被取消。</p>
-<h2 id="静态代码块和动态代码块："><a href="#静态代码块和动态代码块：" class="headerlink" title="静态代码块和动态代码块："></a>静态代码块和动态代码块：</h2>
+<h2 id="静态代码块和动态代码块："><a href="#静态代码块和动态代码块：" class="headerlink" title="静态代码块和动态代码块："></a>静态代码块和动态代码块：</h2><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticCode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块" style="zoom:150%;">
 
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticCodeUse.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态代码块的作用" style="zoom:150%;">
 
 <p>静态变量和静态代码块都是类加载的时候执行，只能根据代码的先后来判断</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/staticandstatic.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="静态变量和静态代码块" style="zoom:150%;">
 
-
-
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/dongtaicode.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="动态代码块" style="zoom:150%;">
 
 <h2 id="this关键字和super关键字："><a href="#this关键字和super关键字：" class="headerlink" title="this关键字和super关键字："></a>this关键字和super关键字：</h2><p>1.1、this是一个关键字，是一个引用，保存内存地址指向自身。</p>
 <p>1.2、this可以使用在实例方法中，也可以使用在构造方法中。</p>
@@ -832,8 +831,7 @@
 <p>1.6、this() 这种语法只能出现在构造方法第一行，表示当前构造方法调用本类其他的构造方法，目的是代码复用。</p>
 
 
-
-
+<p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/thisMem.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="this"></p>
 <p>super关键字（构造方法默认是有super（））。super代表当前对象的父类型特征</p>
 
 
