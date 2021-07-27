@@ -746,7 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="java基础"><a href="#java基础" class="headerlink" title="java基础"></a>java基础</h1><h1 id="java笔记复习"><a href="#java笔记复习" class="headerlink" title="java笔记复习"></a>java笔记复习</h1><h6 id="方法重载：与返回值类型无关，与修饰符列表无关"><a href="#方法重载：与返回值类型无关，与修饰符列表无关" class="headerlink" title="方法重载：与返回值类型无关，与修饰符列表无关"></a>方法重载：与返回值类型无关，与修饰符列表无关</h6><p>什么时候考虑方法重载：在同一个类中，方法一和方法二功能相似，可以考虑将它们的方法名一致。</p>
+        <h1 id="java笔记复习"><a href="#java笔记复习" class="headerlink" title="java笔记复习"></a>java笔记复习</h1><h6 id="方法重载：与返回值类型无关，与修饰符列表无关"><a href="#方法重载：与返回值类型无关，与修饰符列表无关" class="headerlink" title="方法重载：与返回值类型无关，与修饰符列表无关"></a>方法重载：与返回值类型无关，与修饰符列表无关</h6><p>什么时候考虑方法重载：在同一个类中，方法一和方法二功能相似，可以考虑将它们的方法名一致。</p>
 <p>什么时候会发生重载：同一个类中，方法名相同，参数列表不同（参数个数、参数类型、参数顺序不同）会发生重载。</p>
 <h6 id="方法递归："><a href="#方法递归：" class="headerlink" title="方法递归："></a>方法递归：</h6><p>​        方法自己调用自己，递归一定要有结束条件。</p>
 <p>​        先检查递归的结束条件对不对</p>
@@ -830,16 +830,16 @@
 <p>1.4、this不能使用在静态方法中。</p>
 <p>1.5、this. 大部分情况下可以省略，但是用来区分局部变量和实例变量的时候不能省略。</p>
 <p>1.6、this() 这种语法只能出现在构造方法第一行，表示当前构造方法调用本类其他的构造方法，目的是代码复用。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java/this.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: this： 1、this是一个关键字，全部小写。 2、this是什么，在内存方面是怎样的？ 一个对象一个thi“ this是一个变量，是一个引用·this保存当前对象的内存地址，指向自身。 所以，严格意义上来说，th“代表的就是" alt="当前对象“ th“存储在堆内存当中对象的内部· 3、th“只能使用在实例方法中·谁调用这个实例方法，th“就是谁· 所以this代表的是：当前对象· 4、">
+
 
 
 
 <p>super关键字（构造方法默认是有super（））。super代表当前对象的父类型特征</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java/super.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: 1、super是一个关键字．全部小写“ 2～super和this对比着学习· this： this能出现在实例方法和构造方法中。 this的语法是：" alt="this． ”this0“ th这不能使用在静态方法中． th“．大部分情况下是可以省略的“ th．什么时候不能省略呢？在区分局部变量和实例变量的时候不能省略。 publicvoidset-Name(Stringname》{ this·name this()只能出现在构造方法第一行，通过当前的构造方法去调用">
+
 
 <h2 id="final关键字："><a href="#final关键字：" class="headerlink" title="final关键字："></a>final关键字：</h2><p>final：关键字，表示的是最后的、不能变的、不能改的</p>
 <p>可以修饰变量、方法、类</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java/final.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: final “nal是java语言中的一个关键字． final表示最终的，不可变的。 2、 3、“nal可以修饰变量以及方法，还有类等。 final修饰的变量？ final修饰的方法？ final修饰的类？ 6、">
+
 
 <p>final修饰的类无法被继承</p>
 <p>final修饰的方法无法被覆盖，被重新 </p>
@@ -862,7 +862,7 @@
 <p>方法输出的是一个java对象的内存地址。</p>
 <p>至于toString()方法具体怎么进行覆盖？</p>
 <p>格式可以自己定义，或者听需求的。（听项目要求的。）</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java/toString.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: 关于Object类中的tostring0方法 1、t。string()方法的作用是什么？ 作用：将”艹对象" alt="转换成”字符串的形式 2、Obje。t类中t。string()方法的默认实现是什么？ publicStringtoString0{ returngetC1ass0.getName()+@+Integer．toHexString(hashCode0）， tostring：方法名的意思是转换成string 含义：调用一个艹a对象的st“ng()方法就可以将该j艹a对象转换成字符串的表示 3、那么t。st“ng()方法给的默认实现够用吗？ public01as5OverrideTest04{ publicstaticvoidmaid(String囗args){ &#x2F;／创建一个日期对象 MyDatet1-newMyDate0， &#x2F;&#x2F;调用tostring()方法（将对象转换成字符串形式。） &#x2F;&#x2F;向：你对这个输出结果满意吗？不满意，希望输出：xxxx年“月“曰 &#x2F;&#x2F;重写MyDa的t。singo方法之前结果 &#x2F;&#x2F;System.out．printlnt1toString0）；&#x2F;&#x2F;MyDate@28a418f0 &#x2F;&#x2F;重写Date的t。st“ng()方法之后的结果 System，out，printin()1，toString0》， &#x2F;&#x2F;大家是否还记得：当输出一个引用的时候， System．out.println(t1)； MyDatet2-new心Date（2008，8，8）， System．out．print-In〈t2）；&#x2F;／2008噁月8日 会自动用引用的">
+
 
 <p>public String toString(){</p>
 <p>​        return year + “年” + month + “月” + day + “日”；</p>
@@ -933,7 +933,7 @@
 
 
 <p><img "" class="lazyload placeholder" data-original="java/String6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="计算机生成了可选文字: publicclassStringTest02{ publicstaticvoidmain(String[]args) St&#39;、Ingsl &quot;he110《 ／/&quot;he艮。&quot;走存锗在兴医乒串彪兰 //所以这&quot;he艮。&quot;不。了为这对已在/丿 String52 &quot;he110《 //、分果走亡rue.还走说se？ //==双号此走不走变满存内存？走。 System-out.println(sl //true newStringoriginal:&quot;xyz&quot;); St&#39;、ingx StringY=newStringoriginal:&quot;xyz&quot;); //．分析走u巳还走fse？ //==双号此走不走变中疾存内存老2走。 System.ou±.println(x //false ／/．也泣这个0学习，涝0知了，乒对之不影用“： //&quot;：：&quot;不保。应该两S亡尸讠eq“以．。 System．out.println().); //true"></p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/java/string7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" class=" lazyload placeholder" title="计算机生成了可选文字: newString(testString丿； &#x2F;&#x2F;String隘 Stringk null, &#x2F;&#x2F;亡es巧tr讠ng，汶个乒串孑以后面" alt="．“纥？ &#x2F;&#x2F;为">
+
 
 <h1 id="常见错误积累"><a href="#常见错误积累" class="headerlink" title="常见错误积累"></a>常见错误积累</h1><h6 id="1-空指针异常"><a href="#1-空指针异常" class="headerlink" title="1.空指针异常"></a>1.空指针异常</h6>
 
@@ -950,7 +950,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/java/" target="_blank" title="java">https://mhshan925.github.io/2021/07/27/java/</a>
+    <a href="/2021/07/27/java复习笔记/" target="_blank" title="java">https://mhshan925.github.io/2021/07/27/java复习笔记/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>

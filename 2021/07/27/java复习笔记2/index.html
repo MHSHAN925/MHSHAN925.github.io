@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-27 | Hexo</title>
+  <title>java复习笔记2 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-27'],
+              strings: ['java复习笔记2'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/java/" class="">
+              java
             </a>
           
         </div>
@@ -746,12 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="671-二叉树中第二小的节点"><a href="#671-二叉树中第二小的节点" class="headerlink" title="671.二叉树中第二小的节点"></a>671.二叉树中第二小的节点</h1><p>给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 2 或 0。如果一个节点有两个子节点的话，那么该节点的值等于两个子节点中较小的一个。</p>
-<p>更正式地说，root.val = min(root.left.val, root.right.val) 总成立。</p>
-<p>给出这样的一个二叉树，你需要输出所有节点中的第二小的值。如果第二小的值不存在的话，输出 -1 。</p>
-<p>思路：BFS和集合排序</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int findSecondMinimumValue(TreeNode root)&#123;</span><br><span class="line">    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    Queue&lt;TreeNode&gt; queue = new LinkedList&lt;&gt;();</span><br><span class="line">    queue.add(root);</span><br><span class="line">    while (!queue.isEmpty())&#123;</span><br><span class="line">        int size = queue.size();</span><br><span class="line">        TreeNode node = queue.remove();</span><br><span class="line">        list.add(node.val);</span><br><span class="line">        if (node.left != null)&#123;</span><br><span class="line">            queue.add(node.left);</span><br><span class="line">            queue.add(node.right);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = list.get(0);</span><br><span class="line">    Collections.sort(list);</span><br><span class="line">    for (int rev : list)&#123;</span><br><span class="line">        if (rev &gt; ans)&#123;</span><br><span class="line">            return rev;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+        <h1 id="java复习笔记"><a href="#java复习笔记" class="headerlink" title="java复习笔记"></a>java复习笔记</h1>
       </div>
       
         <div class="copyright">
@@ -761,7 +756,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/7-27/" target="_blank" title="7-27">https://mhshan925.github.io/2021/07/27/7-27/</a>
+    <a href="/2021/07/27/java复习笔记2/" target="_blank" title="java复习笔记2">https://mhshan925.github.io/2021/07/27/java复习笔记2/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -779,37 +774,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/27/jvm/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>jvm</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="post-nav-link">
+    <a href="/2021/07/27/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>java</div>
+        <div>排序算法</div>
       </div>
       <!-- <div class="content">
-        java笔记复习方法重载：与返回值类型无关，与修饰符列表无关什么时候考虑方法重载：在同一个类中，方法一和方法二功能相似，
+        
       </div> -->
     </a>
   </div>
