@@ -749,6 +749,14 @@
         <h1 id="环境变量CLASSPATH的作用"><a href="#环境变量CLASSPATH的作用" class="headerlink" title="环境变量CLASSPATH的作用"></a>环境变量CLASSPATH的作用</h1><p>考点：classpath环境变量的作用、类的搜索和加载原理。</p>
 <p>classpath环境变量是在编译java源码和运行程序时使用的，为java程序所依赖的接口、类等指定一个搜索路径。</p>
 <p>java程序不仅在classpath中去搜索类，还会在jre/lib/rt.jar中找到jar文件。搜索顺序为先rt.jar，然后classpath指定的路径。</p>
+<h1 id="变量及其作用范围"><a href="#变量及其作用范围" class="headerlink" title="变量及其作用范围"></a>变量及其作用范围</h1><p>​        在java中，变量根据生命周期（定义位置）的不同可以分为静态变量、成员变量和局部变量。</p>
+<p>​        静态变量：类中使用static修饰的变量，生存周期由类决定，当类加载的时候，生成并初始化。</p>
+<p>​        成员变量：在类中没有使用static修饰的变量，属于某个对象。随着对象的加载而生成并初始化，随着对象被垃圾回收器回收而消失。</p>
+<p>​        局部变量：定义在方法中的变量或方法的参数，随着方法的调用（入栈）而创建，随着方法的执行结束（出栈）而消失。局部变量的定义可以和实例变量、静态变量的定义同名。</p>
+<h1 id="哪两种数据类型"><a href="#哪两种数据类型" class="headerlink" title="哪两种数据类型"></a>哪两种数据类型</h1><p>基本数据类型和引用数据类型。区别在于引用数据类型存放的是数据所在的地址，基本数据类型则是直接存放数据的值。</p>
+<h1 id="装箱和拆箱"><a href="#装箱和拆箱" class="headerlink" title="装箱和拆箱"></a>装箱和拆箱</h1><p>基本数据类型的变量转换成包装类：Interger.valueOf（）静态方法。</p>
+<p>包装类转换成基本数据类型：调用包装类对象的intValue（）。</p>
+<p>装箱和拆箱指的是基本数据类型和包装类型的自动相互转换，自动转换的过程在编译阶段。</p>
 
       </div>
       
@@ -779,17 +787,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/19/java%E9%9D%A2%E8%AF%95day02/" class="post-nav-link">
+    <a href="/2021/07/20/7-20/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>java面试day02</div>
+        <div>7-20</div>
       </div>
       
       <!-- <div class="content">
-        
+        1877：数组中最大数对和的最小值一个数对 (a,b) 的 数对和 等于 a + b 。6最大数对和 是一个数对数组中最
       </div> -->
     </a>
   </div>
