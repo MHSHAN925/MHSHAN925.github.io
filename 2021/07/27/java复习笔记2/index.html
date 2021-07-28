@@ -761,12 +761,21 @@
 <p>随机增删效率较高，检索效率较低。</p>
 <p>链表上的元素在空间存储上，内存地址不连续。</p>
 <p><strong>Vector</strong>：底层是数组，vector集合是线程安全的，所有的方法都有synchronized关键字，效率比较低。</p>
+<p>怎么将线程不安全的ArrayList集合转换成线程安全的。<br>     使用集合工具类，</p>
+<p>Java.util.Collection 是集合接口</p>
+<p>Java.util.Collections 是集合工具类</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/collections.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="collections" style="zoom:200%;">
+
 <p><strong>Set</strong>：集合存储 元素：无序不可重复。</p>
 <p>无序:存进去这个顺序，取出来就不一定是这个顺序了。</p>
 <p>Set集合中元素没有下标，Set集合中的元素不能重复。</p>
 <p>HashSet：实际上HashSet集合new的时候，底层实际上new了一个HashMap集合。向HashSet集合中存储元素，实际上是存储到了HashMap中。HashMap集合是一个哈希表数据结构。HashSet集合初始化容量是16，初始化容量建议是2的倍数。扩容：扩容之后是原来的2倍。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashset.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashset" style="zoom:200%;">
+
 <p>SortedSet集合：这是个接口。由于继承Set集合，所以特点是无序不可重复，但是放在SortedSet集合中的元素可以自动排序，称之为可排序集合。</p>
 <p>TreeSet集合：底层实际上是一个TreeMap,new TreeSet集合的时候，实际上new了一个TreeMap集合，TreeMap集合底层采用了二叉树数据结构。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset" style="zoom:200%;">
+
 <img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/collection2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="集合2" style="zoom:200%;">
 
 <p>Map集合和Collection集合没有关系。</p>
@@ -778,9 +787,100 @@
 <p>Properties：继承自Hashtable，是线程安全的。存储元素的时候key和value只支持String类型不支持其他类型，properties被称为属性类。</p>
 <p>SortedMap：这是个接口。SortedMap集合的key存储元素的特点：首先是无序不可重复，另外放在SortedMap集合key部分的元素会自动按照大小顺序排序，称为可排序集合。</p>
 <p>TreeMap：TreeMap集合底层是一个二叉树</p>
+<h6 id="Map接口的常用方法："><a href="#Map接口的常用方法：" class="headerlink" title="Map接口的常用方法："></a>Map接口的常用方法：</h6><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/map1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="map1" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/map2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="map2" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/map3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="map3" style="zoom:200%;">
+
 <h2 id="集合的遍历和迭代："><a href="#集合的遍历和迭代：" class="headerlink" title="集合的遍历和迭代："></a>集合的遍历和迭代：</h2><p>Collection中的通用方式：map集合没有继承Iterator，所以没有迭代器。</p>
 <p>调iterator方法得到迭代器，迭代器是一个对象，it保存的对象的内存地址，是一个引用。迭代器对象有两个方法next（）和hasnext（）。next（）方法取出来统一都是Object。</p>
 <p><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/iterator.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="iterator"></p>
+<p>集合是无限的会自动扩容。迭代器的执行原理。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/iteratoryuanli.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="iteratoryuanli" style="zoom:200%;">
+
+<p>Collection中的contains方法：用来判断集合中是否包含某个元素，在底层调用了equals方法，如果包含返回true，否则返回false。</p>
+<p>String中的equals方法已经重写，比较的是内容，不是内存地址。</p>
+<p><strong>放在集合中的元素（类型）要重写equals方法。</strong></p>
+<p>Collection中的remove方法：也调用了equals方法</p>
+<p><strong>关于集合元素的remove方法：</strong></p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/remove.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="remove" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/remove2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="remove2" style="zoom:200%;">
+
+<p>重点：</p>
+<p>当集合结构发生改变时，迭代器必须重新获取，如果还是以前老的迭代器，会出现异常。</p>
+<p>在迭代集合元素过程中，不能调用集合对象的remove（）方法，删除元素。会出现异常。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/remove3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="remove3" style="zoom:200%;">
+
+<p>但是可以用迭代器的remove（）方法，原理是会把迭代器快照中的对应的元素也删掉。</p>
+<p>通过集合去删除元素没有通知迭代器，导致迭代器的快照和原集合不一样。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/remove4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="remove4" style="zoom:200%;">
+
+<p>集合状态发生变化，需要重新获取迭代器。</p>
+<p>删除元素时一定要使用迭代器的remove方法，不要使用集合自带的remove方法</p>
+<p>放在集合中的元素是需要重写equals方法的</p>
+<p>特别的：list集合有下标，可以根据下标获取元素。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/listxiabiao.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="listxiabiao" style="zoom:200%;">
+
+<p>set集合：可以用增强for循环，虽然没有下标。</p>
+<p><strong>Map集合的遍历：</strong></p>
+<p>1.获取所有的key，通过遍历key获取value。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/mapbianli.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="mapbianli" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/mapbianli2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="mapbianli2" style="zoom:200%;">
+
+<p>2.通过map的entryset方法把map集合直接转换成set集合，set集合中的元素是Map.Entry&lt;Interger, String&gt; 类型的对象。（效率比较高）</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/entry1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="entry1" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/entry2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="entry2" style="zoom:200%;">
+
+<p>下边这种效率比较高直接获取key和value</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/entry3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="entry3" style="zoom:200%;">
+
+<h6 id="HashMap开始：HashMap集合底层是一个哈希表，哈希表是数组和单向链表的结合体。哈希值（哈希值是key的hashcode（）方法的执行结果，hash值通过哈希函数可以转换成数组的下标）"><a href="#HashMap开始：HashMap集合底层是一个哈希表，哈希表是数组和单向链表的结合体。哈希值（哈希值是key的hashcode（）方法的执行结果，hash值通过哈希函数可以转换成数组的下标）" class="headerlink" title="HashMap开始：HashMap集合底层是一个哈希表，哈希表是数组和单向链表的结合体。哈希值（哈希值是key的hashcode（）方法的执行结果，hash值通过哈希函数可以转换成数组的下标）"></a>HashMap开始：HashMap集合底层是一个哈希表，哈希表是数组和单向链表的结合体。哈希值（哈希值是key的hashcode（）方法的执行结果，hash值通过哈希函数可以转换成数组的下标）</h6><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap1" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap2" style="zoom:200%;">
+
+<p>一维数组，数组中每个元素是一个单向链表。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap3" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap4" style="zoom:200%;">
+
+<p>hash表的随机增删和查询的效率都很高。增删是在链表上完成的，查询只进行了部分扫描。</p>
+<p>HashMap集合的key，会先后调用两个方法，一个方法是hashCode（），一个方法是equals（），这两个方法都需要重写。同一个链表撒花姑娘所有的hash值一样，同一个链表上的k和k的equals方法返回值是false，都不相等。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap5" style="zoom:200%;">
+
+<p>hashcode（）方法需要重写，但是返回值不能都一样，否则就会单向链表。</p>
+<p>hashcode（）方法需要重写，也不能都不一样，否则会变成数组</p>
+<p>HashMap的key部分的元素，无序不可重复。需要同时重写hashcode和equals方法 。如果一个类的equals方法重写了，hashcode方法必须重写。equals方法返回结果为true，hashcode方法返回值必须一样。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap6" style="zoom:200%;">
+
+<p>下边的情况不用调用equals方法：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/hashmap7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="hashmap7" style="zoom:200%;">
+
+<h6 id="TreeSet集合："><a href="#TreeSet集合：" class="headerlink" title="TreeSet集合："></a>TreeSet集合：</h6><img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset4.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset4" style="zoom:200%;">
+
+<p>对自定义的类型TreeSet可以自动排序吗？</p>
+<p>不可以，如果没有指定自定义类实例化的对象之间的比较规则，谁大谁小并没有说明。</p>
+<p>class com.xidian.javase.Collection.Wugui cannot be cast to class java.lang.Comparable</p>
+<p>不指定排序规则会出现上述的异常，没有转化为Comparable</p>
+<p>需要继承Comparable接口，并且实现toString方法</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset" style="zoom:200%;">
+
+<p>TreeSet集合中元素可排序的第一种方式：自定义的类继承Comparable接口，重写compareTo（）方法，自定义大小规则。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset2" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset3" style="zoom:200%;">
+
+<p>TreeSet集合中元素可排序的第二种方法，使用比较器的方式。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset5.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset5" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset6" style="zoom:200%;">
+
+<p>单独编写一个比较器：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/treeset7.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="treeset7" style="zoom:200%;">
+
 
       </div>
       
