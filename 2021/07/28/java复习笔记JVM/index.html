@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>jvm | Hexo</title>
+  <title>java复习笔记JVM | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['jvm'],
+              strings: ['java复习笔记JVM'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,15 +729,142 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-27</span>
+        <span class="post-time">2021-07-28</span>
       </div>
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/java/" class="">
+              java
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>JVM内存结构：java代码是运行在虚拟机上的，虚拟机在执行java程序的过程会把所管理的内存划分为若干个不同的数据区域。</p>
+<p>知识体系：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/jvm-overview.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="JVM" style="zoom:200%;">
+
+<h1 id="java复习JVM"><a href="#java复习JVM" class="headerlink" title="java复习JVM"></a>java复习JVM</h1><p>学习要点：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-overview.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java" style="zoom:200%;">
+
+<h1 id="JVM基础-类字节码"><a href="#JVM基础-类字节码" class="headerlink" title="JVM基础-类字节码"></a>JVM基础-类字节码</h1><p>源代码通过编译器编译为字节码，再通过类加载子系统进行加载到JVM中运行。</p>
+<h2 id="多语言编译为字节码在JVM上运行："><a href="#多语言编译为字节码在JVM上运行：" class="headerlink" title="多语言编译为字节码在JVM上运行："></a>多语言编译为字节码在JVM上运行：</h2><p>Java代码间接翻译成字节码，储存字节码的文件再交由运行于不同平台上的JVM虚拟机去读取执行，从而实现一次编写，到处运行的目的。</p>
+<p>JVM也不再只支持Java，由此衍生出了许多基于JVM的编程语言，如Groovy, Scala, Koltin等等。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-class-1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jvm-class-1" style="zoom:200%;">
+
+<h6 id="Java字节码文件："><a href="#Java字节码文件：" class="headerlink" title="Java字节码文件："></a>Java字节码文件：</h6><p>class文件本质上是一个以8位字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑的排列在class文件中。jvm根据其特定的规则解析该二进制数据，从而得到相关信息。Class文件采用一种伪结构来存储数据，它有两种类型：无符号数和表。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-class-2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jvm-class-2" style="zoom:200%;">
+
+<h1 id="java类加载机制"><a href="#java类加载机制" class="headerlink" title="java类加载机制"></a>java类加载机制</h1><h6 id="类的生命周期："><a href="#类的生命周期：" class="headerlink" title="类的生命周期："></a>类的生命周期：</h6><p>​        类加载的过程包括了<code>加载</code>、<code>验证</code>、<code>准备</code>、<code>解析</code>、<code>初始化</code>五个阶段。在这五个阶段中，<code>加载</code>、<code>验证</code>、<code>准备</code>和<code>初始化</code>这四个阶段发生的顺序是确定的，*而<code>解析</code>阶段则不一定，它在某些情况下可以在初始化阶段之后开始，这是为了支持Java语言的运行时绑定(也成为动态绑定或晚期绑定)*。另外注意这里的几个阶段是按顺序开始，而不是按顺序进行或完成，因为这些阶段通常都是互相交叉地混合进行的，通常在一个阶段执行的过程中调用或激活另一个阶段。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java_jvm_classload_2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java_jvm_classload_2" style="zoom:200%;">
+
+<h6 id="加载阶段：查找并加载类的二进制数据"><a href="#加载阶段：查找并加载类的二进制数据" class="headerlink" title="加载阶段：查找并加载类的二进制数据"></a>加载阶段：查找并加载类的二进制数据</h6><p>​        通过一个类的全限定名来获取其定义的二进制字节流。</p>
+<p>​        将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。</p>
+<p>​        在Java堆中生成一个代表这个类的java.lang.Class对象，作为对方法区中这些数据的访问入口。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java_jvm_classload_1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java_jvm_classload_1" style="zoom:200%;">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/java/jvm/java-jvm-x-overview.html">https://www.pdai.tech/md/java/jvm/java-jvm-x-overview.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5">https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf">http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf</a></p>
+
       </div>
       
         <div class="copyright">
@@ -747,7 +874,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/jvm/" target="_blank" title="jvm">https://mhshan925.github.io/2021/07/27/jvm/</a>
+    <a href="/2021/07/28/java复习笔记JVM/" target="_blank" title="java复习笔记JVM">https://mhshan925.github.io/2021/07/28/java复习笔记JVM/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -765,37 +892,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/27/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>排序算法</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/27/7-27/" class="post-nav-link">
+    <a href="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-27</div>
+        <div>java复习笔记多线程</div>
       </div>
       <!-- <div class="content">
-        671.二叉树中第二小的节点给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 2 或 0。如果
+        
       </div> -->
     </a>
   </div>
