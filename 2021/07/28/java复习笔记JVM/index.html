@@ -746,7 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>JVM内存结构：java代码是运行在虚拟机上的，虚拟机在执行java程序的过程会把所管理的内存划分为若干个不同的数据区域。</p>
+        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><p>​        JVM内存结构：java代码是运行在虚拟机上的，虚拟机在执行java程序的过程会把所管理的内存划分为若干个不同的数据区域。</p>
 <p>知识体系：</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/jvm-overview.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="JVM" style="zoom:200%;">
 
@@ -759,8 +759,15 @@
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-class-1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jvm-class-1" style="zoom:200%;">
 
 <h6 id="Java字节码文件："><a href="#Java字节码文件：" class="headerlink" title="Java字节码文件："></a>Java字节码文件：</h6><p>class文件本质上是一个以8位字节为基础单位的二进制流，各个数据项目严格按照顺序紧凑的排列在class文件中。jvm根据其特定的规则解析该二进制数据，从而得到相关信息。Class文件采用一种伪结构来存储数据，它有两种类型：无符号数和表。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-class-2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jvm-class-2" style="zoom:200%;">
+<h6 id="Class文件的结构属性："><a href="#Class文件的结构属性：" class="headerlink" title="Class文件的结构属性："></a>Class文件的结构属性：</h6><img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jvm-class-2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jvm-class-2" style="zoom:200%;">
 
+<p>​        常量池可以理解成Class文件中的资源仓库。主要存放的是两大类常量：字面量(Literal)和符号引用(Symbolic References)。字面量类似于java中的常量概念，如文本字符串，final常量等，而符号引用则属于编译原理方面的概念，包括以下三种:</p>
+<ul>
+<li>类和接口的全限定名(Fully Qualified Name)</li>
+<li>字段的名称和描述符号(Descriptor)</li>
+<li>方法的名称和描述符</li>
+</ul>
+<p>不同于C/C++, JVM是在加载Class文件的时候才进行的动态链接，也就是说这些字段和方法符号引用只有在运行期转换后才能获得真正的内存入口地址。当虚拟机运行时，需要从常量池获得对应的符号引用，再在类创建或运行时解析并翻译到具体的内存地址中。</p>
 <h1 id="java类加载机制"><a href="#java类加载机制" class="headerlink" title="java类加载机制"></a>java类加载机制</h1><h2 id="类的生命周期："><a href="#类的生命周期：" class="headerlink" title="类的生命周期："></a>类的生命周期：</h2><p>​        类加载的过程包括了<code>加载</code>、<code>验证</code>、<code>准备</code>、<code>解析</code>、<code>初始化</code>五个阶段。在这五个阶段中，<code>加载</code>、<code>验证</code>、<code>准备</code>和<code>初始化</code>这四个阶段发生的顺序是确定的，*而<code>解析</code>阶段则不一定，它在某些情况下可以在初始化阶段之后开始，这是为了支持Java语言的运行时绑定(也成为动态绑定或晚期绑定)*。另外注意这里的几个阶段是按顺序开始，而不是按顺序进行或完成，因为这些阶段通常都是互相交叉地混合进行的，通常在一个阶段执行的过程中调用或激活另一个阶段。</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java_jvm_classload_2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java_jvm_classload_2" style="zoom:200%;">
 
@@ -773,11 +780,21 @@
 <p>​        加载阶段完成后，虚拟机外部的 二进制字节流就按照虚拟机所需的格式存储在方法区之中，而且在Java堆中也创建一个<code>java.lang.Class</code>类的对象，这样便可以通过该对象访问方法区中的这些数据。</p>
 <p>​        类加载器并不需要等到某个类被“首次主动使用”时再加载它，JVM规范允许类加载器在预料某个类将要被使用时就预先加载它，如果在预先加载的过程中遇到了.class文件缺失或存在错误，类加载器必须在程序首次主动使用该类时才报告错误(LinkageError错误)如果这个类一直没有被程序主动使用，那么类加载器就不会报告错误。</p>
 <p>加载class文件的方式：</p>
-<p>​        本地系统直接加载</p>
-<p>​        通过网络下载class文件</p>
-<p>​        从zip，jar等归档文件中加载class文件</p>
-<p>​        从专有数据库中提取class文件</p>
-<p>​        将java源文件动态编译为class文件</p>
+<ul>
+<li>本地系统直接加载</li>
+</ul>
+<ul>
+<li>通过网络下载class文件</li>
+</ul>
+<ul>
+<li>从zip，jar等归档文件中加载class文件</li>
+</ul>
+<ul>
+<li>从专有数据库中提取class文件</li>
+</ul>
+<ul>
+<li>将java源文件动态编译为class文件</li>
+</ul>
 <h6 id="连接–验证：确保被加载的类的正确性"><a href="#连接–验证：确保被加载的类的正确性" class="headerlink" title="连接–验证：确保被加载的类的正确性"></a>连接–验证：确保被加载的类的正确性</h6><p>​        验证是连接阶段的第一步，这一阶段的目的是为了确保Class文件的字节流中包含的信息符合当前虚拟机的要求，并且不会危害虚拟机自身的安全。验证阶段大致会完成4个阶段的检验动作:</p>
 <ul>
 <li><code>文件格式验证</code>: 验证字节流是否符合Class文件格式的规范；例如: 是否以<code>0xCAFEBABE</code>开头、主次版本号是否在当前虚拟机的处理范围之内、常量池中的常量是否有不被支持的类型。</li>
@@ -829,10 +846,12 @@
 <li>Java虚拟机启动时被标明为启动类的类(Java Test)，直接使用java.exe命令来运行某个主类</li>
 </ul>
 <h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h6><p>类访问方法区内的数据结构的接口，对象是Heap区的数据。</p>
-<h6 id="卸载：java虚拟机将结束生命周期的几种情况"><a href="#卸载：java虚拟机将结束生命周期的几种情况" class="headerlink" title="卸载：java虚拟机将结束生命周期的几种情况"></a>卸载：java虚拟机将结束生命周期的几种情况</h6><p>​        执行了System.exit()方法</p>
-<p>​        程序正常执行结束</p>
-<p>​        程序在执行过程中遇到了异常或错误而异常终止</p>
-<p>​        由于操作系统出现错误而导致java虚拟机进程终止</p>
+<h6 id="卸载：java虚拟机将结束生命周期的几种情况"><a href="#卸载：java虚拟机将结束生命周期的几种情况" class="headerlink" title="卸载：java虚拟机将结束生命周期的几种情况"></a>卸载：java虚拟机将结束生命周期的几种情况</h6><ul>
+<li>执行了System.exit()方法</li>
+<li>程序正常执行结束</li>
+<li>程序在执行过程中遇到了异常或错误而异常终止</li>
+<li>由于操作系统出现错误而导致java虚拟机进程终止</li>
+</ul>
 <h2 id="类加载器、JVM类加载机制"><a href="#类加载器、JVM类加载机制" class="headerlink" title="类加载器、JVM类加载机制"></a>类加载器、JVM类加载机制</h2><img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java_jvm_classload_3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java_jvm_classload_3" style="zoom:200%;">
 
 <p>以上加载器不是通过继承关系实现的，而是组合关系。</p>
@@ -847,7 +866,7 @@
 <li>动态地创建符合用户特定需要的定制化构建类。</li>
 <li>从特定的场所取得java class，例如数据库中和网络中。</li>
 </ul>
-<h2 id="类的加载："><a href="#类的加载：" class="headerlink" title="类的加载："></a>类的加载：</h2><p>​        1、命令行启动应用时候由JVM初始化加载</p>
+<h2 id="类的加载：类加载的三种方式"><a href="#类的加载：类加载的三种方式" class="headerlink" title="类的加载：类加载的三种方式"></a>类的加载：类加载的三种方式</h2><p>​        1、命令行启动应用时候由JVM初始化加载</p>
 <p>​        2、通过Class.forName()方法动态加载</p>
 <p>​        3、通过ClassLoader.loadClass（）方法动态加载</p>
 <blockquote>
@@ -886,7 +905,7 @@
 <li><strong>线程共享</strong>：堆、方法区, 堆外内存（Java7的永久代或JDK8的元空间、代码缓存）</li>
 </ul>
 <h2 id="程序计数器：program-counter-register"><a href="#程序计数器：program-counter-register" class="headerlink" title="程序计数器：program counter register"></a>程序计数器：program counter register</h2><p>​        程序计数器是一块较小的内存空间，可以看做当前线程所执行的字节码的行号指示器。JVM中的PC寄存器是对物理PC寄存器的一种抽象模拟。</p>
-<p>​        作用：PC寄存器用来存储指向下一条指令的地址，即将要执行的指令代码。有执行引擎读取下一条指令。</p>
+<p>​        作用：PC寄存器用来存储指向下一条指令的地址，即将要执行的指令代码。<br>由执行引擎读取下一条指令。</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/pcjicunqi.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="pc寄存区" style="zoom:200%;">
 
 <ul>
@@ -904,7 +923,7 @@
 <p>它是程序控制流的指示器，分支、循环、跳转、异常处理、线程恢复等基础功能都需要依赖这个计数器来完成</p>
 <p>字节码解释器工作时就是通过改变这个计数器的值来选取下一条需要执行的字节码指令</p>
 <p><strong>它是唯一一个在 JVM 规范中没有规定任何 <code>OutOfMemoryError</code> 情况的区域</strong></p>
-<h2 id="虚拟机栈：java栈"><a href="#虚拟机栈：java栈" class="headerlink" title="虚拟机栈：java栈"></a>虚拟机栈：java栈</h2><p>每个线程在创建的时候都会创建一个虚拟机栈，其内部保存一个个的栈帧，对应着一次方法调用，是线程私有的，声明周期和线程一致。</p>
+<h2 id="虚拟机栈：java栈"><a href="#虚拟机栈：java栈" class="headerlink" title="虚拟机栈：java栈"></a>虚拟机栈：java栈</h2><p>​        每个线程在创建的时候都会创建一个虚拟机栈，其内部保存一个个的栈帧，对应着一次方法调用，是线程私有的，声明周期和线程一致。</p>
 <p><strong>作用：</strong>主管java程序的运行，保存方法的局部变量、部分结果、并参与方法的调用和返回。</p>
 <p><strong>特点</strong>：</p>
 <ul>
@@ -932,7 +951,7 @@
 <h6 id="栈帧的内部结构："><a href="#栈帧的内部结构：" class="headerlink" title="栈帧的内部结构："></a>栈帧的内部结构：</h6><p>​        局部变量表、操作数栈、动态链接（指向运行时常量池的方法引用）、方法返回地址（方法正常退出或异常退出的地址）、一些附加信息。</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/StackFrame.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="StackFrame" style="zoom:200%;">
 
-<p><strong>局部变量表：</strong></p>
+<p><strong>局部变量表：</strong>变量值存储空间</p>
 <ul>
 <li>局部变量表也被称为局部变量数组或者本地变量表</li>
 <li>是一组变量值存储空间，<strong>主要用于存储方法参数和定义在方法体内的局部变量</strong>，包括编译器可知的各种 Java 虚拟机<strong>基本数据类型</strong>（boolean、byte、char、short、int、float、long、double）、<strong>对象引用</strong>（reference类型，它并不等同于对象本身，可能是一个指向对象起始地址的引用指针，也可能是指向一个代表对象的句柄或其他与此相关的位置）和 <strong>returnAddress</strong> 类型（指向了一条字节码指令的地址，已被异常表取代）</li>
@@ -961,7 +980,7 @@
 <li>在栈帧中，与性能调优关系最为密切的就是局部变量表。在方法执行时，虚拟机使用局部变量表完成方法的传递。</li>
 <li>局部变量表中的变量也是重要的垃圾回收根节点，只要被局部变量表中直接或间接引用的对象都不会被回收。</li>
 </ul>
-<p><strong>操作数栈</strong>：</p>
+<p><strong>操作数栈</strong>：保存计算过程的中间结果，作为计算过程中变量的临时存储空间。</p>
 <ul>
 <li>每个独立的栈帧中除了包含局部变量表之外，还包含一个<strong>后进先出</strong>（Last-In-First-Out）的操作数栈，也可以称为<strong>表达式栈</strong>（Expression Stack）</li>
 <li><strong>操作数栈，在方法执行过程中，根据字节码指令，往操作数栈中写入数据或提取数据，即入栈（push）、出栈（pop）</strong></li>
@@ -1009,8 +1028,7 @@
 <h5 id="¶-虚方法表"><a href="#¶-虚方法表" class="headerlink" title="¶ 虚方法表"></a><a href="#%E8%99%9A%E6%96%B9%E6%B3%95%E8%A1%A8">¶</a> 虚方法表</h5><p>​        在面向对象编程中，会频繁的使用到动态分派，如果每次动态分派都要重新在类的方法元数据中搜索合适的目标有可能会影响到执行效率。为了提高性能，JVM 采用在类的方法区建立一个虚方法表（virtual method table），使用索引表来代替查找。非虚方法不会出现在表中。</p>
 <p>每个类中都有一个虚方法表，表中存放着各个方法的实际入口。</p>
 <p>虚方法表会在类加载的连接阶段被创建并开始初始化，类的变量初始值准备完成之后，JVM 会把该类的方法表也初始化完毕。</p>
-<p><strong>方法返回地址</strong>：</p>
-<p>用来存放调用该方法的 PC 寄存器的值。</p>
+<p><strong>方法返回地址</strong>：用来存放调用该方法的 PC 寄存器的值。</p>
 <p>一个方法的结束，有两种方式</p>
 <ul>
 <li>正常执行完成</li>
@@ -1267,7 +1285,7 @@
 <p>​        下图描绘了该情况。 在左CPU上运行的一个线程将共享对象复制到其CPU缓存中，并将其count变量更改为2.对于在右边的CPU上运行的其他线程，此更改不可见，因为计数更新尚未刷新回主内存中.</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-memory-model-6.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-memory-model-6" style="zoom:200%;">
 
-<p>​        要解决此问题，您可以使用Java的volatile关键字。 volatile关键字可以确保直接从主内存读取给定变量，并在更新时始终写回主内存。</p>
+<p>​        要解决此问题，您可以使用Java的volatile关键字。 <strong>volatile关键字可以确保直接从主内存读取给定变量，并在更新时始终写回主内存。</strong></p>
 <h2 id="JMM与硬件内存连接–竞态条件"><a href="#JMM与硬件内存连接–竞态条件" class="headerlink" title="JMM与硬件内存连接–竞态条件"></a>JMM与硬件内存连接–竞态条件</h2><p>​        如果两个或多个线程共享一个对象，并且多个线程更新该共享对象中的变量，则可能会出现竞态。</p>
 <p>​        想象一下，如果线程A将共享对象的变量计数读入其CPU缓存中。 想象一下，线程B也做同样的事情，但是进入不同的CPU缓存。 现在，线程A将一个添加到count，而线程B执行相同的操作。 现在var1已经增加了两次，每个CPU缓存一次。</p>
 <p>​        如果这些增量是按先后顺序执行的，则变量计数将增加两次并将原始值+ 2写回主存储器。</p>
@@ -1278,8 +1296,10 @@
 <p>​        要解决此问题，您可以使用Java synchronized块。 同步块保证在任何给定时间只有一个线程可以进入代码的给定关键部分。 同步块还保证在同步块内访问的所有变量都将从主存储器中读入，当线程退出同步块时，所有更新的变量将再次刷新回主存储器，无论变量是不是声明为volatile</p>
 <h1 id="java内存模型详解"><a href="#java内存模型详解" class="headerlink" title="java内存模型详解"></a>java内存模型详解</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><h6 id="并发编程模型的分类："><a href="#并发编程模型的分类：" class="headerlink" title="并发编程模型的分类："></a>并发编程模型的分类：</h6><p>​        在并发编程中，我们需要处理两个关键问题：线程之间如何通信及线程之间如何同步（这里的线程是指并发执行的活动实体）。通信是指线程之间以何种机制来交换信息。在命令式编程中，线程之间的通信机制有两种：共享内存和消息传递。</p>
 <p>​        在共享内存的并发模型里，线程之间共享程序的公共状态，线程之间通过写 - 读内存中的公共状态来隐式进行通信。在消息传递的并发模型里，线程之间没有公共状态，线程之间必须通过明确的发送消息来显式进行通信。</p>
-<p>​        同步是指程序用于控制不同线程之间操作发生相对顺序的机制。在共享内存并发模型里，同步是显式进行的。程序员必须显式指定某个方法或某段代码需要在线程之间互斥执行。在消息传递的并发模型里，由于消息的发送必须在消息的接收之前，因此同步是隐式进行的。</p>
+<p>​        <strong>同步是指程序用于控制不同线程之间操作发生相对顺序的机制。在共享内存并发模型里，同步是显式进行的。程序员必须显式指定某个方法或某段代码需要在线程之间互斥执行。在消息传递的并发模型里，由于消息的发送必须在消息的接收之前，因此同步是隐式进行的。</strong></p>
 <p>​        Java 的并发采用的是共享内存模型，Java 线程之间的通信总是隐式进行，整个通信过程对程序员完全透明。如果编写多线程程序的 Java 程序员不理解隐式进行的线程之间通信的工作机制，很可能会遇到各种奇怪的内存可见性问题。</p>
+<p>​        通信是指线程之间以何种机制来交换信息。在命令式编程中，线程之间的通信机制有两种：<strong>共享内存（隐式通信，显示同步）</strong>和消息传递（显示通信，隐式同步）。<br>1、在共享内存的并发模型里，线程之间共享程序的公共状态，线程之间通过写-读内存中的公共状态来隐式进行通信。<br>2、在消息传递的并发模型里，线程之间没有公共状态，线程之间必须通过明确的发送消息来显式进行通信。</p>
+<p>​        同步是指程序用于控制不同线程之间操作发生相对顺序的机制。<br>1、在共享内存并发模型里，同步是显式进行的。程序员必须显式指定某个方法或某段代码需要在线程之间互斥执行。<br>2、在消息传递的并发模型里，由于消息的发送必须在消息的接收之前，因此同步是隐式进行的。</p>
 <h6 id="java内存模型的抽象"><a href="#java内存模型的抽象" class="headerlink" title="java内存模型的抽象"></a>java内存模型的抽象</h6><p>​        在 java 中，所有实例域、静态域和数组元素存储在堆内存中，堆内存在线程之间共享（本文使用“共享变量”这个术语代指实例域，静态域和数组元素）。局部变量（Local variables），方法定义参数（java 语言规范称之为 formal method parameters）和异常处理器参数（exception handler parameters）不会在线程之间共享，它们不会有内存可见性问题，也不受内存模型的影响。</p>
 <p>​        Java 线程之间的通信由 Java 内存模型（本文简称为 JMM）控制，JMM 决定一个线程对共享变量的写入何时对另一个线程可见。从抽象的角度来看，JMM 定义了线程和主内存之间的抽象关系：线程之间的共享变量存储在主内存（main memory）中，每个线程都有一个私有的本地内存（local memory），本地内存中存储了该线程以读 / 写共享变量的副本。本地内存是 JMM 的一个抽象概念，并不真实存在。它涵盖了缓存，写缓冲区，寄存器以及其他的硬件和编译器优化。Java 内存模型的抽象示意图如下：</p>
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-1" style="zoom:200%;">
@@ -1304,7 +1324,7 @@
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-3" style="zoom:200%;">
 
 <p>​        上述的 1 属于编译器重排序，2 和 3 属于处理器重排序。这些重排序都可能会导致多线程程序出现内存可见性问题。对于编译器，JMM 的编译器重排序规则会禁止特定类型的编译器重排序（不是所有的编译器重排序都要禁止）。对于处理器重排序，JMM 的处理器重排序规则会要求 java 编译器在生成指令序列时，插入特定类型的内存屏障（memory barriers，intel 称之为 memory fence）指令，通过内存屏障指令来禁止特定类型的处理器重排序（不是所有的处理器重排序都要禁止）。</p>
-<p>​        JMM 属于语言级的内存模型，它确保在不同的编译器和不同的处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。</p>
+<p>​        <strong>JMM 属于语言级的内存模型，它确保在不同的编译器和不同的处理器平台之上，通过禁止特定类型的编译器重排序和处理器重排序，为程序员提供一致的内存可见性保证。</strong></p>
 <h2 id="处理器重排序与内存屏障指令："><a href="#处理器重排序与内存屏障指令：" class="headerlink" title="处理器重排序与内存屏障指令："></a>处理器重排序与内存屏障指令：</h2><p>​        现代的处理器使用写缓冲区来临时保存向内存写入的数据。写缓冲区可以保证指令流水线持续运行，它可以避免由于处理器停顿下来等待向内存写入数据而产生的延迟。同时，通过以批处理的方式刷新写缓冲区，以及合并写缓冲区中对同一内存地址的多次写，可以减少对内存总线的占用。虽然写缓冲区有这么多好处，但每个处理器上的写缓冲区，仅仅对它所在的处理器可见。这个特性会对内存操作的执行顺序产生重要的影响：处理器对内存的读 / 写操作的执行顺序，不一定与内存实际发生的读 / 写操作顺序一致！为了具体说明，请看下面示例：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// Processor A</span><br><span class="line">a = 1; //A1  </span><br><span class="line">x = b; //A2</span><br><span class="line"></span><br><span class="line">// Processor B</span><br><span class="line">b = 2; //B1  </span><br><span class="line">y = a; //B2</span><br><span class="line"></span><br><span class="line">// 初始状态：a = b = 0；处理器允许执行后得到结果：x = y = 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
@@ -1438,11 +1458,177 @@
 <img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-15.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-15" style="zoom:200%;">
 
 <p>​        如上图所示，假设处理器 A 写一个 long 型变量，同时处理器 B 要读这个 long 型变量。处理器 A 中 64 位的写操作被拆分为两个 32 位的写操作，且这两个 32 位的写操作被分配到不同的写事务中执行。同时处理器 B 中 64 位的读操作被拆分为两个 32 位的读操作，且这两个 32 位的读操作被分配到同一个的读事务中执行。当处理器 A 和 B 按上图的时序来执行时，处理器 B 将看到仅仅被处理器 A“写了一半“的无效值。</p>
+<h2 id="处理器内存模型"><a href="#处理器内存模型" class="headerlink" title="处理器内存模型"></a>处理器内存模型</h2><p>​        顺序一致性内存模型是一个理论参考模型，JMM 和处理器内存模型在设计时通常会把顺序一致性内存模型作为参照。JMM 和处理器内存模型在设计时会对顺序一致性模型做一些放松，因为如果完全按照顺序一致性模型来实现处理器和 JMM，那么很多的处理器和编译器优化都要被禁止，这对执行性能将会有很大的影响。</p>
+<p>​        根据对不同类型读 / 写操作组合的执行顺序的放松，可以把常见处理器的内存模型划分为下面几种类型：</p>
+<ul>
+<li>放松程序中写 - 读操作的顺序，由此产生了 total store ordering 内存模型（简称为 TSO）。</li>
+<li>在前面 1 的基础上，继续放松程序中写 - 写操作的顺序，由此产生了 partial store order 内存模型（简称为 PSO）。</li>
+<li>在前面 1 和 2 的基础上，继续放松程序中读 - 写和读 - 读操作的顺序，由此产生了 relaxed memory order 内存模型（简称为 RMO）和 PowerPC 内存模型。</li>
+</ul>
+<p>注意，这里处理器对读 / 写操作的放松，是以两个操作之间不存在数据依赖性为前提的（因为处理器要遵守 as-if-serial 语义，处理器不会对存在数据依赖性的两个内存操作做重排序）。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/memoryModul.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="memoryModul" style="zoom:200%;">
+
+<p>​        在这个表格中，我们可以看到所有处理器内存模型都允许写 - 读重排序，原因在第一章以说明过：它们都使用了写缓存区，写缓存区可能导致写 - 读操作重排序。同时，我们可以看到这些处理器内存模型都允许更早读到当前处理器的写，原因同样是因为写缓存区：由于写缓存区仅对当前处理器可见，这个特性导致当前处理器可以比其他处理器先看到临时保存在自己的写缓存区中的写。</p>
+<p>​        上面表格中的各种处理器内存模型，从上到下，模型由强变弱。越是追求性能的处理器，内存模型设计的会越弱。因为这些处理器希望内存模型对它们的束缚越少越好，这样它们就可以做尽可能多的优化来提高性能。</p>
+<p>​        由于常见的处理器内存模型比 JMM 要弱，java 编译器在生成字节码时，会在执行指令序列的适当位置插入内存屏障来限制处理器的重排序。同时，由于各种处理器内存模型的强弱并不相同，为了在不同的处理器平台向程序员展示一个一致的内存模型，JMM 在不同的处理器中需要插入的内存屏障的数量和种类也不相同。下图展示了 JMM 在不同处理器内存模型中需要插入的内存屏障的示意图：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-x01.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-x01" style="zoom:200%;">
+
+<p>​        如上图所示，JMM 屏蔽了不同处理器内存模型的差异，它在不同的处理器平台之上为 java 程序员呈现了一个一致的内存模型</p>
+<h2 id="JMM、处理器内存模型与顺序一致性内存模型之间的关系"><a href="#JMM、处理器内存模型与顺序一致性内存模型之间的关系" class="headerlink" title="JMM、处理器内存模型与顺序一致性内存模型之间的关系"></a>JMM、处理器内存模型与顺序一致性内存模型之间的关系</h2><p>​        JMM 是一个语言级的内存模型，处理器内存模型是硬件级的内存模型，顺序一致性内存模型是一个理论参考模型。下面是语言内存模型，处理器内存模型和顺序一致性内存模型的强弱对比示意图：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-x02.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-x02" style="zoom:200%;">
+
+<p>​        从上图我们可以看出：常见的 4 种处理器内存模型比常用的 3 中语言内存模型要弱，处理器内存模型和语言内存模型都比顺序一致性内存模型要弱。同处理器内存模型一样，越是追求执行性能的语言，内存模型设计的会越弱。</p>
+<h2 id="JMM的设计"><a href="#JMM的设计" class="headerlink" title="JMM的设计"></a>JMM的设计</h2><p>从 JMM 设计者的角度来说，在设计 JMM 时，需要考虑两个关键因素：</p>
+<ul>
+<li>程序员对内存模型的使用。程序员希望内存模型易于理解，易于编程。程序员希望基于一个强内存模型来编写代码。</li>
+<li>编译器和处理器对内存模型的实现。编译器和处理器希望内存模型对它们的束缚越少越好，这样它们就可以做尽可能多的优化来提高性能。编译器和处理器希望实现一个弱内存模型。</li>
+</ul>
+<p>由于这两个因素互相矛盾，所以 JSR-133 专家组在设计 JMM 时的核心目标就是找到一个好的平衡点：一方面要为程序员提供足够强的内存可见性保证；另一方面，对编译器和处理器的限制要尽可能的放松。下面让我们看看 JSR-133 是如何实现这一目标的。</p>
+<p>为了具体说明，请看前面提到过的计算圆面积的示例代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">double pi  = 3.14;    //A</span><br><span class="line">double r   = 1.0;     //B</span><br><span class="line">double area = pi * r * r; //C</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上面计算圆的面积的示例代码存在三个 happens- before 关系：</p>
+<ul>
+<li>A happens- before B；</li>
+<li>B happens- before C；</li>
+<li>A happens- before C；</li>
+</ul>
+<p>由于 A happens- before B，happens- before 的定义会要求：A 操作执行的结果要对 B 可见，且 A 操作的执行顺序排在 B 操作之前。 但是从程序语义的角度来说，对 A 和 B 做重排序即不会改变程序的执行结果，也还能提高程序的执行性能（允许这种重排序减少了对编译器和处理器优化的束缚）。也就是说，上面这 3 个 happens- before 关系中，虽然 2 和 3 是必需要的，但 1 是不必要的。因此，JMM 把 happens- before 要求禁止的重排序分为了下面两类：</p>
+<ul>
+<li>会改变程序执行结果的重排序。</li>
+<li>不会改变程序执行结果的重排序。</li>
+</ul>
+<p>JMM 对这两种不同性质的重排序，采取了不同的策略：</p>
+<ul>
+<li>对于会改变程序执行结果的重排序，JMM 要求编译器和处理器必须禁止这种重排序。</li>
+<li>对于不会改变程序执行结果的重排序，JMM 对编译器和处理器不作要求（JMM 允许这种重排序）。</li>
+</ul>
+<p>下面是 JMM 的设计示意图：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-x03.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-x03" style="zoom:200%;">
+
+<p>从上图可以看出两点：</p>
+<ul>
+<li>JMM 向程序员提供的 happens- before 规则能满足程序员的需求。JMM 的 happens- before 规则不但简单易懂，而且也向程序员提供了足够强的内存可见性保证（有些内存可见性保证其实并不一定真实存在，比如上面的 A happens- before B）。</li>
+<li>JMM 对编译器和处理器的束缚已经尽可能的少。从上面的分析我们可以看出，JMM 其实是在遵循一个基本原则：只要不改变程序的执行结果（指的是单线程程序和正确同步的多线程程序），编译器和处理器怎么优化都行。比如，如果编译器经过细致的分析后，认定一个锁只会被单个线程访问，那么这个锁可以被消除。再比如，如果编译器经过细致的分析后，认定一个 volatile 变量仅仅只会被单个线程访问，那么编译器可以把这个 volatile 变量当作一个普通变量来对待。这些优化既不会改变程序的执行结果，又能提高程序的执行效率。</li>
+</ul>
+<h2 id="JMM的内存可见性保证"><a href="#JMM的内存可见性保证" class="headerlink" title="JMM的内存可见性保证"></a>JMM的内存可见性保证</h2><p>​        Java 程序的内存可见性保证按程序类型可以分为下列三类：</p>
+<ul>
+<li>单线程程序。单线程程序不会出现内存可见性问题。编译器，runtime 和处理器会共同确保单线程程序的执行结果与该程序在顺序一致性模型中的执行结果相同。</li>
+<li>正确同步的多线程程序。正确同步的多线程程序的执行将具有顺序一致性（程序的执行结果与该程序在顺序一致性内存模型中的执行结果相同）。这是 JMM 关注的重点，JMM 通过限制编译器和处理器的重排序来为程序员提供内存可见性保证。</li>
+<li>未同步 / 未正确同步的多线程程序。JMM 为它们提供了最小安全性保障：线程执行时读取到的值，要么是之前某个线程写入的值，要么是默认值（0，null，false）。</li>
+</ul>
+<p>下图展示了这三类程序在 JMM 中与在顺序一致性内存模型中的执行结果的异同：</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/java-jmm-x04.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="java-jmm-x04" style="zoom:200%;">
+
+<p>​        只要多线程程序是正确同步的，JMM 保证该程序在任意的处理器平台上的执行结果，与该程序在顺序一致性内存模型中的执行结果一致。</p>
+<h3 id="JSR-133-对旧内存模型的修补"><a href="#JSR-133-对旧内存模型的修补" class="headerlink" title="JSR-133 对旧内存模型的修补"></a>JSR-133 对旧内存模型的修补</h3><p>JSR-133 对 JDK5 之前的旧内存模型的修补主要有两个：</p>
+<ul>
+<li>增强 volatile 的内存语义。旧内存模型允许 volatile 变量与普通变量重排序。JSR-133 严格限制 volatile 变量与普通变量的重排序，使 volatile 的写 - 读和锁的释放 - 获取具有相同的内存语义。</li>
+<li>增强 final 的内存语义。在旧内存模型中，多次读取同一个 final 变量的值可能会不相同。为此，JSR-133 为 final 增加了两个重排序规则。现在，final 具有了初始化安全性。</li>
+</ul>
+<h1 id="java垃圾回收基础"><a href="#java垃圾回收基础" class="headerlink" title="java垃圾回收基础"></a>java垃圾回收基础</h1><h2 id="判断一个对象是否可被回收"><a href="#判断一个对象是否可被回收" class="headerlink" title="判断一个对象是否可被回收"></a>判断一个对象是否可被回收</h2><h6 id="1-引用计数算法："><a href="#1-引用计数算法：" class="headerlink" title="1.引用计数算法："></a>1.引用计数算法：</h6><p>​        给对象添加一个引用计数器，当对象增加一个引用时计数器加 1，引用失效时计数器减 1。引用计数为 0 的对象可被回收。</p>
+<p>两个对象出现循环引用的情况下，此时引用计数器永远不为 0，导致无法对它们进行回收。</p>
+<p>正因为循环引用的存在，因此 Java 虚拟机不使用引用计数算法。</p>
+<h6 id="2-可达性分析算法："><a href="#2-可达性分析算法：" class="headerlink" title="2.可达性分析算法："></a>2.可达性分析算法：</h6><p>​        通过 GC Roots 作为起始点进行搜索，能够到达到的对象都是存活的，不可达的对象可被回收。</p>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/GCRoots.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="GCRoots" style="zoom:200%;">
+
+<p>Java 虚拟机使用该算法来判断对象是否可被回收，在 Java 中 GC Roots 一般包含以下内容:</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>本地方法栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中的常量引用的对象</li>
+</ul>
+<h6 id="3-方法区的回收："><a href="#3-方法区的回收：" class="headerlink" title="3.方法区的回收："></a>3.方法区的回收：</h6><p>​        因为方法区主要存放永久代对象，而永久代对象的回收率比新生代低很多，因此在方法区上进行回收性价比不高。</p>
+<p>主要是对常量池的回收和对类的卸载。</p>
+<p>​        在大量使用反射、动态代理、CGLib 等 ByteCode 框架、动态生成 JSP 以及 OSGi 这类频繁自定义 ClassLoader 的场景都需要虚拟机具备类卸载功能，以保证不会出现内存溢出。</p>
+<p>​        类的卸载条件很多，需要满足以下三个条件，并且满足了也不一定会被卸载:</p>
+<ul>
+<li>该类所有的实例都已经被回收，也就是堆中不存在该类的任何实例。</li>
+<li>加载该类的 ClassLoader 已经被回收。</li>
+<li>该类对应的 Class 对象没有在任何地方被引用，也就无法在任何地方通过反射访问该类方法。</li>
+</ul>
+<p>可以通过 -Xnoclassgc 参数来控制是否对类进行卸载。</p>
+<h6 id="4-finalize（）"><a href="#4-finalize（）" class="headerlink" title="4.finalize（）"></a>4.finalize（）</h6><p>​        finalize() 类似 C++ 的析构函数，用来做关闭外部资源等工作。但是 try-finally 等方式可以做的更好，并且该方法运行代价高昂，不确定性大，无法保证各个对象的调用顺序，因此最好不要使用。</p>
+<p>​        当一个对象可被回收时，如果需要执行该对象的 finalize() 方法，那么就有可能通过在该方法中让对象重新被引用，从而实现自救。自救只能进行一次，如果回收的对象之前调用了 finalize() 方法自救，后面回收时不会调用 finalize() 方法。</p>
+<h2 id="引用类型"><a href="#引用类型" class="headerlink" title="引用类型"></a>引用类型</h2><p>​        无论是通过引用计算算法判断对象的引用数量，还是通过可达性分析算法判断对象是否可达，判定对象是否可被回收都与引用有关。Java 具有四种强度不同的引用类型。</p>
+<h6 id="1-强引用"><a href="#1-强引用" class="headerlink" title="1.强引用"></a>1.强引用</h6><p>​        被强引用关联的对象不会被回收。</p>
+<p>​        使用 new 一个新对象的方式来创建强引用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-软引用"><a href="#2-软引用" class="headerlink" title="2.软引用"></a>2.软引用</h6><p>​        被软引用关联的对象只有在内存不够的情况下才会被回收。</p>
+<p>​        使用 SoftReference 类来创建软引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line">SoftReference&lt;Object&gt; sf = new SoftReference&lt;Object&gt;(obj);</span><br><span class="line">obj = null;  // 使对象只被软引用关联</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-弱引用"><a href="#3-弱引用" class="headerlink" title="3.弱引用"></a>3.弱引用</h6><p>​        被弱引用关联的对象一定会被回收，也就是说它只能存活到下一次垃圾回收发生之前。</p>
+<p>​        使用 WeakReference 类来实现弱引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line">WeakReference&lt;Object&gt; wf = new WeakReference&lt;Object&gt;(obj);</span><br><span class="line">obj = null;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="4-虚引用"><a href="#4-虚引用" class="headerlink" title="4.虚引用"></a>4.虚引用</h6><p>​        又称为幽灵引用或者幻影引用。一个对象是否有虚引用的存在，完全不会对其生存时间构成影响，也无法通过虚引用取得一个对象。</p>
+<p>​        为一个对象设置虚引用关联的唯一目的就是能在这个对象被回收时收到一个系统通知。</p>
+<p>​        使用 PhantomReference 来实现虚引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Object obj = new Object();</span><br><span class="line">PhantomReference&lt;Object&gt; pf = new PhantomReference&lt;Object&gt;(obj);</span><br><span class="line">obj = null;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="垃圾回收算法"><a href="#垃圾回收算法" class="headerlink" title="垃圾回收算法"></a>垃圾回收算法</h2><h6 id="1-标记–清除"><a href="#1-标记–清除" class="headerlink" title="1.标记–清除"></a>1.标记–清除</h6><img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/mark-clear.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="mark-clear" style="zoom:200%;">
+
+<p>将存活的对象进行标记，然后清理掉未被标记的对象。</p>
+<p>不足:</p>
+<ul>
+<li>标记和清除过程效率都不高；</li>
+<li>会产生大量不连续的内存碎片，导致无法给大对象分配内存。</li>
+</ul>
+<h6 id="2-标记-整理"><a href="#2-标记-整理" class="headerlink" title="2.标记-整理"></a>2.标记-整理</h6><img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/mark-compact.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="mark-compact" style="zoom:200%;">
+
+<p>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存。</p>
+<h6 id="3-复制算法"><a href="#3-复制算法" class="headerlink" title="3.复制算法"></a>3.复制算法</h6><img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/copy.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="copy" style="zoom:200%;">
+
+<p>​        将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理。</p>
+<p>主要不足是只使用了内存的一半。</p>
+<p>​        现在的商业虚拟机都采用这种收集算法来回收新生代，但是并不是将新生代划分为大小相等的两块，而是分为一块较大的 Eden 空间和两块较小的 Survivor 空间，每次使用 Eden 空间和其中一块 Survivor。在回收时，将 Eden 和 Survivor 中还存活着的对象一次性复制到另一块 Survivor 空间上，最后清理 Eden 和使用过的那一块 Survivor。</p>
+<p>​        HotSpot 虚拟机的 Eden 和 Survivor 的大小比例默认为 8:1，保证了内存的利用率达到 90%。如果每次回收有多于 10% 的对象存活，那么一块 Survivor 空间就不够用了，此时需要依赖于老年代进行分配担保，也就是借用老年代的空间存储放不下的对象。</p>
+<h6 id="4-分代收集（-Generational-Collection-）"><a href="#4-分代收集（-Generational-Collection-）" class="headerlink" title="4.分代收集（****Generational Collection******）"></a>4.分代收集（**<em>*</em>*Generational Collection******）</h6><p>​        现在的商业虚拟机采用分代收集算法，它根据对象存活周期将内存划分为几块，不同块采用适当的收集算法。</p>
+<p>一般将堆分为新生代和老年代。</p>
+<ul>
+<li>新生代使用: 复制算法</li>
+<li>老年代使用: 标记 - 清除 或者 标记 - 整理 算法</li>
+</ul>
+<img "" class="lazyload placeholder" data-original="/2021/07/28/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B0JVM/generation.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="generation" style="zoom:200%;">
+
+<p>以上是 HotSpot 虚拟机中的 7 个垃圾收集器，连线表示垃圾收集器可以配合使用。</p>
+<ul>
+<li>单线程与多线程: 单线程指的是垃圾收集器只使用一个线程进行收集，而多线程使用多个线程；</li>
+<li>串行与并行: 串行指的是垃圾收集器与用户程序交替执行，这意味着在执行垃圾收集的时候需要停顿用户程序；并形指的是垃圾收集器和用户程序同时执行。除了 CMS 和 G1 之外，其它垃圾收集器都是以串行的方式执行。</li>
+</ul>
+<h2 id="内存分配和回收策略"><a href="#内存分配和回收策略" class="headerlink" title="内存分配和回收策略"></a>内存分配和回收策略</h2><h3 id="Minor-GC-和-Full-GC"><a href="#Minor-GC-和-Full-GC" class="headerlink" title="Minor GC 和 Full GC"></a>Minor GC 和 Full GC</h3><ul>
+<li>Minor GC: 发生在新生代上，因为新生代对象存活时间很短，因此 Minor GC 会频繁执行，执行的速度一般也会比较快。</li>
+<li>Full GC: 发生在老年代上，老年代对象其存活时间长，因此 Full GC 很少执行，执行速度会比 Minor GC 慢很多。</li>
+</ul>
+<h3 id="¶-内存分配策略"><a href="#¶-内存分配策略" class="headerlink" title="¶ 内存分配策略"></a><a href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5">¶</a> 内存分配策略</h3><h4 id="¶-1-对象优先在-Eden-分配"><a href="#¶-1-对象优先在-Eden-分配" class="headerlink" title="¶ 1. 对象优先在 Eden 分配"></a><a href="#1-%E5%AF%B9%E8%B1%A1%E4%BC%98%E5%85%88%E5%9C%A8-eden-%E5%88%86%E9%85%8D">¶</a> 1. 对象优先在 Eden 分配</h4><p>大多数情况下，对象在新生代 Eden 区分配，当 Eden 区空间不够时，发起 Minor GC。</p>
+<h4 id="¶-2-大对象直接进入老年代"><a href="#¶-2-大对象直接进入老年代" class="headerlink" title="¶ 2. 大对象直接进入老年代"></a><a href="#2-%E5%A4%A7%E5%AF%B9%E8%B1%A1%E7%9B%B4%E6%8E%A5%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3">¶</a> 2. 大对象直接进入老年代</h4><p>大对象是指需要连续内存空间的对象，最典型的大对象是那种很长的字符串以及数组。</p>
+<p>经常出现大对象会提前触发垃圾收集以获取足够的连续空间分配给大对象。</p>
+<p>-XX:PretenureSizeThreshold，大于此值的对象直接在老年代分配，避免在 Eden 区和 Survivor 区之间的大量内存复制。</p>
+<h4 id="¶-3-长期存活的对象进入老年代"><a href="#¶-3-长期存活的对象进入老年代" class="headerlink" title="¶ 3. 长期存活的对象进入老年代"></a><a href="#3-%E9%95%BF%E6%9C%9F%E5%AD%98%E6%B4%BB%E7%9A%84%E5%AF%B9%E8%B1%A1%E8%BF%9B%E5%85%A5%E8%80%81%E5%B9%B4%E4%BB%A3">¶</a> 3. 长期存活的对象进入老年代</h4><p>为对象定义年龄计数器，对象在 Eden 出生并经过 Minor GC 依然存活，将移动到 Survivor 中，年龄就增加 1 岁，增加到一定年龄则移动到老年代中。</p>
+<p>-XX:MaxTenuringThreshold 用来定义年龄的阈值。</p>
+<h4 id="¶-4-动态对象年龄判定"><a href="#¶-4-动态对象年龄判定" class="headerlink" title="¶ 4. 动态对象年龄判定"></a><a href="#4-%E5%8A%A8%E6%80%81%E5%AF%B9%E8%B1%A1%E5%B9%B4%E9%BE%84%E5%88%A4%E5%AE%9A">¶</a> 4. 动态对象年龄判定</h4><p>虚拟机并不是永远地要求对象的年龄必须达到 MaxTenuringThreshold 才能晋升老年代，如果在 Survivor 中相同年龄所有对象大小的总和大于 Survivor 空间的一半，则年龄大于或等于该年龄的对象可以直接进入老年代，无需等到 MaxTenuringThreshold 中要求的年龄。</p>
+<h4 id="¶-5-空间分配担保"><a href="#¶-5-空间分配担保" class="headerlink" title="¶ 5. 空间分配担保"></a><a href="#5-%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D%E6%8B%85%E4%BF%9D">¶</a> 5. 空间分配担保</h4><p>在发生 Minor GC 之前，虚拟机先检查老年代最大可用的连续空间是否大于新生代所有对象总空间，如果条件成立的话，那么 Minor GC 可以确认是安全的。</p>
+<p>如果不成立的话虚拟机会查看 HandlePromotionFailure 设置值是否允许担保失败，如果允许那么就会继续检查老年代最大可用的连续空间是否大于历次晋升到老年代对象的平均大小，如果大于，将尝试着进行一次 Minor GC；如果小于，或者 HandlePromotionFailure 设置不允许冒险，那么就要进行一次 Full GC。</p>
+<h3 id="¶-Full-GC-的触发条件"><a href="#¶-Full-GC-的触发条件" class="headerlink" title="¶ Full GC 的触发条件"></a><a href="#full-gc-%E7%9A%84%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6">¶</a> Full GC 的触发条件</h3><p>对于 Minor GC，其触发条件非常简单，当 Eden 空间满时，就将触发一次 Minor GC。而 Full GC 则相对复杂，有以下条件:</p>
+<h4 id="¶-1-调用-System-gc"><a href="#¶-1-调用-System-gc" class="headerlink" title="¶ 1. 调用 System.gc()"></a><a href="#1-%E8%B0%83%E7%94%A8-systemgc">¶</a> 1. 调用 System.gc()</h4><p>只是建议虚拟机执行 Full GC，但是虚拟机不一定真正去执行。不建议使用这种方式，而是让虚拟机管理内存。</p>
+<h4 id="¶-2-老年代空间不足"><a href="#¶-2-老年代空间不足" class="headerlink" title="¶ 2. 老年代空间不足"></a><a href="#2-%E8%80%81%E5%B9%B4%E4%BB%A3%E7%A9%BA%E9%97%B4%E4%B8%8D%E8%B6%B3">¶</a> 2. 老年代空间不足</h4><p>老年代空间不足的常见场景为前文所讲的大对象直接进入老年代、长期存活的对象进入老年代等。</p>
+<p>为了避免以上原因引起的 Full GC，应当尽量不要创建过大的对象以及数组。除此之外，可以通过 -Xmn 虚拟机参数调大新生代的大小，让对象尽量在新生代被回收掉，不进入老年代。还可以通过 -XX:MaxTenuringThreshold 调大对象进入老年代的年龄，让对象在新生代多存活一段时间。</p>
+<h4 id="¶-3-空间分配担保失败"><a href="#¶-3-空间分配担保失败" class="headerlink" title="¶ 3. 空间分配担保失败"></a><a href="#3-%E7%A9%BA%E9%97%B4%E5%88%86%E9%85%8D%E6%8B%85%E4%BF%9D%E5%A4%B1%E8%B4%A5">¶</a> 3. 空间分配担保失败</h4><p>使用复制算法的 Minor GC 需要老年代的内存空间作担保，如果担保失败会执行一次 Full GC。具体内容请参考上面的第五小节。</p>
+<h4 id="¶-4-JDK-1-7-及以前的永久代空间不足"><a href="#¶-4-JDK-1-7-及以前的永久代空间不足" class="headerlink" title="¶ 4. JDK 1.7 及以前的永久代空间不足"></a><a href="#4-jdk-17-%E5%8F%8A%E4%BB%A5%E5%89%8D%E7%9A%84%E6%B0%B8%E4%B9%85%E4%BB%A3%E7%A9%BA%E9%97%B4%E4%B8%8D%E8%B6%B3">¶</a> 4. JDK 1.7 及以前的永久代空间不足</h4><p>在 JDK 1.7 及以前，HotSpot 虚拟机中的方法区是用永久代实现的，永久代中存放的为一些 Class 的信息、常量、静态变量等数据。</p>
+<p>当系统中要加载的类、反射的类和调用的方法较多时，永久代可能会被占满，在未配置为采用 CMS GC 的情况下也会执行 Full GC。如果经过 Full GC 仍然回收不了，那么虚拟机会抛出 java.lang.OutOfMemoryError。</p>
+<p>为避免以上原因引起的 Full GC，可采用的方法为增大永久代空间或转为使用 CMS GC。</p>
+<h4 id="¶-5-Concurrent-Mode-Failure"><a href="#¶-5-Concurrent-Mode-Failure" class="headerlink" title="¶ 5. Concurrent Mode Failure"></a><a href="#5-concurrent-mode-failure">¶</a> 5. Concurrent Mode Failure</h4><p>执行 CMS GC 的过程中同时有对象要放入老年代，而此时老年代空间不足(可能是 GC 过程中浮动垃圾过多导致暂时性的空间不足)，便会报 Concurrent Mode Failure 错误，并触发 Full GC。</p>
 <h2 id="参考文献："><a href="#参考文献：" class="headerlink" title="参考文献："></a>参考文献：</h2><p><a target="_blank" rel="noopener" href="https://www.pdai.tech/md/java/jvm/java-jvm-x-overview.html">https://www.pdai.tech/md/java/jvm/java-jvm-x-overview.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5">https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-2.html#jvms-2.5</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf">http://www.cs.umd.edu/~pugh/java/memoryModel/jsr133.pdf</a></p>
 <p><a target="_blank" rel="noopener" href="http://tutorials.jenkov.com/java-concurrency/java-memory-model.html">http://tutorials.jenkov.com/java-concurrency/java-memory-model.html</a></p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_39596082/article/details/88093274">https://blog.csdn.net/weixin_39596082/article/details/88093274</a></p>
+<p><a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/94557?spm=5176.100239.blogcont217385.73.SaQb9l">https://yq.aliyun.com/articles/94557?spm=5176.100239.blogcont217385.73.SaQb9l</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/S3PcA2KIzCVB2hJmsbVzyQ">https://mp.weixin.qq.com/s/S3PcA2KIzCVB2hJmsbVzyQ</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/olNXcRAT3PTK-hV_ehtmtw">https://mp.weixin.qq.com/s/olNXcRAT3PTK-hV_ehtmtw</a></p>
 
       </div>
       
