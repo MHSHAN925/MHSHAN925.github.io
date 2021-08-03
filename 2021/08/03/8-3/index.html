@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>7-29 | Hexo</title>
+  <title>8-3 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/13.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/3.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['7-29'],
+              strings: ['8-3'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-29</span>
+        <span class="post-time">2021-08-03</span>
       </div>
       
       <div class="post-tags-categories">
@@ -746,10 +746,14 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1104-二叉树寻路"><a href="#1104-二叉树寻路" class="headerlink" title="1104.二叉树寻路"></a>1104.二叉树寻路</h1><p>在一棵无限的二叉树上，每个节点都有两个子节点，树中的节点 逐行 依次按 “之” 字形进行标记。</p>
-<p>如下图所示，在奇数行（即，第一行、第三行、第五行……）中，按从左到右的顺序进行标记；</p>
-<p>而偶数行（即，第二行、第四行、第六行……）中，按从右到左的顺序进行标记。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public List&lt;Integer&gt; pathInZigZagTree(int label) &#123;</span><br><span class="line">        int row = 1, rowStart = 1;</span><br><span class="line">        while (rowStart * 2 &lt;= label) &#123;</span><br><span class="line">            row++;</span><br><span class="line">            rowStart *= 2;</span><br><span class="line">        &#125;</span><br><span class="line">        if (row % 2 == 0) &#123;</span><br><span class="line">            label = getReverse(label, row);</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;Integer&gt; path = new ArrayList&lt;Integer&gt;();</span><br><span class="line">        while (row &gt; 0) &#123;</span><br><span class="line">            if (row % 2 == 0) &#123;</span><br><span class="line">                path.add(getReverse(label, row));</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                path.add(label);</span><br><span class="line">            &#125;</span><br><span class="line">            row--;</span><br><span class="line">            label &gt;&gt;= 1;</span><br><span class="line">        &#125;</span><br><span class="line">        Collections.reverse(path);</span><br><span class="line">        return path;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getReverse(int label, int row) &#123;</span><br><span class="line">        return (1 &lt;&lt; row - 1) + (1 &lt;&lt; row) - 1 - label;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="581-最短无序连续子数组"><a href="#581-最短无序连续子数组" class="headerlink" title="581.最短无序连续子数组"></a>581.最短无序连续子数组</h1><p>给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。</p>
+<p>请你找出符合题意的 最短 子数组，并输出它的长度。</p>
+<p>示例 1：</p>
+<p>输入：nums = [2,6,4,8,10,9,15]<br>输出：5<br>解释：你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。<br>示例 2：</p>
+<p>输入：nums = [1,2,3,4]<br>输出：0<br>示例 3：</p>
+<p>输入：nums = [1]<br>输出：0</p>
+<p>思路：对原数组进行复制，并且对复制之后的进行排序。只要找到最长的已经排序的，就剩下没有升序的排序的。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public int findUnsortedSubarray(int[] nums) &#123;</span><br><span class="line">       if (isSorted(nums)) &#123;</span><br><span class="line">           return 0;</span><br><span class="line">       &#125;</span><br><span class="line">       int[] numsSorted = new int[nums.length];</span><br><span class="line">       System.arraycopy(nums, 0, numsSorted, 0, nums.length);</span><br><span class="line">       Arrays.sort(numsSorted);</span><br><span class="line">       int left = 0;</span><br><span class="line">       while (nums[left] == numsSorted[left]) &#123;</span><br><span class="line">           left++;</span><br><span class="line">       &#125;</span><br><span class="line">       int right = nums.length - 1;</span><br><span class="line">       while (nums[right] == numsSorted[right]) &#123;</span><br><span class="line">           right--;</span><br><span class="line">       &#125;</span><br><span class="line">       return right - left + 1;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public boolean isSorted(int[] nums) &#123;</span><br><span class="line">       for (int i = 1; i &lt; nums.length; i++) &#123;</span><br><span class="line">           if (nums[i] &lt; nums[i - 1]) &#123;</span><br><span class="line">               return false;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return true;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -761,7 +765,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/29/7-29/" target="_blank" title="7-29">https://mhshan925.github.io/2021/07/29/7-29/</a>
+    <a href="/2021/08/03/8-3/" target="_blank" title="8-3">https://mhshan925.github.io/2021/08/03/8-3/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -779,37 +783,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/31/7-30/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-30</div>
-      </div>
-      
-      <!-- <div class="content">
-        171.excel表列序号给你一个字符串 columnTitle ，表示 Excel 表格中的列名称。返回该列名称对应的
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/1.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/29/7-28/" class="post-nav-link">
+    <a href="/2021/08/02/8-1/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-28</div>
+        <div>8-1</div>
       </div>
       <!-- <div class="content">
-        863.二叉树中所有距离为K的节点给定一个二叉树（具有根结点 root）， 一个目标结点 target ，和一个整数值 
+        1337.矩阵中战斗力最弱的k行给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0
       </div> -->
     </a>
   </div>
