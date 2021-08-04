@@ -729,34 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-02</span>
+        <span class="post-time">2021-08-04</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="1337-矩阵中战斗力最弱的k行"><a href="#1337-矩阵中战斗力最弱的k行" class="headerlink" title="1337.矩阵中战斗力最弱的k行"></a>1337.矩阵中战斗力最弱的k行</h1><p>给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0 表示。</p>
-<p>请你返回矩阵中战斗力最弱的 k 行的索引，按从最弱到最强排序。</p>
-<p>如果第 i 行的军人数量少于第 j 行，或者两行军人数量相同但 i 小于 j，那么我们认为第 i 行的战斗力比第 j 行弱。</p>
-<p>军人 总是 排在一行中的靠前位置，也就是说 1 总是出现在 0 之前。</p>
-<p>示例 1：</p>
-<p>输入：mat =<br>[[1,1,0,0,0],<br> [1,1,1,1,0],<br> [1,0,0,0,0],<br> [1,1,0,0,0],<br> [1,1,1,1,1]],<br>k = 3<br>输出：[2,0,3]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 2<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 2<br>行 4 -&gt; 5<br>从最弱到最强对这些行排序后得到 [2,0,3,1,4]<br>示例 2：</p>
-<p>输入：mat =<br>[[1,0,0,0],<br> [1,1,1,1],<br> [1,0,0,0],<br> [1,0,0,0]],<br>k = 2<br>输出：[0,2]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 1<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 1<br>从最弱到最强对这些行排序后得到 [0,2,3,1]</p>
-<p>思路：对每一行进行求和，用二元组存储，每一行以及每一行对应的和。然后对二元组进行排序。选出最小的k个下标就行。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public int[] kWeakestRows(int[][] mat, int k) &#123;</span><br><span class="line">       int m = mat.length, n = mat[0].length;</span><br><span class="line">       int[][] all = new int[m][2];</span><br><span class="line">       for (int i = 0; i &lt; m; i++) &#123;</span><br><span class="line">           int cur = 0;</span><br><span class="line">           for (int j = 0; j &lt; n; j++) cur += mat[i][j];</span><br><span class="line">           all[i] = new int[]&#123;cur, i&#125;;</span><br><span class="line">       &#125;</span><br><span class="line">       Arrays.sort(all, (a, b)-&gt;&#123;</span><br><span class="line">           if (a[0] != b[0]) return a[0] - b[0];</span><br><span class="line">           return a[1] - b[1];</span><br><span class="line">       &#125;);</span><br><span class="line">       int[] ans = new int[k];</span><br><span class="line">       for (int i = 0; i &lt; k; i++) ans[i] = all[i][1];</span><br><span class="line">       return ans;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       </div>
       
         <div class="copyright">
@@ -766,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/02/8-1/" target="_blank" title="8-1">https://mhshan925.github.io/2021/08/02/8-1/</a>
+    <a href="/2021/08/04/8-1/" target="_blank" title="8-1">https://mhshan925.github.io/2021/08/04/8-1/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -786,17 +767,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/03/8-3/" class="post-nav-link">
+    <a href="/2021/08/04/8-2/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-3</div>
+        <div>8-2</div>
       </div>
       
       <!-- <div class="content">
-        581.最短无序连续子数组给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么
+        
       </div> -->
     </a>
   </div>
