@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>8-1 | Hexo</title>
+  <title>8-5 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/1.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/5.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['8-1'],
+              strings: ['8-5'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-04</span>
+        <span class="post-time">2021-08-05</span>
       </div>
       
       <div class="post-tags-categories">
@@ -746,14 +746,16 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1337-矩阵中战斗力最弱的K行"><a href="#1337-矩阵中战斗力最弱的K行" class="headerlink" title="1337.矩阵中战斗力最弱的K行"></a>1337.矩阵中战斗力最弱的K行</h1><p>给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0 表示。</p>
-<p>请你返回矩阵中战斗力最弱的 k 行的索引，按从最弱到最强排序。</p>
-<p>如果第 i 行的军人数量少于第 j 行，或者两行军人数量相同但 i 小于 j，那么我们认为第 i 行的战斗力比第 j 行弱。</p>
-<p>军人 总是 排在一行中的靠前位置，也就是说 1 总是出现在 0 之前。</p>
-<p>示例 1：</p>
-<p>输入：mat =<br>[[1,1,0,0,0],<br> [1,1,1,1,0],<br> [1,0,0,0,0],<br> [1,1,0,0,0],<br> [1,1,1,1,1]],<br>k = 3<br>输出：[2,0,3]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 2<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 2<br>行 4 -&gt; 5<br>从最弱到最强对这些行排序后得到 [2,0,3,1,4]<br>示例 2：</p>
-<p>输入：mat =<br>[[1,0,0,0],<br> [1,1,1,1],<br> [1,0,0,0],<br> [1,0,0,0]],<br>k = 2<br>输出：[0,2]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 1<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 1<br>从最弱到最强对这些行排序后得到 [0,2,3,1]</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int[] KWeakestRows(int[][] mat, int k)&#123;</span><br><span class="line">        int m = mat.length, n = mat[0].length;</span><br><span class="line"></span><br><span class="line">        int[][] all = new int[m][2];</span><br><span class="line">        for (int i = 0; i &lt; m; i++)&#123;</span><br><span class="line">            int cur = 0;</span><br><span class="line">            for (int j = 0; j &lt; n; j++)&#123;</span><br><span class="line">                cur = cur + mat[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            all[i] = new int[]&#123;cur, i&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(all, (a, b)-&gt;&#123;</span><br><span class="line">            if (a[0] != b[0]) return a[0] - b[0];</span><br><span class="line">            return a[1] - b[1];</span><br><span class="line">        &#125;);</span><br><span class="line">        int[] ans = new int[k];</span><br><span class="line">        for (int i = 0; i &lt; k; i++) ans[i] = all[i][1];</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h1 id="802-找到最终的安全状态"><a href="#802-找到最终的安全状态" class="headerlink" title="802.找到最终的安全状态"></a>802.找到最终的安全状态</h1><p>在有向图中，以某个节点为起始节点，从该点出发，每一步沿着图中的一条有向边行走。如果到达的节点是终点（即它没有连出的有向边），则停止。</p>
+<p>对于一个起始节点，如果从该节点出发，无论每一步选择沿哪条有向边行走，最后必然在有限步内到达终点，则将该起始节点称作是 安全 的。</p>
+<p>返回一个由图中所有安全的起始节点组成的数组作为答案。答案数组中的元素应当按 升序 排列。</p>
+<p>该有向图有 n 个节点，按 0 到 n - 1 编号，其中 n 是 graph 的节点数。图以下述形式给出：graph[i] 是编号 j 节点的一个列表，满足 (i, j) 是图的一条有向边。</p>
+<h2 id="思路：深度优先搜索和三色法标记。"><a href="#思路：深度优先搜索和三色法标记。" class="headerlink" title="思路：深度优先搜索和三色法标记。"></a>思路：深度优先搜索和三色法标记。</h2><p>特点：如果起始节点在一个环内，或者能够到达一个环，则该节点不是安全的。否则，该节点是安全的。我们可以用深度优先搜索来找环，并在深度优先搜索的时候，用三种颜色进行标记。</p>
+<p>白色（用 00 表示）：该节点尚未被访问；<br>灰色（用 11 表示）：该节点位于递归栈中，或者在某个环上；<br>黑色（用 22 表示）：该节点搜索完毕，是一个安全节点。</p>
+<p>当我们首次访问一个节点时，将其标记为灰色，并继续搜索与其相连的节点。</p>
+<p>如果在搜索过程中遇到了一个灰色节点，则说明找到了一个环，此时退出搜索，栈中的节点仍保持为灰色，这一做法可以将「找到了环」这一信息传递到栈中的所有节点上。</p>
+<p>如果搜索过程中没有遇到灰色节点，则说明没有遇到环，那么递归返回前，我们将其标记由灰色改为黑色，即表示它是一个安全的节点。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static List&lt;Integer&gt; eventualSafeNodes(int[][] graph)&#123;</span><br><span class="line">       int n = graph.length;</span><br><span class="line">       int[] colors = new int[n];</span><br><span class="line">       List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">       for (int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">           if (safe(graph, colors, i))&#123;</span><br><span class="line">               list.add(i);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return list;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public static boolean safe(int[][] graph, int[] colors, int x)&#123;</span><br><span class="line">       if (colors[x] &gt; 0)&#123;</span><br><span class="line">           return colors[x] == 2;</span><br><span class="line">       &#125;</span><br><span class="line">       colors[x] = 1;</span><br><span class="line">       for (int y : graph[x])&#123;</span><br><span class="line">           if (!safe(graph, colors, y)) &#123;</span><br><span class="line">               return false;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       colors[x] = 2;</span><br><span class="line">       return true;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -765,7 +767,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/04/8-1/" target="_blank" title="8-1">https://mhshan925.github.io/2021/08/04/8-1/</a>
+    <a href="/2021/08/05/8-5/" target="_blank" title="8-5">https://mhshan925.github.io/2021/08/05/8-5/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -783,39 +785,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/08/04/8-2/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-2</div>
-      </div>
-      
-      <!-- <div class="content">
-        743.网络延迟时间有 n 个网络节点，标记为 1 到 n。
-给你一个列表 times，表示信号经过 有向 边的传递时间
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-nav-link">
+    <a href="/2021/08/04/%E7%9E%8E%E8%81%8ATCP/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>操作系统-进程管理</div>
+        <div>瞎聊TCP</div>
       </div>
       <!-- <div class="content">
-        进程进程的概念：在多道程序环境下，允许多个程序并发执行，此时它们将失去封闭性，并具有间断性及不可再现性的特征。
-为此引入
+        
       </div> -->
     </a>
   </div>

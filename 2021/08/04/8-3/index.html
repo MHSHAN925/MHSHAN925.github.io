@@ -734,10 +734,36 @@
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <h1 id="581-最短无序连续子数组"><a href="#581-最短无序连续子数组" class="headerlink" title="581.最短无序连续子数组"></a>581.最短无序连续子数组</h1><p>给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么整个数组都会变为升序排序。</p>
+<p>请你找出符合题意的 最短 子数组，并输出它的长度。</p>
+<p>示例 1：</p>
+<p>输入：nums = [2,6,4,8,10,9,15]<br>输出：5<br>解释：你只需要对 [6, 4, 8, 10, 9] 进行升序排序，那么整个表都会变为升序排序。<br>示例 2：</p>
+<p>输入：nums = [1,2,3,4]<br>输出：0<br>示例 3：</p>
+<p>输入：nums = [1]<br>输出：0</p>
+<p>思路：赋值数组temp，并进行排序。只要找到无序数组的第一位和最后一位就好。注意一点，不能遍历把每一个不相同都自加一，因为无序数组中可能有一位位置并没有放错，所以需要找到第一位和最后一位。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int findUnsortedSubarray(int[] nums)&#123;</span><br><span class="line">        int[] temp = new int[nums.length];</span><br><span class="line">        System.arraycopy(nums, 0, temp, 0, nums.length);</span><br><span class="line">        Arrays.sort(temp);</span><br><span class="line">        int first = 0, end = 0;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            if (temp[i] != nums[i])&#123;</span><br><span class="line">                first = i;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int j = nums.length - 1; j &gt;= 0; j--)&#123;</span><br><span class="line">            if (temp[j] != nums[j])&#123;</span><br><span class="line">                end = j;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return end - first + 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>思路二：双指针 + 线性扫描<br>另外一个做法是，我们把整个数组分成三段处理。</p>
+<p>起始时，先通过双指针 ii 和 jj 找到左右两次侧满足 单调递增 的分割点。</p>
+<p>即此时 [0, i][0,i] 和 [j, n)[j,n) 满足升序要求，而中间部分 (i, j)(i,j) 不确保有序。</p>
+<p>然后我们对中间部分 [i, j][i,j] 进行遍历：</p>
+<p>发现 nums[x] &lt; nums[i - 1]nums[x]&lt;nums[i−1]：由于对 [i, j][i,j] 部分进行排序后 nums[x]nums[x] 会出现在 nums[i - 1]nums[i−1] 后，将不满足整体升序，此时我们需要调整分割点 ii 的位置；<br>发现 nums[x] &gt; nums[j + 1]nums[x]&gt;nums[j+1]：由于对 [i, j][i,j] 部分进行排序后 nums[x]nums[x] 会出现在 nums[j + 1]nums[j+1] 前，将不满足整体升序，此时我们需要调整分割点 jj 的位置。<br>一些细节：在调整 ii 和 jj 的时候，我们可能会到达数组边缘，这时候可以建立两个哨兵：数组左边存在一个足够小的数，数组右边存在一个足够大的数。</p>
+<p>来自大佬三叶，<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/solution/gong-shui-san-xie-yi-ti-shuang-jie-shuan-e1le/">https://leetcode-cn.com/problems/shortest-unsorted-continuous-subarray/solution/gong-shui-san-xie-yi-ti-shuang-jie-shuan-e1le/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int MIN = -100005, MAX = 100005;</span><br><span class="line">    public int findUnsortedSubarray(int[] nums) &#123;</span><br><span class="line">        int n = nums.length;</span><br><span class="line">        int i = 0, j = n - 1;</span><br><span class="line">        while (i &lt; j &amp;&amp; nums[i] &lt;= nums[i + 1]) i++;</span><br><span class="line">        while (i &lt; j &amp;&amp; nums[j] &gt;= nums[j - 1]) j--;</span><br><span class="line">        int l = i, r = j;</span><br><span class="line">        int min = nums[i], max = nums[j];</span><br><span class="line">        for (int u = l; u &lt;= r; u++) &#123;</span><br><span class="line">            if (nums[u] &lt; min) &#123;</span><br><span class="line">                while (i &gt;= 0 &amp;&amp; nums[i] &gt; nums[u]) i--;</span><br><span class="line">                min = i &gt;= 0 ? nums[i] : MIN;</span><br><span class="line">            &#125;</span><br><span class="line">            if (nums[u] &gt; max) &#123;</span><br><span class="line">                while (j &lt; n &amp;&amp; nums[j] &lt; nums[u]) j++;</span><br><span class="line">                max = j &lt; n ? nums[j] : MAX;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return j == i ? 0 : (j - 1) - (i + 1) + 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
       </div>
       
         <div class="copyright">
@@ -797,7 +823,8 @@
         <div>8-2</div>
       </div>
       <!-- <div class="content">
-        
+        743.网络延迟时间有 n 个网络节点，标记为 1 到 n。
+给你一个列表 times，表示信号经过 有向 边的传递时间
       </div> -->
     </a>
   </div>

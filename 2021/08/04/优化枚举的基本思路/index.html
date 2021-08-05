@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>8-1 | Hexo</title>
+  <title>优化枚举的基本思路 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/1.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['8-1'],
+              strings: ['优化枚举的基本思路'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -746,16 +746,11 @@
         
       </div>
       <div class="post-content">
-        <h1 id="1337-矩阵中战斗力最弱的K行"><a href="#1337-矩阵中战斗力最弱的K行" class="headerlink" title="1337.矩阵中战斗力最弱的K行"></a>1337.矩阵中战斗力最弱的K行</h1><p>给你一个大小为 m * n 的矩阵 mat，矩阵由若干军人和平民组成，分别用 1 和 0 表示。</p>
-<p>请你返回矩阵中战斗力最弱的 k 行的索引，按从最弱到最强排序。</p>
-<p>如果第 i 行的军人数量少于第 j 行，或者两行军人数量相同但 i 小于 j，那么我们认为第 i 行的战斗力比第 j 行弱。</p>
-<p>军人 总是 排在一行中的靠前位置，也就是说 1 总是出现在 0 之前。</p>
-<p>示例 1：</p>
-<p>输入：mat =<br>[[1,1,0,0,0],<br> [1,1,1,1,0],<br> [1,0,0,0,0],<br> [1,1,0,0,0],<br> [1,1,1,1,1]],<br>k = 3<br>输出：[2,0,3]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 2<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 2<br>行 4 -&gt; 5<br>从最弱到最强对这些行排序后得到 [2,0,3,1,4]<br>示例 2：</p>
-<p>输入：mat =<br>[[1,0,0,0],<br> [1,1,1,1],<br> [1,0,0,0],<br> [1,0,0,0]],<br>k = 2<br>输出：[0,2]<br>解释：<br>每行中的军人数目：<br>行 0 -&gt; 1<br>行 1 -&gt; 4<br>行 2 -&gt; 1<br>行 3 -&gt; 1<br>从最弱到最强对这些行排序后得到 [0,2,3,1]</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public static int[] KWeakestRows(int[][] mat, int k)&#123;</span><br><span class="line">        int m = mat.length, n = mat[0].length;</span><br><span class="line"></span><br><span class="line">        int[][] all = new int[m][2];</span><br><span class="line">        for (int i = 0; i &lt; m; i++)&#123;</span><br><span class="line">            int cur = 0;</span><br><span class="line">            for (int j = 0; j &lt; n; j++)&#123;</span><br><span class="line">                cur = cur + mat[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">            all[i] = new int[]&#123;cur, i&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        Arrays.sort(all, (a, b)-&gt;&#123;</span><br><span class="line">            if (a[0] != b[0]) return a[0] - b[0];</span><br><span class="line">            return a[1] - b[1];</span><br><span class="line">        &#125;);</span><br><span class="line">        int[] ans = new int[k];</span><br><span class="line">        for (int i = 0; i &lt; k; i++) ans[i] = all[i][1];</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
+        <h1 id="优化枚举的基本思路"><a href="#优化枚举的基本思路" class="headerlink" title="优化枚举的基本思路"></a>优化枚举的基本思路</h1><p>整理自：宫水三叶大佬的lc题解。地址为：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-submatrices-that-sum-to-target/solution/gong-shui-san-xie-you-hua-mei-ju-de-ji-b-uttw/%E3%80%82">https://leetcode-cn.com/problems/number-of-submatrices-that-sum-to-target/solution/gong-shui-san-xie-you-hua-mei-ju-de-ji-b-uttw/。</a></p>
+<h2 id="leetcode1074-元素和为目标值的子矩阵数量"><a href="#leetcode1074-元素和为目标值的子矩阵数量" class="headerlink" title="leetcode1074.元素和为目标值的子矩阵数量"></a>leetcode1074.元素和为目标值的子矩阵数量</h2><p>给出矩阵 matrix 和目标值 target，返回元素总和等于目标值的非空子矩阵的数量。</p>
+<p>子矩阵 x1, y1, x2, y2 是满足 x1 &lt;= x &lt;= x2 且 y1 &lt;= y &lt;= y2 的所有单元 matrix[x][y] 的集合。</p>
+<p>如果 (x1, y1, x2, y2) 和 (x1’, y1’, x2’, y2’) 两个子矩阵中部分坐标不同（如：x1 != x1’），那么这两个子矩阵也不同。</p>
+<h2 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h2>
       </div>
       
         <div class="copyright">
@@ -765,7 +760,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/04/8-1/" target="_blank" title="8-1">https://mhshan925.github.io/2021/08/04/8-1/</a>
+    <a href="/2021/08/04/优化枚举的基本思路/" target="_blank" title="优化枚举的基本思路">https://mhshan925.github.io/2021/08/04/优化枚举的基本思路/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -785,18 +780,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/3.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/04/8-2/" class="post-nav-link">
+    <a href="/2021/08/04/java%E5%A4%8D%E4%B9%A0%E5%A4%9A%E7%BA%BF%E7%A8%8B2/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-2</div>
+        <div>java复习多线程2</div>
       </div>
       
       <!-- <div class="content">
-        743.网络延迟时间有 n 个网络节点，标记为 1 到 n。
-给你一个列表 times，表示信号经过 有向 边的传递时间
+        多线程上篇（一）
       </div> -->
     </a>
   </div>
@@ -805,17 +799,18 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F-%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86/" class="post-nav-link">
+    <a href="/2021/08/04/8-4/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>操作系统-进程管理</div>
+        <div>8-4</div>
       </div>
       <!-- <div class="content">
-        进程进程的概念：在多道程序环境下，允许多个程序并发执行，此时它们将失去封闭性，并具有间断性及不可再现性的特征。
-为此引入
+        611.有效三角形的个数给定一个包含非负整数的数组，你的任务是统计其中可以组成三角形三条边的三元组个数。
+示例 1:
+输
       </div> -->
     </a>
   </div>

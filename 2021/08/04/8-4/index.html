@@ -754,7 +754,14 @@
 <p>解法一：排序+三层暴力循环</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int triangleNumber(int[] nums)&#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            for (int j = i - 1; j&gt;= 0; j--)&#123;</span><br><span class="line">                for (int k = j - 1; k &gt;= 0; k--)&#123;</span><br><span class="line">                    if (nums[k] + nums[j] &gt; nums[i])&#123;</span><br><span class="line">                        ans++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>解法二：</p>
+<p>解法二：进行优化。要找符合条件的三元组，其中一个切入点，可以是【枚举三元组的两个值，然后优化第三个数的逻辑】。</p>
+<p>在数组有序的前提下，当枚举到较大数下标i和次大树下标j的情况下，在[0，j）范围内找到符合条件的k的集合时，以符合条件的最小下标k为分割点的数轴上具有<strong>二段性。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static int triangleNumber(int[] nums)&#123;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        Arrays.sort(nums);</span><br><span class="line">        for (int i = 0; i &lt; nums.length; i++)&#123;</span><br><span class="line">            for (int j = i - 1; j&gt;= 0; j--)&#123;</span><br><span class="line">            //寻找最后一位的时候，用二分法</span><br><span class="line">                int left = 0, right = j - 1;</span><br><span class="line">                while (left &lt; right)&#123;</span><br><span class="line">                    int mid = (left + right) / 2;</span><br><span class="line">                    if (nums[mid] + nums[j] &gt; nums[i])&#123;</span><br><span class="line">                        right = mid;</span><br><span class="line">                    &#125;else &#123;</span><br><span class="line">                        left = mid + 1;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                if (left == right &amp;&amp; nums[right] + nums[j] &gt;nums[i])&#123;</span><br><span class="line">                    ans = ans + j - right;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>思路三：排序+双指针</p>
+<p>当枚举最大数下标i的时候，在[0，i）范围内逐步减小下标，找次大下标j，符合条件的k必然是从0逐步递增。因为在[0   i）范围内通过双指针，以逐步减小下标的方式枚举j，并在遇到不满足条件的k时，增大k下标。从而找到所有符合条件三元组的个数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public static int triangleNumber(int[] nums)&#123;</span><br><span class="line">       int length = nums.length;</span><br><span class="line">       Arrays.sort(nums);</span><br><span class="line">       int ans = 0;</span><br><span class="line">       for (int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">           for (int j = i - 1, k = 0; k &lt; j; j--)&#123;</span><br><span class="line">               while (k &lt; j &amp;&amp; nums[k] + nums[j] &lt;= nums[i])&#123;</span><br><span class="line">                   k++;</span><br><span class="line">               &#125;</span><br><span class="line">               ans = ans + j - k;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return ans;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 
       </div>
       
@@ -783,6 +790,23 @@
 
 
 
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/08/04/%E4%BC%98%E5%8C%96%E6%9E%9A%E4%B8%BE%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>优化枚举的基本思路</div>
+      </div>
+      
+      <!-- <div class="content">
+        优化枚举的基本思路整理自：宫水三叶大佬的lc题解。地址为：https://leetcode-cn.com/problem
+      </div> -->
+    </a>
+  </div>
+
 
 
   
@@ -796,7 +820,7 @@
         <div>8-3</div>
       </div>
       <!-- <div class="content">
-        
+        581.最短无序连续子数组给你一个整数数组 nums ，你需要找出一个 连续子数组 ，如果对这个子数组进行升序排序，那么
       </div> -->
     </a>
   </div>
