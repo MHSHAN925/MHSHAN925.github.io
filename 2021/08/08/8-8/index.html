@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>8-5 | Hexo</title>
+  <title>8-8 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/5.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['8-5'],
+              strings: ['8-8'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,35 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-05</span>
+        <span class="post-time">2021-08-08</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="802-找到最终的安全状态"><a href="#802-找到最终的安全状态" class="headerlink" title="802.找到最终的安全状态"></a>802.找到最终的安全状态</h1><p>在有向图中，以某个节点为起始节点，从该点出发，每一步沿着图中的一条有向边行走。如果到达的节点是终点（即它没有连出的有向边），则停止。</p>
-<p>对于一个起始节点，如果从该节点出发，无论每一步选择沿哪条有向边行走，最后必然在有限步内到达终点，则将该起始节点称作是 安全 的。</p>
-<p>返回一个由图中所有安全的起始节点组成的数组作为答案。答案数组中的元素应当按 升序 排列。</p>
-<p>该有向图有 n 个节点，按 0 到 n - 1 编号，其中 n 是 graph 的节点数。图以下述形式给出：graph[i] 是编号 j 节点的一个列表，满足 (i, j) 是图的一条有向边。</p>
-<h2 id="思路：深度优先搜索和三色法标记。"><a href="#思路：深度优先搜索和三色法标记。" class="headerlink" title="思路：深度优先搜索和三色法标记。"></a>思路：深度优先搜索和三色法标记。</h2><p>特点：如果起始节点在一个环内，或者能够到达一个环，则该节点不是安全的。否则，该节点是安全的。我们可以用深度优先搜索来找环，并在深度优先搜索的时候，用三种颜色进行标记。</p>
-<p>白色（用 00 表示）：该节点尚未被访问；<br>灰色（用 11 表示）：该节点位于递归栈中，或者在某个环上；<br>黑色（用 22 表示）：该节点搜索完毕，是一个安全节点。</p>
-<p>当我们首次访问一个节点时，将其标记为灰色，并继续搜索与其相连的节点。</p>
-<p>如果在搜索过程中遇到了一个灰色节点，则说明找到了一个环，此时退出搜索，栈中的节点仍保持为灰色，这一做法可以将「找到了环」这一信息传递到栈中的所有节点上。</p>
-<p>如果搜索过程中没有遇到灰色节点，则说明没有遇到环，那么递归返回前，我们将其标记由灰色改为黑色，即表示它是一个安全的节点。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">public static List&lt;Integer&gt; eventualSafeNodes(int[][] graph)&#123;</span><br><span class="line">       int n = graph.length;</span><br><span class="line">       int[] colors = new int[n];</span><br><span class="line">       List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">       for (int i = 0; i &lt; n; i++)&#123;</span><br><span class="line">           if (safe(graph, colors, i))&#123;</span><br><span class="line">               list.add(i);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       return list;</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   public static boolean safe(int[][] graph, int[] colors, int x)&#123;</span><br><span class="line">       if (colors[x] &gt; 0)&#123;</span><br><span class="line">           return colors[x] == 2;</span><br><span class="line">       &#125;</span><br><span class="line">       colors[x] = 1;</span><br><span class="line">       for (int y : graph[x])&#123;</span><br><span class="line">           if (!safe(graph, colors, y)) &#123;</span><br><span class="line">               return false;</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       colors[x] = 2;</span><br><span class="line">       return true;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       </div>
       
         <div class="copyright">
@@ -767,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/05/8-5/" target="_blank" title="8-5">https://mhshan925.github.io/2021/08/05/8-5/</a>
+    <a href="/2021/08/08/8-8/" target="_blank" title="8-8">https://mhshan925.github.io/2021/08/08/8-8/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -785,34 +765,17 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/08/08/8-6/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-6</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/04/%E7%9E%8E%E8%81%8ATCP/" class="post-nav-link">
+    <a href="/2021/08/08/8-7/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>瞎聊TCP</div>
+        <div>8-7</div>
       </div>
       <!-- <div class="content">
         
