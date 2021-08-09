@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>瞎聊网络 | Hexo</title>
+  <title>设计数据结构 | Hexo</title>
 
   
     
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['瞎聊网络'],
+              strings: ['设计数据结构'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-20</span>
+        <span class="post-time">2021-08-09</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%BD%91%E7%BB%9C/" class="">
-              网络
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -746,52 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="计算机网络体系结构"><a href="#计算机网络体系结构" class="headerlink" title="计算机网络体系结构"></a>计算机网络体系结构</h1><p>以五层结构为例：</p>
-<p><strong>1）应用层：</strong>应用程序收到”传输层”的数据，接下来就要进行解读。由于互联网是开放架构，数据来源五花八门，必须事先规定好格式，否则根本无法解读。”应用层”的作用，就是规定应用程序的数据格式。如http协议，它实际上是定义了如何包装和解析数据。</p>
-<p><strong>2）运输层：</strong>我们还需要一个参数，表示这个数据包到底供哪个程序（进程）使用。这个参数就叫做”端口”（port），它其实是每一个使用网卡的程序的编号。每个数据包都发到主机的特定端口，所以不同的程序就能取到自己所需要的数据。</p>
-<p>“传输层”的功能，就是建立”端口到端口”的通信。相比之下，”网络层”的功能是建立”主机到主机”的通信。只要确定主机和端口，我们就能实现程序之间的交流。因此，Unix系统就把主机+端口，叫做”套接字”（socket）。</p>
-<p>运输层有TCP和UDP两种协议，分别对应可靠的运输和不可靠的运输，如TCP因为要提供可靠的传输，所以内部要解决如何建立连接、如何保证传输是可靠的不丢数据、如何调节流量控制和拥塞控制。关于这一层，我们平常一般都是和Socket打交道，Socket是一组封装的编程调用接口，通过它，我们就能操作TCP、UDP进行连接的建立等。我们平常使用Socket进行连接建立的时候，一般都要指定端口号,所以这一层指定了把数据送到对应的端口号。</p>
-<p><strong>3）网络层：</strong>作用是引进一套新的地址，使得我们能够区分不同的计算机是否属于同一个子网络。这套地址就叫做”网络地址”。网络地址帮助我们确定计算机所在的子网络，MAC地址则将数据包送到该子网络中的目标网卡。——–IP协议</p>
-<p>为什么需要网络层：以太网采用广播方式发送数据包，所有成员人手一”包”，不仅效率低，而且局限在发送者所在的子网络。也就是说，如果两台计算机不在同一个子网络，广播是传不过去的。这种设计是不合理的，否则互联网上每一台计算机都会收到所有包，那会引起灾难。</p>
-<p>IP数据包：把IP数据包直接放进以太网数据包的数据部分</p>
-<p><strong>4）数据链路层：</strong>在物理层的基础上，确定了0和1的分组方式。以太网协议规定，一组电信号构成一个数据包，叫做帧。每一帧分成两个部分：标头和数据。以太网规定，连入网络的所有设备，都必须具有”网卡”接口。数据包必须是从一块网卡，传送到另一块网卡。网卡的地址，就是数据包的发送地址和接收地址，这叫做MAC地址。</p>
-<p><strong>定义地址只是第一步，后面还有更多的步骤：</strong></p>
-<ul>
-<li><strong>1）首先：</strong>一块网卡怎么会知道另一块网卡的MAC地址？<br>回答是有一种ARP协议，可以解决这个问题。这个留到后面介绍，这里只需要知道，以太网数据包必须知道接收方的MAC地址，然后才能发送。</li>
-<li><strong>2）其次：</strong>就算有了MAC地址，系统怎样才能把数据包准确送到接收方？<br>回答是以太网采用了一种很”原始”的方式，它不是把数据包准确送到接收方，而是向本网络内所有计算机发送，让每台计算机自己判断，是否为接收方。</li>
-</ul>
-<p>有了数据包的定义、网卡的MAC地址、广播的发送方式，”数据链路层”就可以在多台计算机之间传送数据了。</p>
-<p><strong>5）物理层：</strong>用光缆、电缆、双绞线、无线电波的方式将计算机组网，进行数据传输。主要规定了网络的电气特性，作用是负责传送0和1的电信号。</p>
-<p>所以通过上面五层的各司其职，实现物理传输介质–MAC地址–IP地址–端口号–获取到数据根据应用层协议解析数据最终实现了网络通信和数据传输。</p>
-<p>发送这个包需要知道两个地址：对方的MAC地址、对方的IP地址。</p>
-<table>
-<thead>
-<tr>
-<th><strong>场景</strong></th>
-<th><strong>数据包地址</strong></th>
-</tr>
-</thead>
-<tbody><tr>
-<td>同一个子网络</td>
-<td>对方的MAC地址，对方的IP地址</td>
-</tr>
-<tr>
-<td>非同一个子网络</td>
-<td>网关的MAC地址，对方的IP地址</td>
-</tr>
-</tbody></table>
-<h1 id="快速理解网络通信协议"><a href="#快速理解网络通信协议" class="headerlink" title="快速理解网络通信协议"></a>快速理解网络通信协议</h1><h2 id="五层模型：（当然还有七层和四层的）"><a href="#五层模型：（当然还有七层和四层的）" class="headerlink" title="五层模型：（当然还有七层和四层的）"></a>五层模型：（当然还有七层和四层的）</h2><img "" class="lazyload placeholder" data-original="/2021/07/20/%E7%9E%8E%E8%81%8A%E7%BD%91%E7%BB%9C/model.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="model" style="zoom:200%;">
-
-<p>重点看五层模型：从下到上分别为，物理层、数据链路层、网络层、传输层、应用层。</p>
-<h3 id="物理层："><a href="#物理层：" class="headerlink" title="物理层："></a>物理层：</h3><p>​        用光缆、电缆、双绞线、无线电波的方式将计算机组网，进行数据传输。主要规定了网络的电气特性，作用是负责传送0和1的电信号。</p>
-<h3 id="数据链路层："><a href="#数据链路层：" class="headerlink" title="数据链路层："></a>数据链路层：</h3><p>​        定义：在物理层的基础上，确定0和1的分组方式。</p>
-<p>​        早期时候，每家公司有自己的电信号分组方式。逐渐，一种叫“以太网的协议”，占据了主导地位。以太网规定，一组电信号构成一个数据包，叫做帧。每个帧分成两个部分：标头（head）和数据（Data）。</p>
-<p>​        “标头”包含数据包的一些说明项，比如发送者、接受者、数据类型等等；”数据”则是数据包的具体内容。</p>
-<p>​        “标头”的长度，固定为18字节。”数据”的长度，最短为46字节，最长为1500字节。因此，整个”帧”最短为64字节，最长为1518字节。如果数据很长，就必须分割成多个帧进行发送。</p>
-<p>​        MAC地址：以太网规定，连入网络的所有设备，都必须具有网卡接口。数据必须是从一块网卡，传送到另一块网卡。网卡的地址，就是数据包的发送和接收地址，被称为MAC地址。MAC地址长度为48个二进制位，有了网卡就可以定位网卡和数据包的路径。</p>
-<p>​        数据链路层能够在计算机之间传送数据:数据包的定义+网卡的MAC地址+广播的发送方式。</p>
-<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><p>​        前提：互联网是无数子网络共同组成的巨型网络。只有MAC地址无法在不同的子网络广播。从而引入网络层，作用是引进一套新的地址，使得区分</p>
-
+        <h1 id="实现栈（数组）"><a href="#实现栈（数组）" class="headerlink" title="实现栈（数组）"></a>实现栈（数组）</h1>
       </div>
       
         <div class="copyright">
@@ -801,7 +756,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/20/瞎聊网络/" target="_blank" title="瞎聊网络">https://mhshan925.github.io/2021/07/20/瞎聊网络/</a>
+    <a href="/2021/08/09/设计数据结构/" target="_blank" title="设计数据结构">https://mhshan925.github.io/2021/08/09/设计数据结构/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -819,37 +774,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/20/%E7%9E%8E%E8%81%8AHTTP-1-1/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>瞎聊HTTP/1.1</div>
-      </div>
-      
-      <!-- <div class="content">
-        HTTP/1.1HTTP（全称超文本传输协议，英文全称HyperText Transfer Protocol）是互联网上
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/20/7-20/" class="post-nav-link">
+    <a href="/2021/08/09/8-9/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-20</div>
+        <div>8-9</div>
       </div>
       <!-- <div class="content">
-        1877：数组中最大数对和的最小值一个数对 (a,b) 的 数对和 等于 a + b 。6最大数对和 是一个数对数组中最
+        313.超级丑数超级丑数 是一个正整数，并满足其所有质因数都出现在质数数组 primes 中。
+给你一个整数 n 和一个
       </div> -->
     </a>
   </div>
