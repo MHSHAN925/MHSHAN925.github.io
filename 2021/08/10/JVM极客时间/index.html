@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>排序算法 | Hexo</title>
+  <title>JVM极客时间 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/13.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/7.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['排序算法'],
+              strings: ['JVM极客时间'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-27</span>
+        <span class="post-time">2021-08-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
-              算法
+            <a href="/tags/%E9%9D%A2%E8%AF%95/" class="">
+              面试
             </a>
           
         </div>
@@ -746,65 +746,31 @@
         
       </div>
       <div class="post-content">
-        <p>排序：对一序列对象根据某个关键字进行排序</p>
-<p>术语说明：</p>
-<p>​        稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。</p>
-<p>​        不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面。</p>
-<p>​        内排序：所有排序操作都在内存中完成的。</p>
-<p>​        外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行。</p>
-<p>​        时间复杂度：一个算法执行所耗费的时间。</p>
-<p>​        空间复杂度：运行完一个程序所需要的的内存大小。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/sort.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="排序总结" style="zoom:200%;">
+        <h1 id="day1"><a href="#day1" class="headerlink" title="day1"></a>day1</h1><h2 id="因素："><a href="#因素：" class="headerlink" title="因素："></a>因素：</h2><p>​        1.分配效率</p>
+<p>​        2.回收效率</p>
+<p>​        3.是否产生内存碎片</p>
+<p>​        4.空间利用率</p>
+<p>​        5.是否停顿，停顿时间是否可以接受</p>
+<p>​        6.时间复杂度</p>
+<p>​        7.实现的复杂度</p>
+<h2 id="引用计数："><a href="#引用计数：" class="headerlink" title="引用计数："></a>引用计数：</h2><p>​        算法原理：统计每个对象被引用的次数，如果引用次数为0就释放该对象。实现简单，能立即回收无用内存。</p>
+<p>​        存在的问题：在并发场景下，对应用计数的修改需要和对象指针的修改保证同步。需要加锁或者非常复杂的无锁算法。有时会引发连锁式的回收。无法有效解决循环引用。</p>
+<h3 id="如何解决循环引用："><a href="#如何解决循环引用：" class="headerlink" title="如何解决循环引用："></a>如何解决循环引用：</h3><p>​        可以通过强、弱引用计数结合方式解决引用计数的循环引用问题。（android的智能指针就是这样实现的）。</p>
+<p>​        智能指针：在binder源码中可以看到sp、wp类型的引用。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sp&lt;IBinder&gt; result = new BpBinder(handle);</span><br><span class="line"></span><br><span class="line">wp&lt;IBinder&gt; result = new BpBinder(handle);</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>n: 数据规模</li>
-<li>k: “桶”的个数</li>
-<li>In-place: 占用常数内存，不占用额外内存</li>
-<li>Out-place: 占用额外内存</li>
-</ul>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>​        冒泡排序：重复的走访要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。</p>
-<ul>
-<li>比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
-<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
-<li>针对所有的元素重复以上的步骤，除了最后一个；</li>
-<li>重复步骤1~3，直到排序完成。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 特点：稳定排序、平均时间复杂度o(n的平方)</span><br><span class="line">* 思想：有多少个待排元素就需要多少次排序。每次排序的结果会把最大的放在最后，排序的过程是相邻元素比较，排序的个数不包括已经排好的元素。</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleSort(int[] nums)&#123;</span><br><span class="line">        int temp;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        //length长度的数组，需要进行length次循环进行排序</span><br><span class="line">        for (int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">            //每次排序的个数不包括已经排好的元素，所以每次排序的个数都会递减。而且都是从第一个元素开始比较</span><br><span class="line">            for (int j = 0; j &lt; length - 1 - i; j++)&#123;</span><br><span class="line">                if (nums[j] &gt; nums[j +1])&#123;</span><br><span class="line">                    temp = nums[j];</span><br><span class="line">                    nums[j] = nums[j +1];</span><br><span class="line">                    nums[j + 1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p>​        表现最稳定的排序算法，无论什么样的数据都是0（n平方）的时间复杂度。优点不占用额外的内存空间。</p>
-<p>​        选择排序：首先在未排序序列中找到最小或最大的元素，存放到排序序列的起始位置，然后再从剩余未排序元素中寻找最小或最大元素，然后放到已排序序列的末尾。以此类推，直到所有元素排序完成。</p>
-<p>n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：</p>
-<ul>
-<li>初始状态：无序区为R[1..n]，有序区为空；</li>
-<li>第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
-<li>n-1趟结束，数组有序化了。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectionSort(int[] array)&#123;</span><br><span class="line">        if (array.length == 0)&#123;</span><br><span class="line">            return array;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; array.length; i++)&#123;</span><br><span class="line">            int minIndex = i;</span><br><span class="line">            for (int j = i; j &lt; array.length; j++)&#123;</span><br><span class="line">                if (array[j] &lt; array[minIndex])&#123;</span><br><span class="line">                    minIndex = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            int temp = array[minIndex];</span><br><span class="line">            array[minIndex] = array[i];</span><br><span class="line">            array[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        return array;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><p>​        插入排序的算法描述是一种简单直观的排序算法。工作原理是通过构建有序序列，对于未排序数据，在已排序的序列中从后向前扫描，找到响应位置并插入。</p>
-<p>一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：</p>
-<ul>
-<li>从第一个元素开始，该元素可以认为已经被排序；</li>
-<li>取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
-<li>如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
-<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
-<li>将新元素插入到该位置后；</li>
-<li>重复步骤2~5</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insert(int[] array)&#123;</span><br><span class="line">        if (array.length == 0)&#123;</span><br><span class="line">            return array;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int current;</span><br><span class="line">        for (int i = 0; i &lt; array.length - 1; i++)&#123;</span><br><span class="line">            current = array[i + 1];</span><br><span class="line">            int preIndex = i;</span><br><span class="line">            while (preIndex &gt;= 0 &amp;&amp; current &lt; array[preIndex])&#123;</span><br><span class="line">                array[preIndex + 1] = array[preIndex];</span><br><span class="line">                preIndex--;</span><br><span class="line">            &#125;</span><br><span class="line">            array[preIndex + 1] = current;</span><br><span class="line">        &#125;</span><br><span class="line">        return array;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>​        归并排序的性能不受输入数据的影响，但是时间复杂度为o（nlogn）。代价是需要额外的内存空间。</p>
-<p>​        归并排序是建立在归并操作上的一种有效的排序算法。该算法是分治法的典型应用。归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列。若将两个有序表合并为一个有序表，称为2-路归并。</p>
-<ul>
-<li>把长度为n的输入序列分成两个长度为n/2的子序列；</li>
-<li>对这两个子序列分别采用归并排序；</li>
-<li>将两个排序好的子序列合并成一个最终的排序序列。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public static int[] MergeSort(int[] array) &#123;</span><br><span class="line">       if (array.length &lt; 2) return array;</span><br><span class="line">       int mid = array.length / 2;</span><br><span class="line">       int[] left = Arrays.copyOfRange(array, 0, mid);</span><br><span class="line">       int[] right = Arrays.copyOfRange(array, mid, array.length);</span><br><span class="line">       return merge(MergeSort(left), MergeSort(right));</span><br><span class="line">   &#125;</span><br><span class="line">   /**</span><br><span class="line">    * 归并排序——将两段排序好的数组结合成一个排序数组</span><br><span class="line">    *</span><br><span class="line">    * @param left</span><br><span class="line">    * @param right</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   public static int[] merge(int[] left, int[] right) &#123;</span><br><span class="line">       int[] result = new int[left.length + right.length];</span><br><span class="line">       for (int index = 0, i = 0, j = 0; index &lt; result.length; index++) &#123;</span><br><span class="line">           if (i &gt;= left.length)</span><br><span class="line">               result[index] = right[j++];</span><br><span class="line">           else if (j &gt;= right.length)</span><br><span class="line">               result[index] = left[i++];</span><br><span class="line">           else if (left[i] &gt; right[j])</span><br><span class="line">               result[index] = right[j++];</span><br><span class="line">           else</span><br><span class="line">               result[index] = left[i++];</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>​        通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分关键字小，在分别对两部分继续进行排序，已达到整个序列有序。</p>
+<p>在 Java 中我们不用关心对象的销毁及内存释放，GC 机制会自动辨别回收无用对象，而 「智能指针」 就是 native 层一个小型的 GC 实现。</p>
+<p>智能指针以引用计数的方式来标识无用对象，使用智能指针的对象需继承自 RefBase，RefBase 中维护了此对象的强引用数量和弱引用数量。</p>
+<p>强指针 sp 重载了 “=” 运算符，在引用其他对象时将强引用计数 +1，在 sp 析构函数中将强引用计数 -1，当强引用计数减至 0 时销毁引用的对象，这样就实现了对象的自动释放。</p>
+<p>弱指针引用其他对象时将弱引用计数 +1，在 wp 析构函数中将弱引用计数 -1，当强引用计数为 0 时，不论弱引用计数是否为 0 都销毁引用的对象。</p>
+<p><strong>如何解决循环引用问题</strong><br>只靠强引用计数方式，会存在循环引用的问题，导致对象永远无法被释放，弱引用就是专门用来解决循环引用问题的：</p>
+<p>「若 A 强引用了 B，那 B 引用 A 时就需使用弱引用，当判断是否为无用对象时仅考虑强引用计数是否为 0，不关心弱引用计数的数量」</p>
+<p>这样就解决了循环引用导致对象无法释放的问题，但这会引发野指针问题：当 B 要通过弱指针访问 A 时，A 可能已经被销毁了，那指向 A 的这个弱指针就变成野指针了。在这种情况下，就表示 A 确实已经不存在了，需要进行重新创建等其他操作</p>
+<p><strong>智能指针自定义规则</strong><br>智能指针并不是固定的 “当强引用计数为 0 时，不论弱引用计数是否为 0 都销毁引用的对象” ，而是可以自定义规则。RefBase 提供了 extendObjectLifetime() 方法，可以用来设置引用计数器的规则，不同规则对删除目标对象的时机判断也是不一样的，包括以下三种规则：</p>
+<p>OBJECT_LIFETIME_STRONG：只有在这个对象内存空间中的强计数器值为 0 的时候才会销毁对象</p>
+<p>OBJECT_LIFETIME_WEAK：只有在这个对象内存空间中的强计数器和弱计数器的值都为 0 的时候才会销毁对象</p>
+<p>OBJECT_LIFETIME_MASK：不管这两个计数器是不是都为 0，都不销毁对象，即与一般指针无异，还是要自己手动去释放对象</p>
+<p>​        </p>
 
       </div>
       
@@ -815,7 +781,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/排序算法/" target="_blank" title="排序算法">https://mhshan925.github.io/2021/07/27/排序算法/</a>
+    <a href="/2021/08/10/JVM极客时间/" target="_blank" title="JVM极客时间">https://mhshan925.github.io/2021/08/10/JVM极客时间/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -833,40 +799,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>java复习笔记2</div>
-      </div>
-      
-      <!-- <div class="content">
-        java复习笔记集合：
-
-List集合：​        有序可重复。
-​        有序：存进去的顺序和取出的顺序
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/27/7-27/" class="post-nav-link">
+    <a href="/2021/08/10/%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-27</div>
+        <div>高频面试题</div>
       </div>
       <!-- <div class="content">
-        671.二叉树中第二小的节点给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 2 或 0。如果
+        TopK问题设计一个找到数据流中第 k 大元素的类（class）。注意是排序后的第 k 大元素，不是第 k 个不同的元素
       </div> -->
     </a>
   </div>

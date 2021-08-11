@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>排序算法 | Hexo</title>
+  <title>高频面试题 | Hexo</title>
 
   
     
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['排序算法'],
+              strings: ['高频面试题'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-27</span>
+        <span class="post-time">2021-08-10</span>
       </div>
       
       <div class="post-tags-categories">
@@ -746,65 +746,36 @@
         
       </div>
       <div class="post-content">
-        <p>排序：对一序列对象根据某个关键字进行排序</p>
-<p>术语说明：</p>
-<p>​        稳定：如果a原本在b前面，而a=b，排序之后a仍然在b的前面。</p>
-<p>​        不稳定：如果a原本在b的前面，而a=b，排序之后a可能会出现在b的后面。</p>
-<p>​        内排序：所有排序操作都在内存中完成的。</p>
-<p>​        外排序：由于数据太大，因此把数据放在磁盘中，而排序通过磁盘和内存的数据传输才能进行。</p>
-<p>​        时间复杂度：一个算法执行所耗费的时间。</p>
-<p>​        空间复杂度：运行完一个程序所需要的的内存大小。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/27/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/sort.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="排序总结" style="zoom:200%;">
+        <h1 id="TopK问题"><a href="#TopK问题" class="headerlink" title="TopK问题"></a>TopK问题</h1><p>设计一个找到数据流中第 k 大元素的类（class）。注意是排序后的第 k 大元素，不是第 k 个不同的元素。</p>
+<p>请实现 KthLargest 类：</p>
+<p>KthLargest(int k, int[] nums) 使用整数 k 和整数流 nums 初始化对象。<br>int add(int val) 将 val 插入数据流 nums 后，返回当前数据流中第 k 大的元素。</p>
+<p>示例：</p>
+<p>输入：<br>[“KthLargest”, “add”, “add”, “add”, “add”, “add”]<br>[[3, [4, 5, 8, 2]], [3], [5], [10], [9], [4]]<br>输出：<br>[null, 4, 5, 5, 8, 8]</p>
+<p>解释：<br>KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);<br>kthLargest.add(3);   // return 4<br>kthLargest.add(5);   // return 5<br>kthLargest.add(10);  // return 5<br>kthLargest.add(9);   // return 8<br>kthLargest.add(4);   // return 8</p>
+<p>思路一：每次调用add的时候，先加入，再遍历k次，找到TopK值。</p>
+<p>通过冒泡的方法寻找</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">public class TOPK &#123;</span><br><span class="line">    int k;</span><br><span class="line">    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    //构造函数</span><br><span class="line">    public TOPK()&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    public TOPK(int k, int[] nums)&#123;</span><br><span class="line">        this.k = k;</span><br><span class="line">        for (int num : nums)&#123;</span><br><span class="line">            list.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int add(int val)&#123;</span><br><span class="line">        list.add(val);</span><br><span class="line">        int cur = 0;</span><br><span class="line">        for (int i = 0; i &lt; k; i++)&#123;</span><br><span class="line">            int index = findMax(cur, list.size() - 1);</span><br><span class="line">            swap(cur, index);</span><br><span class="line">            cur++;</span><br><span class="line">        &#125;</span><br><span class="line">        return list.get(cur - 1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private int findMax(int start, int end)&#123;</span><br><span class="line">        int ans = 0, max = Integer.MIN_VALUE;</span><br><span class="line">        for (int i = start; i &lt; end; i++)&#123;</span><br><span class="line">            int temp = list.get(i);</span><br><span class="line">            if (temp &gt; max)&#123;</span><br><span class="line">                max = temp;</span><br><span class="line">                ans = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void swap(int a, int b)&#123;</span><br><span class="line">        int c = list.get(a);</span><br><span class="line">        list.set(a, list.get(b));</span><br><span class="line">        list.set(b, c);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>n: 数据规模</li>
-<li>k: “桶”的个数</li>
-<li>In-place: 占用常数内存，不占用额外内存</li>
-<li>Out-place: 占用额外内存</li>
-</ul>
-<h1 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h1><p>​        冒泡排序：重复的走访要排序的数列，一次比较两个元素，如果它们的顺序错误就把它们交换过来。</p>
-<ul>
-<li>比较相邻的元素。如果第一个比第二个大，就交换它们两个；</li>
-<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对，这样在最后的元素应该会是最大的数；</li>
-<li>针对所有的元素重复以上的步骤，除了最后一个；</li>
-<li>重复步骤1~3，直到排序完成。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">* 特点：稳定排序、平均时间复杂度o(n的平方)</span><br><span class="line">* 思想：有多少个待排元素就需要多少次排序。每次排序的结果会把最大的放在最后，排序的过程是相邻元素比较，排序的个数不包括已经排好的元素。</span><br></pre></td></tr></table></figure>
+<p>思路二：用快排来代替冒泡排序。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public class TopK2 &#123;</span><br><span class="line">    int k;</span><br><span class="line">    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    public TopK2(int k, int[] nums)&#123;</span><br><span class="line">        this.k = k;</span><br><span class="line">        for (int num : nums)&#123;</span><br><span class="line">            list.add(num);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int add(int val)&#123;</span><br><span class="line">        list.add(val);</span><br><span class="line">        Collections.sort(list);</span><br><span class="line">        return list.get(list.size() - k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">public static int[] bubbleSort(int[] nums)&#123;</span><br><span class="line">        int temp;</span><br><span class="line">        int length = nums.length;</span><br><span class="line">        //length长度的数组，需要进行length次循环进行排序</span><br><span class="line">        for (int i = 0; i &lt; length; i++)&#123;</span><br><span class="line">            //每次排序的个数不包括已经排好的元素，所以每次排序的个数都会递减。而且都是从第一个元素开始比较</span><br><span class="line">            for (int j = 0; j &lt; length - 1 - i; j++)&#123;</span><br><span class="line">                if (nums[j] &gt; nums[j +1])&#123;</span><br><span class="line">                    temp = nums[j];</span><br><span class="line">                    nums[j] = nums[j +1];</span><br><span class="line">                    nums[j + 1] = temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return nums;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>思路三：优先队列</p>
+<p>使用一个大小为k的优先队列来存储 前k大的元素，其中优先队列的队头为队列中最小的元素，也就是第k大的元素。</p>
+<p>在单次插入的操作中，我们首先将元素val加入到优先队列中。如果此时优先队列的大小大于k，需要将优先队列的队头元素弹出，以保证优先队列的大小为k。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class TopK3 &#123;</span><br><span class="line">    PriorityQueue&lt;Integer&gt; pq;</span><br><span class="line">    int k;</span><br><span class="line"></span><br><span class="line">    public TopK3(int k, int[] nums) &#123;</span><br><span class="line">        this.k = k;</span><br><span class="line">        pq = new PriorityQueue&lt;Integer&gt;();</span><br><span class="line">        for (int x : nums) &#123;</span><br><span class="line">            add(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int add(int val) &#123;</span><br><span class="line">        pq.offer(val);</span><br><span class="line">        if (pq.size() &gt; k) &#123;</span><br><span class="line">            pq.poll();</span><br><span class="line">        &#125;</span><br><span class="line">        return pq.peek();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h1 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h1><p>​        表现最稳定的排序算法，无论什么样的数据都是0（n平方）的时间复杂度。优点不占用额外的内存空间。</p>
-<p>​        选择排序：首先在未排序序列中找到最小或最大的元素，存放到排序序列的起始位置，然后再从剩余未排序元素中寻找最小或最大元素，然后放到已排序序列的末尾。以此类推，直到所有元素排序完成。</p>
-<p>n个记录的直接选择排序可经过n-1趟直接选择排序得到有序结果。具体算法描述如下：</p>
-<ul>
-<li>初始状态：无序区为R[1..n]，有序区为空；</li>
-<li>第i趟排序(i=1,2,3…n-1)开始时，当前有序区和无序区分别为R[1..i-1]和R(i..n）。该趟排序从当前无序区中-选出关键字最小的记录 R[k]，将它与无序区的第1个记录R交换，使R[1..i]和R[i+1..n)分别变为记录个数增加1个的新有序区和记录个数减少1个的新无序区；</li>
-<li>n-1趟结束，数组有序化了。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] selectionSort(int[] array)&#123;</span><br><span class="line">        if (array.length == 0)&#123;</span><br><span class="line">            return array;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; array.length; i++)&#123;</span><br><span class="line">            int minIndex = i;</span><br><span class="line">            for (int j = i; j &lt; array.length; j++)&#123;</span><br><span class="line">                if (array[j] &lt; array[minIndex])&#123;</span><br><span class="line">                    minIndex = j;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            int temp = array[minIndex];</span><br><span class="line">            array[minIndex] = array[i];</span><br><span class="line">            array[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        return array;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1><p>​        插入排序的算法描述是一种简单直观的排序算法。工作原理是通过构建有序序列，对于未排序数据，在已排序的序列中从后向前扫描，找到响应位置并插入。</p>
-<p>一般来说，插入排序都采用in-place在数组上实现。具体算法描述如下：</p>
-<ul>
-<li>从第一个元素开始，该元素可以认为已经被排序；</li>
-<li>取出下一个元素，在已经排序的元素序列中从后向前扫描；</li>
-<li>如果该元素（已排序）大于新元素，将该元素移到下一位置；</li>
-<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置；</li>
-<li>将新元素插入到该位置后；</li>
-<li>重复步骤2~5</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public static int[] insert(int[] array)&#123;</span><br><span class="line">        if (array.length == 0)&#123;</span><br><span class="line">            return array;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int current;</span><br><span class="line">        for (int i = 0; i &lt; array.length - 1; i++)&#123;</span><br><span class="line">            current = array[i + 1];</span><br><span class="line">            int preIndex = i;</span><br><span class="line">            while (preIndex &gt;= 0 &amp;&amp; current &lt; array[preIndex])&#123;</span><br><span class="line">                array[preIndex + 1] = array[preIndex];</span><br><span class="line">                preIndex--;</span><br><span class="line">            &#125;</span><br><span class="line">            array[preIndex + 1] = current;</span><br><span class="line">        &#125;</span><br><span class="line">        return array;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h1><h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><p>​        归并排序的性能不受输入数据的影响，但是时间复杂度为o（nlogn）。代价是需要额外的内存空间。</p>
-<p>​        归并排序是建立在归并操作上的一种有效的排序算法。该算法是分治法的典型应用。归并排序是一种稳定的排序方法。将已有序的子序列合并，得到完全有序的序列。若将两个有序表合并为一个有序表，称为2-路归并。</p>
-<ul>
-<li>把长度为n的输入序列分成两个长度为n/2的子序列；</li>
-<li>对这两个子序列分别采用归并排序；</li>
-<li>将两个排序好的子序列合并成一个最终的排序序列。</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">public static int[] MergeSort(int[] array) &#123;</span><br><span class="line">       if (array.length &lt; 2) return array;</span><br><span class="line">       int mid = array.length / 2;</span><br><span class="line">       int[] left = Arrays.copyOfRange(array, 0, mid);</span><br><span class="line">       int[] right = Arrays.copyOfRange(array, mid, array.length);</span><br><span class="line">       return merge(MergeSort(left), MergeSort(right));</span><br><span class="line">   &#125;</span><br><span class="line">   /**</span><br><span class="line">    * 归并排序——将两段排序好的数组结合成一个排序数组</span><br><span class="line">    *</span><br><span class="line">    * @param left</span><br><span class="line">    * @param right</span><br><span class="line">    * @return</span><br><span class="line">    */</span><br><span class="line">   public static int[] merge(int[] left, int[] right) &#123;</span><br><span class="line">       int[] result = new int[left.length + right.length];</span><br><span class="line">       for (int index = 0, i = 0, j = 0; index &lt; result.length; index++) &#123;</span><br><span class="line">           if (i &gt;= left.length)</span><br><span class="line">               result[index] = right[j++];</span><br><span class="line">           else if (j &gt;= right.length)</span><br><span class="line">               result[index] = left[i++];</span><br><span class="line">           else if (left[i] &gt; right[j])</span><br><span class="line">               result[index] = right[j++];</span><br><span class="line">           else</span><br><span class="line">               result[index] = left[i++];</span><br><span class="line">       &#125;</span><br><span class="line">       return result;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><p>​        通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分关键字小，在分别对两部分继续进行排序，已达到整个序列有序。</p>
+<h2 id="补充：java中的优先队列PriprityQueue"><a href="#补充：java中的优先队列PriprityQueue" class="headerlink" title="补充：java中的优先队列PriprityQueue"></a>补充：java中的优先队列PriprityQueue</h2><p>​        java中的PriorityQueue通过二叉小顶堆实现，可以用一颗完全二叉树表示。</p>
+<p>​        优先队列的作用是能保证每次取出的元素都是队列中权值最小的（java优先队列每次取最小元素，c++的优先队列每次取最大元素）。元素的大小可以通过元素本身的自然顺序，也可以通过构造时传入的比较器。</p>
+<p>​        PriorityQueue实现了Queue接口，不允许放入null值。通过堆实现。具体来说是通过完全二叉树实现的小顶堆，可以通过数组作为PriorityQueue的底层实现。</p>
+<p>​        add（）和offer（）：add(E e)<code>和</code>offer(E e)<code>的语义相同，都是向优先队列中插入元素，只是</code>Queue<code>接口规定二者对插入失败时的处理不同，前者在插入失败时抛出异常，后则则会返回</code>false。</p>
+<p>​        element（）和peek（）：element()和peek()的语义完全相同，都是获取但不删除队首元素，也就是队列中权值最小的那个元素，二者唯一的区别是当方法失败时前者抛出异常，后者返回null。根据小顶堆的性质，堆顶那个元素就是全局最小的那个；由于堆用数组表示，根据下标关系，0下标处的那个元素既是堆顶元素。所以直接返回数组0下标处的那个元素即可。</p>
+<p>​        remove（）和poll（）：remove()和poll()方法的语义也完全相同，都是获取并删除队首元素，区别是当方法失败时前者抛出异常，后者返回null。由于删除操作会改变队列的结构，为维护小顶堆的性质，需要进行必要的调整。</p>
+<p>​        remove（Object o）：remove(Object o)方法用于删除队列中跟o相等的某一个元素（如果有多个相等，只删除一个），该方法不是Queue接口内的方法，而是Collection接口的方法。由于删除操作会改变队列结构，所以要进行调整；又由于删除元素的位置可能是任意的，所以调整过程比其它函数稍加繁琐。具体来说，remove(Object o)可以分为2种情况：1. 删除的是最后一个元素。直接删除即可，不需要调整。2. 删除的不是最后一个元素，从删除点开始以最后一个元素为参照调用一次siftDown()即可</p>
+<p>\1. Java中的优先队列默认情况下是小顶堆，堆是一种完全二叉树的结构，底层是基于数组实现的，<code>parentIndexInArr = (nodeIndexInArr-1)/2</code></p>
+<p>   \2. 小顶堆只要保证任意非叶子节点的值比起左右子树的值都要小即可。(和二叉搜索树不同，二叉搜索树要求左子树节点的值都要小于右子树所有节点的值)</p>
+<p>  \3. 插入的时候要求符合完全二叉树，所以是从最右边的叶子节点插入，然后依次和partent比较大小，调整堆的结构。默认情况下使用的比较器是类似于(a,b) -&gt; a - b , a表示输入的元素，b表示已经存在的元素，按照siftUp()的扩及，如果a-b&gt;=0,程序就会break，a就不会继续再往堆顶移动了，所以是小顶堆。</p>
+<p>  \4. 删除的时候根节点就是最小的位置，使用最右边的叶子节点替换根节点的值，然后逐层下面与左右孩子节点中较小的那个做交换，直到值小于等于左右孩子中任何一个为止。 </p>
+<p>  \5. PriorityQueue的构造函数支持自定义比较器，如果你反转下比较的逻辑，它也可以是个大顶堆！</p>
 
       </div>
       
@@ -815,7 +786,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/27/排序算法/" target="_blank" title="排序算法">https://mhshan925.github.io/2021/07/27/排序算法/</a>
+    <a href="/2021/08/10/高频面试题/" target="_blank" title="高频面试题">https://mhshan925.github.io/2021/08/10/高频面试题/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -835,20 +806,20 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/27/java%E5%A4%8D%E4%B9%A0%E7%AC%94%E8%AE%B02/" class="post-nav-link">
+    <a href="/2021/08/10/JVM%E6%9E%81%E5%AE%A2%E6%97%B6%E9%97%B4/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>java复习笔记2</div>
+        <div>JVM极客时间</div>
       </div>
       
       <!-- <div class="content">
-        java复习笔记集合：
-
-List集合：​        有序可重复。
-​        有序：存进去的顺序和取出的顺序
+        day1因素：​        1.分配效率
+​        2.回收效率
+​        3.是否产生内存碎片
+​
       </div> -->
     </a>
   </div>
@@ -857,16 +828,17 @@ List集合：​        有序可重复。
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/27/7-27/" class="post-nav-link">
+    <a href="/2021/08/10/8-10/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>7-27</div>
+        <div>8-10</div>
       </div>
       <!-- <div class="content">
-        671.二叉树中第二小的节点给定一个非空特殊的二叉树，每个节点都是正数，并且每个节点的子节点数量只能为 2 或 0。如果
+        413.等差数列划分如果一个数列 至少有三个元素 ，并且任意两个相邻元素之差相同，则称该数列为等差数列。
+例如，[1,3
       </div> -->
     </a>
   </div>
