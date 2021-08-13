@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95%E4%B9%8B%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="">
-              算法之动态规划
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -767,10 +767,10 @@
 <p>建议你在「记忆化搜索」的解决方案时，采取第一种策略：</p>
 <p><strong>确保在每次访问递归函数时先去“缓存”检查。尽管这有点“不美观”，但它能发挥「记忆化搜索」的最大作用。</strong></p>
 <h2 id="从【自顶向下】到自底向上"><a href="#从【自顶向下】到自底向上" class="headerlink" title="从【自顶向下】到自底向上"></a>从【自顶向下】到自底向上</h2><h1 id="浅谈动态规划2"><a href="#浅谈动态规划2" class="headerlink" title="浅谈动态规划2"></a>浅谈动态规划2</h1><p>动态规划中的每个状态一定是上一个状态推导出来的，贪心没有状态推导，而是直接从局部直接选最优的。</p>
-<p>1.确定dp数组以及下标的含义</p>
-<p>2.确定递推公式</p>
-<p>3.dp数组如何初始化</p>
-<p>4.确定遍历顺序</p>
+<p><strong>1.确定dp数组以及下标的含义</strong></p>
+<p><strong>2.确定递推公式</strong></p>
+<p><strong>3.dp数组如何初始化</strong></p>
+<p><strong>4.确定遍历顺序</strong></p>
 <p>5.举例推导dp数组</p>
 <h1 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h1><p>斐波那契数，通常用 F(n) 表示，形成的序列称为 斐波那契数列 。该数列由 0 和 1 开始，后面的每一项数字都是前面两项数字的和。也就是： F(0) = 0，F(1) = 1 F(n) = F(n - 1) + F(n - 2)，其中 n &gt; 1 给你n ，请计算 F(n) 。</p>
 <p>示例 1： 输入：2 输出：1 解释：F(2) = F(1) + F(0) = 1 + 0 = 1</p>
@@ -818,6 +818,11 @@
 <p>示例 1:</p>
 <p>输入: 2<br>输出: 1<br>解释: 2 = 1 + 1, 1 × 1 = 1。<br>示例 2:</p>
 <p>输入: 10<br>输出: 36<br>解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36。</p>
+<p>从暴力递归到记忆化搜索到动态规划的过程，可以参考<a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/integer-break/solution/bao-li-sou-suo-ji-yi-hua-sou-suo-dong-tai-gui-hua-/">https://leetcode-cn.com/problems/integer-break/solution/bao-li-sou-suo-ji-yi-hua-sou-suo-dong-tai-gui-hua-/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"> //暴力递归</span><br><span class="line">    //暴力递归思路：对于每个数，可以分成2个，三个，四个等(从1~n-2开始尝试)</span><br><span class="line">    public static int integerBreakDiGui(int n)&#123;</span><br><span class="line">        if (n &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (n == 2)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 1; i &lt;= n - 1; i++)&#123;</span><br><span class="line">            ans = Math.max(ans, Math.max(i * (n - i), i * integerBreakDiGui(n - i)));</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //记忆化搜索</span><br><span class="line">    //记忆化搜索思路：因为暴力递归的过程有很多重复计算，但是并没有减少遍历的次数。</span><br><span class="line">    public static int integerBreakMemory(int n)&#123;</span><br><span class="line">        if (n &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (n == 2)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] cache = new int[n + 1];</span><br><span class="line">        cache[2] = 1;</span><br><span class="line">        if (cache[n] != 0)&#123;</span><br><span class="line">            return cache[n];</span><br><span class="line">        &#125;</span><br><span class="line">        //如果当前cache【n】没有的话，就需要自己求。怎么求还是暴力递归</span><br><span class="line">        int curMax = 0;</span><br><span class="line">        for (int i = 1; i &lt;= n - 1; i++)&#123;</span><br><span class="line">            curMax = Math.max(curMax, Math.max(i * (n - i), i * integerBreakMemory(n - i)));</span><br><span class="line">        &#125;</span><br><span class="line">        cache[n] = curMax;</span><br><span class="line">        return cache[n];</span><br><span class="line">    &#125;</span><br><span class="line">//动态规划思路：但是对于这样的一个递归代码，我们更习惯转化为递推，</span><br><span class="line">// 将自顶向下的思路转换为自底向上，这也是记忆化搜索和DP之间的区别所在。</span><br><span class="line">    public static int integerBreakDp(int n)&#123;</span><br><span class="line">        if (n &lt; 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        if (n == 2)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">        int[] dp = new int[n + 2];</span><br><span class="line">        dp[2] = 1;</span><br><span class="line">        for (int i = 2; i &lt;= n; i++)&#123;</span><br><span class="line">            int curMax = -1;</span><br><span class="line">            for (int j = 1; j &lt;= i - 1; j++)&#123;</span><br><span class="line">                curMax = Math.max(curMax, Math.max(j * (i - j), j * dp[i - j]));</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i] = curMax;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[n];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+
 <h1 id="剑指offer42：连续子数组的最大和"><a href="#剑指offer42：连续子数组的最大和" class="headerlink" title="剑指offer42：连续子数组的最大和"></a>剑指offer42：连续子数组的最大和</h1><p>输入一个整型数组，数组中的一个或连续多个整数组成一个子数组。求所有子数组的和的最大值。</p>
 <p>要求时间复杂度为O(n)。</p>
 <p>示例1:</p>

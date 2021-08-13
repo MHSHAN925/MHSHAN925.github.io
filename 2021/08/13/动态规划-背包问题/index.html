@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>二分查找 | Hexo</title>
+  <title>动态规划-背包问题 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['二分查找'],
+              strings: ['动态规划-背包问题'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-07-14</span>
+        <span class="post-time">2021-08-13</span>
       </div>
       
       <div class="post-tags-categories">
@@ -744,90 +744,9 @@
         </div>
         
         
-        <div class="categories">
-          <i class="iconfont iconbookmark1"></i>
-          
-            <a href="/categories/%E7%AE%97%E6%B3%95/" class="">
-              算法
-            </a>
-          
-        </div>
-        
       </div>
       <div class="post-content">
-        <h2 id="二分查找算法的应用范围："><a href="#二分查找算法的应用范围：" class="headerlink" title="二分查找算法的应用范围："></a>二分查找算法的应用范围：</h2><p>​        在有序数组中进行查找一个数（二分下标）:数组和有序</p>
-<p>​        在整数范围内查找一个整数（二分答案）：</p>
-<h2 id="二分查找的两种思路："><a href="#二分查找的两种思路：" class="headerlink" title="二分查找的两种思路："></a>二分查找的两种思路：</h2><p>​        <strong>思路一：在循环体中查找元素</strong></p>
-<p>​        <strong>思路二：在循环体中排除目标元素一定不存在的区间</strong></p>
-<h1 id="704-二分查找"><a href="#704-二分查找" class="headerlink" title="704.二分查找"></a>704.二分查找</h1><p>给定一个 n 个元素有序的（升序）整型数组 nums 和一个目标值 target  ，写一个函数搜索 nums 中的 target，如果目标值存在返回下标，否则返回 -1。</p>
-<p>示例 1:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 9<br>输出: 4<br>解释: 9 出现在 nums 中并且下标为 4<br>示例 2:</p>
-<p>输入: nums = [-1,0,3,5,9,12], target = 2<br>输出: -1<br>解释: 2 不存在 nums 中因此返回 -1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//升序数组，数组中元素不重复</span><br><span class="line">    public static int binarySearch(int[] nums, int target)&#123;</span><br><span class="line">        int left = 0, right = nums.length - 1;</span><br><span class="line">        //条件是left &lt;= right，表示表示区间只有一个元素的时候，也需要判断。</span><br><span class="line">        //对应了二分查找算法的思路1，在循环体中查找元素</span><br><span class="line">        while (left &lt;= right)&#123;</span><br><span class="line">            //ind mid = (left + right) / 2，会发生溢出</span><br><span class="line">            //int mid = (left + right) &gt;&gt; 1.是等价的，位运算比整除运算要快一点。</span><br><span class="line">            //int mid = (left + right) &gt;&gt;&gt; 1.无符号右移，当发生整形溢出的时候，右移一位由于高位补0，结果依然正确。</span><br><span class="line">            //第一种思路里边，int mid = (left + right) / 2和 int mid = (left + right + 1) / 2都可以</span><br><span class="line">            int mid = left + (right - left) / 2;</span><br><span class="line">            if (nums[mid] == target)&#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125;else if (nums[mid] &gt; target)&#123;</span><br><span class="line">                right = mid - 1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                left = mid - 1;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="704-二分查找（另外一种写法）"><a href="#704-二分查找（另外一种写法）" class="headerlink" title="704.二分查找（另外一种写法）"></a>704.二分查找（另外一种写法）</h1><p>​        思路二：在循环体中排除目标一定不存在的区间，循环可以继续的条件是while（left &lt; right）。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">public int search(int[] nums, int target) &#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line"></span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = len - 1;</span><br><span class="line">        // 目标元素可能存在在区间 [left, right]</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            int mid = left + (right - left) / 2;</span><br><span class="line">            if (nums[mid] &lt; target) &#123;</span><br><span class="line">                // 下一轮搜索区间是 [mid + 1, right]</span><br><span class="line">                left = mid + 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 下一轮搜索区间是 [left, mid]</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (nums[left] == target) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public int search(int[] nums, int target) &#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line"></span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = len - 1;</span><br><span class="line">        while (left &lt; right) &#123;</span><br><span class="line">            int mid = left + (right - left + 1) / 2;</span><br><span class="line">            if (nums[mid] &gt; target) &#123;</span><br><span class="line">                // 下一轮搜索区间是 [left, mid - 1]</span><br><span class="line">                right = mid - 1;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                // 下一轮搜索区间是 [mid, right]</span><br><span class="line">                left = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (nums[left] == target) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>循环条件是while（left &lt; right）表明当left==right的时候就退出了循环。有可能需要在退出循环的时候单独判断一次。</p>
-<h3 id="为什么需要向上取整"><a href="#为什么需要向上取整" class="headerlink" title="为什么需要向上取整"></a>为什么需要向上取整</h3><p>mid 被分到左边区间<br>这个时候区分被分为两部分：[left, mid] 与 [mid + 1, right]，对应设置边界的代码为 right = mid 和 left = mid + 1;</p>
-<p>mid 被分到右边区间<br>这个时候区分被分为两部分： [left, mid - 1] 与 [mid, right]，对应设置边界的代码为 right = mid - 1 和 left = mid。</p>
-<p>注意：这种情况下，当搜索区间里只剩下两个元素的时候，一定要将取中间数的行为改成上取整，也就是在括号里加 1。</p>
-<p>这是因为 [left, right] 区间里只剩下两个元素的时候，如果是取中间数 mid 是下取整，一旦进入 left = mid 这个分支，区间就不会再缩小，下一轮搜索的区间还是 [left, right] ，下一次循环取 mid 还是看到了 left ，由于逻辑和上一轮循环一样，因此搜索区间不会缩小，就这样一直下去，这是一个死循环。</p>
-<p>解决方案也很简单，在最后一次循环的时候，把取中间数的时候修改为上取整。那么是不是要做一次判断，什么时候到了最后一轮循环呢？没有必要，整个循环体内，上取整就可以了。这个结论很重要，希望大家能够理解这里上取整的原因。根据循环体里，中位数被分到哪个区间，来决定取中间数的时候是否上取整。</p>
-<h3 id="编码要点"><a href="#编码要点" class="headerlink" title="编码要点"></a>编码要点</h3><p>循环终止条件写成：while (left &lt; right) ，表示退出循环的时候只剩下一个元素；<br>在循环体内考虑如何缩减待搜索区间，也可以认为是在待搜索区间里排除一定不存在目标元素的区间；<br>根据中间数被分到左边和右边区间，来调整取中间数的行为；<br>如何缩小待搜索区间，一个有效的办法是：从 nums[mid] 满足什么条件的时候一定不是目标元素去考虑，进而考虑 mid 的左边元素和右边元素哪一边可能存在目标元素。一个结论是：当看到 left = mid 的时候，取中间数需要上取整，这一点是为了避免死循环；<br>退出循环的时候，根据题意看是否需要单独判断最后剩下的那个数是不是目标元素。<br>边界设置的两种写法：</p>
-<p>right = mid 和 left = mid + 1 和 int mid = left + (right - left) / 2; 一定是配对出现的；<br>right = mid - 1 和 left = mid 和 int mid = left + (right - left + 1) / 2; 一定是配对出现的。</p>
-<img "" class="lazyload placeholder" data-original="/2021/07/14/%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE/binarySearch.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="binarySearch" style="zoom:200%;">
-
-<p>这一点不需要记忆，大家只要一直思考目标元素可能存在的区间就可以了。就像我们在代码注释里展示给大家的一样。因为下一轮搜索的区间是 [left, mid] 所以这个时候设置 right = mid 。当前这条性质不满足的时候，既然整个区间是 [left, right] 区间里，第一种情况所在区间是 [left, mid] ，那么另外一种情况对应的区间是 [mid + 1, right] ，两个区间合起来就是整个区间 [left, right] 。同理，去理解 right = mid - 1 和 left = mid 这两个边界设置。</p>
-<h1 id="704-二分查找（第三种写法）"><a href="#704-二分查找（第三种写法）" class="headerlink" title="704.二分查找（第三种写法）"></a>704.二分查找（第三种写法）</h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">public int search(int[] nums, int target) &#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line"></span><br><span class="line">        int left = 0;</span><br><span class="line">        int right = len - 1;</span><br><span class="line">        // 目标元素可能存在在区间 [left, right]</span><br><span class="line">        while (left + 1 &lt; right) &#123;</span><br><span class="line">            int mid = left + (right - left) / 2;</span><br><span class="line">            if (nums[mid] == target) &#123;</span><br><span class="line">                return mid;</span><br><span class="line">            &#125; else if (nums[mid] &lt; target) &#123;</span><br><span class="line">                left = mid;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (nums[left] == target) &#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (nums[right] == target) &#123;</span><br><span class="line">            return right;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>这种思路循环可以继续的条件是 while (left + 1 &lt; right) ，在待搜索区间剩下两个元素的时候，退出循环，所以它不需要考虑死循环的问题；但是正是由于退出循环的时候区间里有 22 个元素，所以在退出循环的时候一定得做判断；</p>
-<p>在循环体内分为 3 个分支，这一点和思路 1 是一样的；在循环体内，就没有 mid + 1 和 mid - 1 这样的表达式了。把中间数 mid 全部纳入下一轮要考虑的范围里。</p>
-<p>这种写法，我们不建议大家这样写，理由如下：</p>
-<p>left + 1 &lt; right 这种写法不是很自然；<br>退出循环的时候，一定要处理两个元素区间是两个元素的逻辑，这一步是附加的逻辑，是有可能出错的，相对于思路 2 是不太好的做法；<br>对于 mid 是不是在下一轮要考虑的区间里，这件事情只要思路清晰，是可以准确得出结论的，而这种写法恰好屏蔽了这些细节。</p>
-<h1 id="题型一：二分下标（在数组中查找符合条件的元素的下标）"><a href="#题型一：二分下标（在数组中查找符合条件的元素的下标）" class="headerlink" title="题型一：二分下标（在数组中查找符合条件的元素的下标）"></a>题型一：二分下标（在数组中查找符合条件的元素的下标）</h1><h2 id="35-搜索插入位置"><a href="#35-搜索插入位置" class="headerlink" title="35.搜索插入位置"></a>35.搜索插入位置</h2><p>给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。</p>
-<p>请必须使用时间复杂度为 O(log n) 的算法。</p>
-<p>示例 1:</p>
-<p>输入: nums = [1,3,5,6], target = 5<br>输出: 2<br>示例 2:</p>
-<p>输入: nums = [1,3,5,6], target = 2<br>输出: 1<br>示例 3:</p>
-<p>输入: nums = [1,3,5,6], target = 7<br>输出: 4<br>示例 4:</p>
-<p>输入: nums = [1,3,5,6], target = 0<br>输出: 0<br>示例 5:</p>
-<p>输入: nums = [1], target = 0<br>输出: 0</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//寻找下标的题目。需要寻找的下标是第一个大于等于target的位置</span><br><span class="line">    public static int searchInsert(int[] nums, int target)&#123;</span><br><span class="line">        int len = nums.length;</span><br><span class="line">        if (nums[len - 1] &lt;= target)&#123;</span><br><span class="line">            return len;</span><br><span class="line">        &#125;</span><br><span class="line">        if (nums[0] &gt;= target)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        int left = 0, right = len - 1;</span><br><span class="line">        while (left &lt; right)&#123;</span><br><span class="line">            int mid = left + (right - left) / 2;</span><br><span class="line">            if (nums[mid] &lt; target)&#123;</span><br><span class="line">                left = mid + 1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h2 id="34-在排序数组中查找元素的第一个位置和最后一个位置"><a href="#34-在排序数组中查找元素的第一个位置和最后一个位置" class="headerlink" title="34.在排序数组中查找元素的第一个位置和最后一个位置"></a>34.在排序数组中查找元素的第一个位置和最后一个位置</h2><p>给定一个按照升序排列的整数数组 nums，和一个目标值 target。找出给定目标值在数组中的开始位置和结束位置。</p>
-<p>如果数组中不存在目标值 target，返回 [-1, -1]。</p>
-<p>进阶：</p>
-<p>你可以设计并实现时间复杂度为 O(log n) 的算法解决此问题吗？</p>
-<p>示例 1：</p>
-<p>输入：nums = [5,7,7,8,8,10], target = 8<br>输出：[3,4]<br>示例 2：</p>
-<p>输入：nums = [5,7,7,8,8,10], target = 6<br>输出：[-1,-1]<br>示例 3：</p>
-<p>输入：nums = [], target = 0<br>输出：[-1,-1]</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">//寻找下标的题目，是第一个和最后一个位置</span><br><span class="line">    public static int[] searchRange(int[] nums, int target)&#123;</span><br><span class="line">        int[] ans = &#123;-1, -1&#125;;</span><br><span class="line">        int left = 0, right = nums.length - 1;</span><br><span class="line">        int firstIndex = -1, endIndex = -1;</span><br><span class="line">        firstIndex = searchFirstIndex(nums, target);</span><br><span class="line">        if (firstIndex == -1)&#123;</span><br><span class="line">            return ans;</span><br><span class="line">        &#125;</span><br><span class="line">        ans[0] = firstIndex;</span><br><span class="line">        endIndex = searchLastIndex(nums, target);</span><br><span class="line">        ans[1] = endIndex;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int searchFirstIndex(int[] nums, int target)&#123;</span><br><span class="line">        int left = 0, right = nums.length - 1;</span><br><span class="line">        while (left &lt; right)&#123;</span><br><span class="line">            int mid = left + (right - left) / 2;</span><br><span class="line">            if (nums[mid] &lt; target)&#123;</span><br><span class="line">                left = mid + 1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                right = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        if (nums[left] == target)&#123;</span><br><span class="line">            return left;</span><br><span class="line">        &#125;</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int searchLastIndex(int[] nums, int target)&#123;</span><br><span class="line">        int left = 0, right = nums.length - 1;</span><br><span class="line">        while (left &lt; right)&#123;</span><br><span class="line">            int mid = left + (right - left + 1) / 2;</span><br><span class="line">            if (nums[mid] &gt; target)&#123;</span><br><span class="line">                right = mid - 1;</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                left = mid;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return left;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h2 id="leetcode33：搜索旋转排序数组"><a href="#leetcode33：搜索旋转排序数组" class="headerlink" title="leetcode33：搜索旋转排序数组"></a>leetcode33：搜索旋转排序数组</h2><p>整数数组 nums 按升序排列，数组中的值 互不相同 。</p>
-<p>在传递给函数之前，nums 在预先未知的某个下标 k（0 &lt;= k &lt; nums.length）上进行了 旋转，使数组变为 [nums[k], nums[k+1], …, nums[n-1], nums[0], nums[1], …, nums[k-1]]（下标 从 0 开始 计数）。例如， [0,1,2,4,5,6,7] 在下标 3 处经旋转后可能变为 [4,5,6,7,0,1,2] 。</p>
-<p>给你 旋转后 的数组 nums 和一个整数 target ，如果 nums 中存在这个目标值 target ，则返回它的下标，否则返回 -1 。</p>
-<p>示例 1：</p>
-<p>输入：nums = [4,5,6,7,0,1,2], target = 0<br>输出：4<br>示例 2：</p>
-<p>输入：nums = [4,5,6,7,0,1,2], target = 3<br>输出：-1<br>示例 3：</p>
-<p>输入：nums = [1], target = 0<br>输出：-1</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public static int search(int[] nums, int target)&#123;</span><br><span class="line">    int index = 0;</span><br><span class="line">    int left = 0, right = nums.length;</span><br><span class="line">    for (int i = 0; i &lt; nums.length - 1; i++)&#123;</span><br><span class="line">        if (nums[i] &gt; nums[i + 1])&#123;</span><br><span class="line">            index = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    int ans = binarySearch(0, index, target, nums);</span><br><span class="line">    if (ans != -1)&#123;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">    if (index + 1 &lt; nums.length)&#123;</span><br><span class="line">        ans = binarySearch(index + 1, nums.length - 1, target, nums);</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//区间为[]</span><br><span class="line">private static int binarySearch(int left, int right, int target, int[] nums) &#123;</span><br><span class="line">    while (left &lt;= right)&#123;</span><br><span class="line">        int mid = left + (right - left) / 2;</span><br><span class="line">        if (nums[mid] == target)&#123;</span><br><span class="line">            return mid;</span><br><span class="line">        &#125;</span><br><span class="line">        if (nums[mid] &gt; target)&#123;</span><br><span class="line">            right = mid - 1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (nums[mid] &lt; target)&#123;</span><br><span class="line">            left = mid + 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>二分不是单纯的指从有序数组中快速找到某个数，这只是二分的一份应用。</p>
-<p>二分的本质是两段性，并非单调性。只要一段满足某个性质，另外一段不满足某个性质就可以用二分。</p>
-<h2 id="287-寻找重复数"><a href="#287-寻找重复数" class="headerlink" title="287.寻找重复数"></a>287.寻找重复数</h2><p>给定一个包含 n + 1 个整数的数组 nums ，其数字都在 1 到 n 之间（包括 1 和 n），可知至少存在一个重复的整数。</p>
-<p>假设 nums 只有 一个重复的整数 ，找出 这个重复的数 。</p>
-<p>你设计的解决方案必须不修改数组 nums 且只用常量级 O(1) 的额外空间。</p>
-<p>示例 1：</p>
-<p>输入：nums = [1,3,4,2,2]<br>输出：2<br>示例 2：</p>
-<p>输入：nums = [3,1,3,4,2]<br>输出：3<br>示例 3：</p>
-<p>输入：nums = [1,1]<br>输出：1<br>示例 4：</p>
-<p>输入：nums = [1,1,2]<br>输出：1</p>
+        <h1 id="0-1背包"><a href="#0-1背包" class="headerlink" title="0-1背包"></a>0-1背包</h1><p>​        有N件物品和一个最多能装重量为W的背包。第i件物品的重量是weight【i】，所对应的价值是value【i】。每件物品只能用一次，求解将这些物品装入背包里物品价值总和最大。</p>
 
       </div>
       
@@ -838,7 +757,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/07/14/二分查找/" target="_blank" title="二分查找">https://mhshan925.github.io/2021/07/14/二分查找/</a>
+    <a href="/2021/08/13/动态规划-背包问题/" target="_blank" title="动态规划-背包问题">https://mhshan925.github.io/2021/08/13/动态规划-背包问题/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -858,17 +777,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/15/7-15/" class="post-nav-link">
+    <a href="/2021/08/13/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>7-15</div>
+        <div>动态规划-路径问题</div>
       </div>
       
       <!-- <div class="content">
-        
+        leetcode62.不同路径动态规划解法：定义f【i】【j】为达到位置【ij】的不同路径数量。
+那么f【n- 1】【m
       </div> -->
     </a>
   </div>
@@ -877,17 +797,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/07/14/Flutter%E5%AE%9E%E6%88%98/" class="post-nav-link">
+    <a href="/2021/08/13/8-13/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>Flutter实战</div>
+        <div>8-13</div>
       </div>
       <!-- <div class="content">
-        https://book.flutterchina.club/
-第一章原生开发：原生应用程序是指某一个移动平台（比如iO
+        
       </div> -->
     </a>
   </div>
