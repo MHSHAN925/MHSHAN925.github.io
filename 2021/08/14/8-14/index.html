@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>动态规划-路径问题 | Hexo</title>
+  <title>8-14 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['动态规划-路径问题'],
+              strings: ['8-14'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-13</span>
+        <span class="post-time">2021-08-14</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
-              算法
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,21 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="leetcode62-不同路径"><a href="#leetcode62-不同路径" class="headerlink" title="leetcode62.不同路径"></a>leetcode62.不同路径</h1><p>动态规划解法：定义f【i】【j】为达到位置【ij】的不同路径数量。</p>
-<p>那么f【n- 1】【m-1】是最终答案，f【0】【0】=1，是一个起始条件。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//确定dp数组以及下标含义</span><br><span class="line">    //递推公式</span><br><span class="line">    //初始化</span><br><span class="line">    //遍历顺序</span><br><span class="line">    public static int uniquePaths(int m, int n)&#123;</span><br><span class="line">        int[][] dp = new int[m][n];</span><br><span class="line">        dp[0][0] = 1;</span><br><span class="line">        for (int i = 0; i &lt; m; i++)&#123;</span><br><span class="line">            for (int j = 0; j &lt; n; j++)&#123;</span><br><span class="line">                if (i &gt; 0 &amp;&amp; j &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];</span><br><span class="line">                &#125;else if (i &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = dp[i - 1][j];</span><br><span class="line">                &#125;else if (j &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - 1];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[m - 1][n - 1];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p><strong>注意：if和else if的关系和区别。</strong></p>
-<p>总结：</p>
-<p>​        如何确定是动态规划：从有无后效性入手，对于某个状态，我们可以只关注状态的值，而不需要关注状态是如何转移过来的，就是一个无后效性的问题。</p>
-<p>​        状态定义：相当一部分的状态定义是和结尾、答案相关的</p>
-<p>​        状态转移方程：对最后一步的分情况讨论。</p>
-<p>​        对状态转移的要求：求最值要保证不漏、方案数确保不重不漏。</p>
-<h1 id="leetcode64-最小路径和"><a href="#leetcode64-最小路径和" class="headerlink" title="leetcode64.最小路径和"></a>leetcode64.最小路径和</h1><p>给定一个包含非负整数的mn网格grid，请找出一条从左上角到右下角的路径，使得路径上的数字总和最小。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public int minPathSum(int[][] grid) &#123;</span><br><span class="line">        int m = grid.length, n = grid[0].length;</span><br><span class="line">        int[][] dp = new int[grid.length][grid[0].length];</span><br><span class="line">        dp[0][0] = grid[0][0];</span><br><span class="line">        for (int i = 0; i &lt; m; i++)&#123;</span><br><span class="line">            for (int j = 0; j&lt; n; j++)&#123;</span><br><span class="line">                if (i &gt; 0 &amp;&amp; j &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i - 1][j] + grid[i][j], dp[i][j - 1] + grid[i][j]);</span><br><span class="line">                &#125;else if (i &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = dp[i - 1][j] + grid[i][j];</span><br><span class="line">                &#125;else if (j &gt; 0)&#123;</span><br><span class="line">                    dp[i][j] = dp[i][j - 1] + grid[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[m - 1][n - 1];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>输出总和最低的路径：</p>
-
+        <h1 id><a href="#" class="headerlink" title></a></h1>
       </div>
       
         <div class="copyright">
@@ -770,7 +756,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/13/动态规划-路径问题/" target="_blank" title="动态规划-路径问题">https://mhshan925.github.io/2021/08/13/动态规划-路径问题/</a>
+    <a href="/2021/08/14/8-14/" target="_blank" title="8-14">https://mhshan925.github.io/2021/08/14/8-14/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -788,37 +774,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/08/14/8-14/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-14</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/13/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="post-nav-link">
+    <a href="/2021/08/13/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%B7%AF%E5%BE%84%E9%97%AE%E9%A2%98/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>动态规划-背包问题</div>
+        <div>动态规划-路径问题</div>
       </div>
       <!-- <div class="content">
-        0-1背包​        有N件物品和一个最多能装重量为W的背包。第i件物品的重量是weight【i】，所对应的价值是
+        leetcode62.不同路径动态规划解法：定义f【i】【j】为达到位置【ij】的不同路径数量。
+那么f【n- 1】【m
       </div> -->
     </a>
   </div>
