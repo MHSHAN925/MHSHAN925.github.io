@@ -734,10 +734,38 @@
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E7%BD%91%E7%BB%9C/" class="">
+              网络
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>​         数据链路层协议：规定了电子信号如何组成数据包，解决了子网内部的点对点通信问题。但是不能解决多个局域网互通问题</p>
+<p>​        网络层：IP协议定义了一套自己的地址，实现了路由功能。IP协议并不保证数据包的完整性。（依靠TCp协议，保证数据）</p>
+<p>​        以太网数据包大小是固定的，最初是1518，后来增加到1522字节。其中1500字节是负载，22字节是头信息。</p>
+<p>​        IP数据包在以太网数据包的负载里面，头信息最少需要20字节，所以IP数据包负载最多是1480字节。</p>
+<p>​        TCP在IP数据包的负载里面，头信息最少需要20字节，TCP最大的负载1460.由于IP和TCP协议往往有额外的头信息，所以TCP负载实际为1400字节左右。</p>
+<h2 id="TCP的服务"><a href="#TCP的服务" class="headerlink" title="TCP的服务"></a>TCP的服务</h2><p>​        TCP提供的是一种面向连接、可靠的字节流服务。</p>
+<p>​        面向连接：使用TCP的应用，在彼此交换数据之前必须先建立一个TCP连接。</p>
+<p>​        字节流服务：应用程序通过TCP连接交换8bit构成的一个字节，tcp不在字节流中插入记录标识符。</p>
+<p>​        TCP不对字节流内容进行解释，由应用层进行解释。</p>
+<h2 id="TCP首部"><a href="#TCP首部" class="headerlink" title="TCP首部"></a>TCP首部</h2><p>​        TCP数据被封装在一个数据报中。</p>
+<img "" class="lazyload placeholder" data-original="/2021/08/04/%E7%9E%8E%E8%81%8ATCP/tcp1.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="TCP首部" style="zoom:200%;">
+
+<img "" class="lazyload placeholder" data-original="/2021/08/04/%E7%9E%8E%E8%81%8ATCP/tcp2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="TCP首部" style="zoom:200%;">
+
+<h4 id="TCP数据包编号（seq）"><a href="#TCP数据包编号（seq）" class="headerlink" title="TCP数据包编号（seq）"></a>TCP数据包编号（seq）</h4><p>​        TCP协议为每个包编号，以便接受的一方按照顺序还原。</p>
+<h4 id="TCP数据包组装"><a href="#TCP数据包组装" class="headerlink" title="TCP数据包组装"></a>TCP数据包组装</h4><p>​        组装还原由操作系统完成。应用程序不会直接处理TCP数据包，应用程序需要的数据放在TCP数据包里面，有自己的格式。</p>
+<p>​        TCP没有提供任何机制，表示原始文件的大小。大小由应用层的协议规定。</p>
+<h4 id="慢启动和ACK"><a href="#慢启动和ACK" class="headerlink" title="慢启动和ACK"></a>慢启动和ACK</h4><p>​        慢启动：开始的时候发送的比较慢，根据丢包的情况，调整速率。</p>
+<p>​        ACK携带两个信息：1、期待要收到下一个数据包的编号。2、接收方的接收窗口的剩余容量。</p>
+
       </div>
       
         <div class="copyright">
