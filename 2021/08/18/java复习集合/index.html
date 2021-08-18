@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>8-17 | Hexo</title>
+  <title>java复习集合 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/15.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['8-17'],
+              strings: ['java复习集合'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-17</span>
+        <span class="post-time">2021-08-18</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/java/" class="">
+              java
             </a>
           
         </div>
@@ -746,17 +746,7 @@
         
       </div>
       <div class="post-content">
-        <h1 id="学生出勤记录一："><a href="#学生出勤记录一：" class="headerlink" title="学生出勤记录一："></a>学生出勤记录一：</h1><p>首先这是个放假题，直接上代码了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">public static boolean checkRecord(String s)&#123;</span><br><span class="line">        int absentDay = 0;</span><br><span class="line">        boolean lateNums = false;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">            if (s.charAt(i) == &#x27;A&#x27;)&#123;</span><br><span class="line">                absentDay++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        int left = 0, right = left + 2;</span><br><span class="line">        while (right &lt; s.length())&#123;</span><br><span class="line">            if (s.charAt(left) == &#x27;L&#x27; &amp;&amp; s.charAt(left + 1) == &#x27;L&#x27; &amp;&amp; s.charAt(left + 2) == &#x27;L&#x27;)&#123;</span><br><span class="line">                lateNums = true;</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            left++;</span><br><span class="line">            right++;</span><br><span class="line">        &#125;</span><br><span class="line">        if (absentDay &lt; 2 &amp;&amp; !lateNums)&#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125;</span><br><span class="line">        return false;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Z字形变换"><a href="#Z字形变换" class="headerlink" title="Z字形变换"></a>Z字形变换</h1><p>将一个给定字符串 s 根据给定的行数 numRows ，以从上往下、从左到右进行 Z 字形排列。</p>
-<p>比如输入字符串为 “PAYPALISHIRING” 行数为 3 时，排列如下：</p>
-<p>P   A   H   N<br>A P L S I I G<br>Y   I   R<br>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”PAHNAPLSIIGYIR”。</p>
-<p>请你实现这个将字符串进行指定行数变换的函数：</p>
-<p>string convert(string s, int numRows);</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">/*public static String convert(String s, int numRows)&#123;</span><br><span class="line">        char[] string = s.toCharArray();</span><br><span class="line">        char[] stringOut = new char[s.length()];</span><br><span class="line">        if (numRows == 1)&#123;</span><br><span class="line">            return s;</span><br><span class="line">        &#125;</span><br><span class="line">        //rows中存储的是总共有多少行</span><br><span class="line">        List&lt;StringBuilder&gt; rows= new ArrayList&lt;&gt;();</span><br><span class="line">        //循环创建stringBuilder</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++)&#123;</span><br><span class="line">            rows.add(new StringBuilder());</span><br><span class="line">        &#125;</span><br><span class="line">        int i = 0, flag = -1;</span><br><span class="line">        for (char c : s.toCharArray())&#123;</span><br><span class="line">            rows.get(i).append(c);</span><br><span class="line">            if (i == 0 || i == numRows - 1)&#123;</span><br><span class="line">                flag = -flag;</span><br><span class="line">            &#125;</span><br><span class="line">            i += flag;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        for (StringBuilder row : rows)&#123;</span><br><span class="line">            res.append(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;*/</span><br><span class="line">    //官方题解中，选择StringBuilder的个数有一套，min(numRows，s.length)</span><br><span class="line">    public static String convert(String s, int numRows)&#123;</span><br><span class="line">        if (numRows == 1)&#123;</span><br><span class="line">            return s;</span><br><span class="line">        &#125;</span><br><span class="line">        int rowNum = Math.min(numRows, s.length());</span><br><span class="line">        List&lt;StringBuilder&gt; rows = new ArrayList&lt;&gt;(rowNum);</span><br><span class="line">        for (int i = 0; i &lt; rowNum; i++)&#123;</span><br><span class="line">            rows.add(new StringBuilder());</span><br><span class="line">        &#125;</span><br><span class="line">        int flag = -1, i = 0;</span><br><span class="line">        for (char c : s.toCharArray())&#123;</span><br><span class="line">            rows.get(i).append(c);</span><br><span class="line">            if (i == 0 || i == rowNum - 1)&#123;</span><br><span class="line">                flag = -flag;</span><br><span class="line">            &#125;</span><br><span class="line">            i += flag;</span><br><span class="line">        &#125;</span><br><span class="line">        StringBuilder res = new StringBuilder();</span><br><span class="line">        for (StringBuilder row : rows)&#123;</span><br><span class="line">            res.append(row);</span><br><span class="line">        &#125;</span><br><span class="line">        return res.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
+        <h1 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h1>
       </div>
       
         <div class="copyright">
@@ -766,7 +756,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/17/8-17/" target="_blank" title="8-17">https://mhshan925.github.io/2021/08/17/8-17/</a>
+    <a href="/2021/08/18/java复习集合/" target="_blank" title="java复习集合">https://mhshan925.github.io/2021/08/18/java复习集合/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -784,37 +774,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/08/18/8-18/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-18</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/4.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/16/8-16/" class="post-nav-link">
+    <a href="/2021/08/18/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>8-16</div>
+        <div>回溯算法</div>
       </div>
       <!-- <div class="content">
-        
+        回溯算法（复盘代码随想录的回溯专题）​        回溯算法：是一种搜索的算法。
+​        回溯算法和递归是密
       </div> -->
     </a>
   </div>
