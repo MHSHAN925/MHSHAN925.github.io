@@ -750,6 +750,8 @@
 <p>示例 1：</p>
 <p>输入：”hello”<br>输出：”holle”<br>示例 2：</p>
 <p>输入：”leetcode”<br>输出：”leotcede”</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public String reverseVowels(String s) &#123;</span><br><span class="line">       Stack&lt;Character&gt; stack = new Stack&lt;&gt;();</span><br><span class="line">        char[] chars = s.toCharArray();</span><br><span class="line">        for (int i = 0; i &lt; chars.length; i++)&#123;</span><br><span class="line">            if (chars[i] == &#x27;a&#x27; || chars[i] == &#x27;e&#x27; || chars[i] == &#x27;i&#x27; || chars[i] == &#x27;o&#x27; || chars[i] == &#x27;u&#x27; || chars[i] == &#x27;A&#x27; || chars[i] == &#x27;E&#x27; || chars[i] == &#x27;I&#x27; || chars[i] == &#x27;O&#x27; || chars[i] == &#x27;U&#x27;)&#123;</span><br><span class="line">                stack.push(chars[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i&lt; chars.length; i++)&#123;</span><br><span class="line">            if (chars[i] == &#x27;a&#x27; || chars[i] == &#x27;e&#x27; || chars[i] == &#x27;i&#x27; || chars[i] == &#x27;o&#x27; || chars[i] == &#x27;u&#x27; || chars[i] == &#x27;A&#x27; || chars[i] == &#x27;E&#x27; || chars[i] == &#x27;I&#x27; || chars[i] == &#x27;O&#x27; || chars[i] == &#x27;U&#x27;)&#123;</span><br><span class="line">                chars[i] = stack.pop();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return new String(chars);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
 
       </div>
       
@@ -790,7 +792,8 @@
       </div>
       
       <!-- <div class="content">
-        
+        541.反转字符串II给定一个字符串 s 和一个整数 k，从字符串开头算起，每 2k 个字符反转前 k 个字符。
+如果剩
       </div> -->
     </a>
   </div>

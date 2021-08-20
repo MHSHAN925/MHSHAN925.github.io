@@ -734,10 +734,26 @@
       
       <div class="post-tags-categories">
         
+        <div class="tags">
+          <i class="iconfont icontag"></i>
+          
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
+            </a>
+          
+        </div>
+        
         
       </div>
       <div class="post-content">
-        
+        <h1 id="541-反转字符串II"><a href="#541-反转字符串II" class="headerlink" title="541.反转字符串II"></a>541.反转字符串II</h1><p>给定一个字符串 s 和一个整数 k，从字符串开头算起，每 2k 个字符反转前 k 个字符。</p>
+<p>如果剩余字符少于 k 个，则将剩余字符全部反转。<br>如果剩余字符小于 2k 但大于或等于 k 个，则反转前 k 个字符，其余字符保持原样。</p>
+<p>示例 1：</p>
+<p>输入：s = “abcdefg”, k = 2<br>输出：”bacdfeg”<br>示例 2：</p>
+<p>输入：s = “abcd”, k = 2<br>输出：”bacd”</p>
+<h3 id="注意点：学习怎么样模拟，注意k的范围"><a href="#注意点：学习怎么样模拟，注意k的范围" class="headerlink" title="注意点：学习怎么样模拟，注意k的范围"></a>注意点：学习怎么样模拟，注意k的范围</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static String reverseStr(String s, int k)&#123;</span><br><span class="line">        int len = s.length();</span><br><span class="line">        char[] chars = s.toCharArray();</span><br><span class="line">        for (int i = 0; i &lt;len; i += 2 * k)&#123;</span><br><span class="line">            reverse(chars, i, Math.min(i + k - 1, len - 1));</span><br><span class="line">        &#125;</span><br><span class="line">        return new String(chars);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void reverse(char[] chars, int left, int right)&#123;</span><br><span class="line">        while (left &lt; right)&#123;</span><br><span class="line">            char c = chars[left];</span><br><span class="line">            chars[left] = chars[right];</span><br><span class="line">            chars[right] = c;</span><br><span class="line">            left++;</span><br><span class="line">            right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
       </div>
       
         <div class="copyright">
@@ -764,6 +780,23 @@
 <div class="post-nav">
 
 
+
+  
+  <div class="post-nav-prev post-nav-item">
+    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+      background-position: center center;">
+    </div>
+    <a href="/2021/08/20/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="post-nav-link">
+      <div class="title">
+        <i class="fa fa-angle-left"></i> 上一篇:
+        <div>背包问题</div>
+      </div>
+      
+      <!-- <div class="content">
+        背包问题（复盘代码随想录背包问题pdf）01背包​        有N件物品和一个可以装重量为W的背包。第i件物品的重量
+      </div> -->
+    </a>
+  </div>
 
 
 
