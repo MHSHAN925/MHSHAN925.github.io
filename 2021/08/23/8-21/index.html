@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>背包问题 | Hexo</title>
+  <title>8-21 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/6.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['背包问题'],
+              strings: ['8-21'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-20</span>
+        <span class="post-time">2021-08-23</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
-              算法
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,11 +746,15 @@
         
       </div>
       <div class="post-content">
-        <h1 id="背包问题（复盘代码随想录背包问题pdf）"><a href="#背包问题（复盘代码随想录背包问题pdf）" class="headerlink" title="背包问题（复盘代码随想录背包问题pdf）"></a>背包问题（复盘代码随想录背包问题pdf）</h1><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><p>​        有N件物品和一个可以装重量为W的背包。第i件物品的重量是weight[i]，得到的价值是value[i]，每件物品只能用一次，求解将这些物品装入背包的物品价值和最大。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//暴力递归</span><br><span class="line">    //这种想法，index...之后的最大价值</span><br><span class="line">    //需要存储已经做过选择的weight</span><br><span class="line">    public static int knapsack(int[] weight, int[] value, int backPackWeight, int alreadyWeight, int index)&#123;</span><br><span class="line">        if (alreadyWeight &gt; backPackWeight)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index == weight.length)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        //当前index不选择</span><br><span class="line">        int value1 = knapsack(weight, value, backPackWeight, alreadyWeight, index + 1);</span><br><span class="line">        //当前index选择，可能会超出最大容量，所以需要判断</span><br><span class="line">        int value2Next = knapsack(weight, value, backPackWeight, alreadyWeight + weight[index], index + 1);</span><br><span class="line">        int value2 = -1;</span><br><span class="line">        if (value2Next != -1)&#123;</span><br><span class="line">            value2 = value[index] + value2Next;</span><br><span class="line">        &#125;</span><br><span class="line">        return Math.max(value1, value2);</span><br><span class="line">    &#125;</span><br><span class="line">//index之后的最大价值</span><br><span class="line">    public static int knapsack1(int[] weight, int[] value, int index, int rest)&#123;</span><br><span class="line">        if (rest &lt; 0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index == weight.length)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int noChoice = knapsack1(weight, value, index + 1, rest);</span><br><span class="line">        int choice = -1;</span><br><span class="line">        int choiceNext = knapsack1(weight, value, index + 1, rest - weight[index]);</span><br><span class="line">        if (choiceNext != -1)&#123;</span><br><span class="line">            choice = value[index] + choiceNext;</span><br><span class="line">        &#125;</span><br><span class="line">        return Math.max(noChoice, choice);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>动态规划</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static int knapsackMemory(int[] weight, int[] value, int backpackWeight)&#123;</span><br><span class="line">        int n = weight.length;</span><br><span class="line">        int[][] dp = new int[n + 1][backpackWeight + 1];</span><br><span class="line">        for (int index = n - 1; index &gt;= 0; index--)&#123;</span><br><span class="line">            for (int rest = 0; rest &lt;= backpackWeight; rest++)&#123;</span><br><span class="line">                int noChoice = dp[index + 1][rest];</span><br><span class="line">                int choice = -1;</span><br><span class="line">                if (rest - weight[index] &gt;= 0)&#123;</span><br><span class="line">                    choice = value[index] + dp[index +1][rest - weight[index]];</span><br><span class="line">                &#125;</span><br><span class="line">                dp[index][rest] = Math.max(noChoice, choice);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][backpackWeight];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="443-压缩字符串"><a href="#443-压缩字符串" class="headerlink" title="443.压缩字符串"></a>443.压缩字符串</h1><p>给你一个字符数组 chars ，请使用下述算法压缩：</p>
+<p>从一个空字符串 s 开始。对于 chars 中的每组 连续重复字符 ：</p>
+<p>如果这一组长度为 1 ，则将字符追加到 s 中。<br>否则，需要向 s 追加字符，后跟这一组的长度。<br>压缩后得到的字符串 s 不应该直接返回 ，需要转储到字符数组 chars 中。需要注意的是，如果组长度为 10 或 10 以上，则在 chars 数组中会被拆分为多个字符。</p>
+<p>请在 修改完输入数组后 ，返回该数组的新长度。</p>
+<p>你必须设计并实现一个只使用常量额外空间的算法来解决此问题。</p>
+<p>示例 1：</p>
+<p>输入：chars = [“a”,”a”,”b”,”b”,”c”,”c”,”c”]<br>输出：返回 6 ，输入数组的前 6 个字符应该是：[“a”,”2”,”b”,”2”,”c”,”3”]<br>解释：<br>“aa” 被 “a2” 替代。”bb” 被 “b2” 替代。”ccc” 被 “c3” 替代。</p>
+<p><strong>我的想法：就是好臃肿啊</strong>，伤心</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">public int compress(char[] chars) &#123;</span><br><span class="line">       if (chars.length == 1)&#123;</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">       StringBuilder stringBuilder = new StringBuilder();</span><br><span class="line">        for (int i = 0; i &lt; chars.length; i++) &#123;</span><br><span class="line">            //如果到了，最后一个字符。说明最后一个字符和前边的不一样，直接加入</span><br><span class="line">            if (i == chars.length - 1)&#123;</span><br><span class="line">                stringBuilder.append(chars[i]);</span><br><span class="line">                break;</span><br><span class="line">            &#125;</span><br><span class="line">            //判断和后边的一个一样吗</span><br><span class="line">            if (chars[i + 1] != chars[i])&#123;</span><br><span class="line">                stringBuilder.append(chars[i]);</span><br><span class="line">            &#125;else &#123;</span><br><span class="line">                int sameLen = 1;</span><br><span class="line">                for (int j = i + 1; j &lt; chars.length; j++) &#123;</span><br><span class="line">                    if (chars[j] == chars[i])&#123;</span><br><span class="line">                        sameLen++;</span><br><span class="line">                    &#125;else &#123;</span><br><span class="line">                        break;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                i = i + sameLen - 1;</span><br><span class="line">                String len = String.valueOf(sameLen);</span><br><span class="line">                stringBuilder.append(chars[i]);</span><br><span class="line">                for (int j = 0; j &lt; len.length(); j++) &#123;</span><br><span class="line">                    stringBuilder.append(len.charAt(j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        for (int i = 0; i &lt; stringBuilder.length(); i++) &#123;</span><br><span class="line">            chars[i] = stringBuilder.charAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        return stringBuilder.length();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -762,7 +766,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/20/背包问题/" target="_blank" title="背包问题">https://mhshan925.github.io/2021/08/20/背包问题/</a>
+    <a href="/2021/08/23/8-21/" target="_blank" title="8-21">https://mhshan925.github.io/2021/08/23/8-21/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -782,17 +786,17 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-nav-link">
+    <a href="/2021/08/23/8-22/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>android—基础面试题</div>
+        <div>8-22</div>
       </div>
       
       <!-- <div class="content">
-        android基础面试题1.什么是ANR？如何避免​        在android中，如果应用程序在一段时间响应不够灵
+        789.逃脱阻碍者你在进行一个简化版的吃豆人游戏。你从 [0, 0] 点开始出发，你的目的地是 target = [xt
       </div> -->
     </a>
   </div>
@@ -801,17 +805,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/20/8-20/" class="post-nav-link">
+    <a href="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>8-20</div>
+        <div>android—基础面试题</div>
       </div>
       <!-- <div class="content">
-        541.反转字符串II给定一个字符串 s 和一个整数 k，从字符串开头算起，每 2k 个字符反转前 k 个字符。
-如果剩
+        android基础面试题1.什么是ANR？如何避免​        在android中，如果应用程序在一段时间响应不够灵
       </div> -->
     </a>
   </div>

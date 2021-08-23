@@ -805,7 +805,44 @@
 <h1 id="activity问题"><a href="#activity问题" class="headerlink" title="activity问题"></a>activity问题</h1><h2 id="两个activity之间传递数据："><a href="#两个activity之间传递数据：" class="headerlink" title="两个activity之间传递数据："></a>两个activity之间传递数据：</h2><p>1、intent、broadcast receiver、content provider</p>
 <p>2、利用static静态数据</p>
 <p>3、利用外部存储进行传输，例如file文件存储。SP和Sqlite数据库</p>
-<h2 id><a href="#" class="headerlink" title></a></h2>
+<h2 id="生命周期-7个方法"><a href="#生命周期-7个方法" class="headerlink" title="生命周期-7个方法"></a>生命周期-7个方法</h2><p>​        onCreate方法：在这里创建界面，做一些数据的初始化工作</p>
+<p>​        onStart方法：可见不可交互</p>
+<p>​        onResume方法：可见可交互</p>
+<p>​        onPause方法：系统会停止动画等消耗CPU的任务. <strong>应该在这里保存你的一些数据,因为这个时候你的程序的优先级降低, 有可能被系统收回.</strong> 在这里保存的数据, 应该在 <code>onResume()</code> 里读出来. 注意: 这个方法里做的事情时间要短, 因为下一个 activity 不会等到这个方法完成才启动变得不可见.</p>
+<p>​        onStop方法：不可见，被下一个activity覆盖。</p>
+<p>​        onRestart方法：重新可见。</p>
+<p>​        onDestory方法：销毁activity</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ul>
+<li>启动: <code>onCreate()—&gt;onStart()—&gt;onResume()</code>, Activity进入运行状态.</li>
+<li>退居后台: 当前 Activity 转到新的 Activity 界面或按Home键回到主屏: <code>onPause()—&gt;onStop()</code>, 进入停滞状态.</li>
+<li>返回前台: <code>onRestart()—&gt;onStart()—&gt;onResume()</code>, 再次回到运行状态.</li>
+<li>Activity 退居后台, 且系统内存不足, 系统会杀死这个后台状态的 Activity (此时这个Activity引用仍然处在任务栈中，只是这个时候引用指向的对象已经为null), 若再次回到这个Activity, 则会走<code>onCreate()–&gt;onStart()—&gt;onResume()</code>(将重新走一次Activity的初始化生命周期)</li>
+<li>锁定屏与解锁屏幕,:<strong>指定屏幕方向（屏幕方向不会改变），锁屏：onPause-&gt;onStop，解锁：onRestart-&gt;onStart-&gt;onResume。</strong></li>
+<li>当 Activity 被另一个透明或者 Dialog 样式的 Activity 覆盖时就会 onPause. 这时它仍然可见. 只是失去焦点, 不可与用户交互.</li>
+</ul>
+<h2 id="四种启动模式"><a href="#四种启动模式" class="headerlink" title="四种启动模式"></a>四种启动模式</h2><p>​        standard：默认启动模式，每次都会创建一个新的实例，并且放入到任务栈的栈顶，不管这个activity是否已经存在。</p>
+<p>​        singleTop(栈顶复用模式)：如果新的activity已经位于任务栈的栈顶，那么此activity不会重新创建，启动三回调（onCreat（）-&gt;onStart（）-&gt;onResume（））不会执行，同时activity的onNewIntent（）方法会被回调。如果activity已经存在但是不在栈顶，作用和标准模式一样。这种模式下，我们必须在onCreate（）和onNewIntent（）两个方法中处理好传入的Intent。</p>
+<p>​        singleTop的应用场景：比如搜索功能. 当用户在搜索条中搜索完会跳转到 SearchActivity 查看搜索结果. 通常, 我们在结果页面的顶端也会放置一个同样的搜索条, 这样用户就不需要回退就可以进行相同的搜索.        如果是 standard 模式, 搜索十次就会在栈里创建了十个 SearchActivity 实例, 同时用户需要按十次回退键才能回到之前的页面. 这明显比较二.        如果是 singleTop 模式, 当在搜索结果界面时, SearchActivity 处在栈的顶端. 所以我们只需要发送 Intent 到已经存在的 SearchActivity 实例, 更新页面的结果就足够了, 不需要创建新的 Activity. 同时只需要按一次回退就能回到之前的页面.</p>
+<p>​        singleTask（栈内复用模式）：如果栈中任意位置已经 有一个activity实例，那么这个activity会被调到栈顶，始终保持一个实例，同时回调onNewIntent（），并且singleTask会清理当前activity上面的所有activity。</p>
+<p>​        singleInstance：会创建新的Task，来存放新的activity，而且只能存在一个activity.</p>
+<p>​        <strong>Activity的堆栈管理以ActivityRecord为单位,所有的ActivityRecord都放在一个List里面.可以认为一个ActivityRecord就是一个Activity栈</strong></p>
+<h2 id="横竖屏切换时候Activity的生命周期"><a href="#横竖屏切换时候Activity的生命周期" class="headerlink" title="横竖屏切换时候Activity的生命周期"></a>横竖屏切换时候Activity的生命周期</h2><h2 id="如何保存Activity的状态"><a href="#如何保存Activity的状态" class="headerlink" title="如何保存Activity的状态"></a>如何保存Activity的状态</h2><h2 id="两个Activity之间调准时必然会执行的方法"><a href="#两个Activity之间调准时必然会执行的方法" class="headerlink" title="两个Activity之间调准时必然会执行的方法"></a>两个Activity之间调准时必然会执行的方法</h2><p>​        一般情况下比如说有两个 activity, 分别叫 A,B, 当在 A 里面激活 B 的时候, A 会调用 <code>onPause()</code> 方法, 然后 B 调用 <code>onCreate()--&gt;onStart()--&gt;onResume()</code>. 这个时候 B 覆盖了窗体, A 会调用 <code>onStop()</code> 方法. 如果 B 是个透明的或者是对话框的样式, 就不会调用 A 的 <code>onStop()</code> 方法.</p>
+<h2 id="如何退出Activity？如何安全退出以调用多个activity的Application"><a href="#如何退出Activity？如何安全退出以调用多个activity的Application" class="headerlink" title="如何退出Activity？如何安全退出以调用多个activity的Application"></a>如何退出Activity？如何安全退出以调用多个activity的Application</h2><p>​        1.通常情况下用户退出一个activity只需按返回键，写代码退出activity直接调用finish（）方法。</p>
+<p>​        2.发送特定广播：在需要结束应用时，发送一个特定的广播，在每个activity收到广播之后，关闭。</p>
+<p>​        3.记录打开的activity，每打开一个activity，就记录下来，在需要退出的时候，关闭每一个activity。</p>
+<p>​        4.通过intent的flag来实现，intent.setFLAG（），激活一个新的activity。此时如果该任务栈中已经有该activity，系统会把次activity上面的所有activity干掉。相当于配置singleTop模式。</p>
+<h2 id="Context，activity、Application有什么区别？"><a href="#Context，activity、Application有什么区别？" class="headerlink" title="Context，activity、Application有什么区别？"></a>Context，activity、Application有什么区别？</h2><p>​        context从字面上理解就是上下文的意思，在实际应用中起到了管理上下文环境中各个参数和变量的作用，方便我们简单的访问到各种资源。</p>
+<p>​        相同：activity和application都是context的子类。</p>
+<p>​        不同：activity维护的是当前activity的生命周期，所以对应的context只能访问该activity内的各种资源。Application维护的是整个项目的生命周期。</p>
+<p>使用 context 的时候, 小心内存泄露, 防止内存泄露, 注意一下几个方面:</p>
+<ol>
+<li>不要让生命周期长的对象引用 activity context, 即保证引用 activity 的对象要与 activity 本身生命周期是一样的.</li>
+<li>对于生命周期长的对象,可以使用 application context。</li>
+<li>避免非静态的内部类, 尽量使用静态类, 避免生命周期问题, 注意内部类对外部对象引用导致的生命周期变化.</li>
+</ol>
+<h2 id="TaskAffinity"><a href="#TaskAffinity" class="headerlink" title="TaskAffinity:"></a>TaskAffinity:</h2><p>​        Activity 的归属, 也就是 Activity 应该在哪个 Task 中. 一般情况下在同一个应用中, 启动的 Activity 都在同一个 Task 中.</p>
+<p>​        每个 Activity 都有 taskAffinity 属性, 这个属性指出了它希望进入的 Task. 如果一个 Activity 没有显式的指明 taskAffinity, 那么它就会使用 Application 的 taskAffinity, 如果 Application 也没有指明, 那么该 taskAffinity 的值就等于包名.</p>
+
       </div>
       
         <div class="copyright">

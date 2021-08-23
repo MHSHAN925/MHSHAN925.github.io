@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>背包问题 | Hexo</title>
+  <title>8-22 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/2.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/7.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['背包问题'],
+              strings: ['8-22'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-20</span>
+        <span class="post-time">2021-08-23</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
-              算法
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,11 +746,21 @@
         
       </div>
       <div class="post-content">
-        <h1 id="背包问题（复盘代码随想录背包问题pdf）"><a href="#背包问题（复盘代码随想录背包问题pdf）" class="headerlink" title="背包问题（复盘代码随想录背包问题pdf）"></a>背包问题（复盘代码随想录背包问题pdf）</h1><h2 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h2><p>​        有N件物品和一个可以装重量为W的背包。第i件物品的重量是weight[i]，得到的价值是value[i]，每件物品只能用一次，求解将这些物品装入背包的物品价值和最大。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">//暴力递归</span><br><span class="line">    //这种想法，index...之后的最大价值</span><br><span class="line">    //需要存储已经做过选择的weight</span><br><span class="line">    public static int knapsack(int[] weight, int[] value, int backPackWeight, int alreadyWeight, int index)&#123;</span><br><span class="line">        if (alreadyWeight &gt; backPackWeight)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index == weight.length)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        //当前index不选择</span><br><span class="line">        int value1 = knapsack(weight, value, backPackWeight, alreadyWeight, index + 1);</span><br><span class="line">        //当前index选择，可能会超出最大容量，所以需要判断</span><br><span class="line">        int value2Next = knapsack(weight, value, backPackWeight, alreadyWeight + weight[index], index + 1);</span><br><span class="line">        int value2 = -1;</span><br><span class="line">        if (value2Next != -1)&#123;</span><br><span class="line">            value2 = value[index] + value2Next;</span><br><span class="line">        &#125;</span><br><span class="line">        return Math.max(value1, value2);</span><br><span class="line">    &#125;</span><br><span class="line">//index之后的最大价值</span><br><span class="line">    public static int knapsack1(int[] weight, int[] value, int index, int rest)&#123;</span><br><span class="line">        if (rest &lt; 0)&#123;</span><br><span class="line">            return -1;</span><br><span class="line">        &#125;</span><br><span class="line">        if (index == weight.length)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int noChoice = knapsack1(weight, value, index + 1, rest);</span><br><span class="line">        int choice = -1;</span><br><span class="line">        int choiceNext = knapsack1(weight, value, index + 1, rest - weight[index]);</span><br><span class="line">        if (choiceNext != -1)&#123;</span><br><span class="line">            choice = value[index] + choiceNext;</span><br><span class="line">        &#125;</span><br><span class="line">        return Math.max(noChoice, choice);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="789-逃脱阻碍者"><a href="#789-逃脱阻碍者" class="headerlink" title="789.逃脱阻碍者"></a>789.逃脱阻碍者</h1><p>你在进行一个简化版的吃豆人游戏。你从 [0, 0] 点开始出发，你的目的地是 target = [xtarget, ytarget] 。地图上有一些阻碍者，以数组 ghosts 给出，第 i 个阻碍者从 ghosts[i] = [xi, yi] 出发。所有输入均为 整数坐标 。</p>
+<p>每一回合，你和阻碍者们可以同时向东，西，南，北四个方向移动，每次可以移动到距离原位置 1 个单位 的新位置。当然，也可以选择 不动 。所有动作 同时 发生。</p>
+<p>如果你可以在任何阻碍者抓住你 之前 到达目的地（阻碍者可以采取任意行动方式），则被视为逃脱成功。如果你和阻碍者同时到达了一个位置（包括目的地）都不算是逃脱成功。</p>
+<p>只有在你有可能成功逃脱时，输出 true ；否则，输出 false 。</p>
+<p>示例 1：</p>
+<p>输入：ghosts = [[1,0],[0,3]], target = [0,1]<br>输出：true<br>解释：你可以直接一步到达目的地 (0,1) ，在 (1, 0) 或者 (0, 3) 位置的阻碍者都不可能抓住你。<br>示例 2：</p>
+<p>输入：ghosts = [[1,0]], target = [2,0]<br>输出：false<br>解释：你需要走到位于 (2, 0) 的目的地，但是在 (1, 0) 的阻碍者位于你和目的地之间。<br>示例 3：</p>
+<p>输入：ghosts = [[2,0]], target = [1,0]<br>输出：false<br>解释：阻碍者可以和你同时达到目的地。<br>示例 4：</p>
+<p>输入：ghosts = [[5,0],[-10,-2],[0,-5],[-2,-2],[-7,1]], target = [7,7]<br>输出：false</p>
+<p>思路一：让所有的阻碍着去终点等人，如果阻碍着先到就false，如果人先到就true。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public boolean escapeGhosts(int[][] ghosts, int[] target) &#123;</span><br><span class="line">        int human_path = Math.abs(target[0]) + Math.abs(target[1]);</span><br><span class="line">        for (int i = 0; i &lt; ghosts.length; i++) &#123;</span><br><span class="line">            int ghost_path = Math.abs(ghosts[i][0] - target[0]) + Math.abs(ghosts[i][1] - target[1]);</span><br><span class="line">            if (ghost_path &lt;= human_path) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-<p>动态规划</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public static int knapsackMemory(int[] weight, int[] value, int backpackWeight)&#123;</span><br><span class="line">        int n = weight.length;</span><br><span class="line">        int[][] dp = new int[n + 1][backpackWeight + 1];</span><br><span class="line">        for (int index = n - 1; index &gt;= 0; index--)&#123;</span><br><span class="line">            for (int rest = 0; rest &lt;= backpackWeight; rest++)&#123;</span><br><span class="line">                int noChoice = dp[index + 1][rest];</span><br><span class="line">                int choice = -1;</span><br><span class="line">                if (rest - weight[index] &gt;= 0)&#123;</span><br><span class="line">                    choice = value[index] + dp[index +1][rest - weight[index]];</span><br><span class="line">                &#125;</span><br><span class="line">                dp[index][rest] = Math.max(noChoice, choice);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return dp[0][backpackWeight];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>思路二：曼哈顿距离</p>
+<p>曼哈顿距离计算公式：dist(p1, p2) = |x_1 - x_2| + |y_1 - y_2|</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">    int dist(int x1, int y1, int x2, int y2) &#123;</span><br><span class="line">        return Math.abs(x1 - x2) + Math.abs(y1 - y2);</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean escapeGhosts(int[][] gs, int[] t) &#123;</span><br><span class="line">        int cur = dist(0, 0, t[0], t[1]);</span><br><span class="line">        for (int[] g : gs) &#123;</span><br><span class="line">            if (dist(g[0], g[1], t[0], t[1]) &lt;= cur) return false;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -762,7 +772,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/20/背包问题/" target="_blank" title="背包问题">https://mhshan925.github.io/2021/08/20/背包问题/</a>
+    <a href="/2021/08/23/8-22/" target="_blank" title="8-22">https://mhshan925.github.io/2021/08/23/8-22/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -782,17 +792,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/" class="post-nav-link">
+    <a href="/2021/08/23/8-23/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>android—基础面试题</div>
+        <div>8-23</div>
       </div>
       
       <!-- <div class="content">
-        android基础面试题1.什么是ANR？如何避免​        在android中，如果应用程序在一段时间响应不够灵
+        1646.获取生成数组中的最大值给你一个整数 n 。按下述规则生成一个长度为 n + 1 的数组 nums ：
+nums
       </div> -->
     </a>
   </div>
@@ -801,17 +812,17 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/5.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/20/8-20/" class="post-nav-link">
+    <a href="/2021/08/23/8-21/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>8-20</div>
+        <div>8-21</div>
       </div>
       <!-- <div class="content">
-        541.反转字符串II给定一个字符串 s 和一个整数 k，从字符串开头算起，每 2k 个字符反转前 k 个字符。
-如果剩
+        443.压缩字符串给你一个字符数组 chars ，请使用下述算法压缩：
+从一个空字符串 s 开始。对于 chars 中的
       </div> -->
     </a>
   </div>
