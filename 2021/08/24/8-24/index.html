@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>android—基础面试题 | Hexo</title>
+  <title>8-24 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['android—基础面试题'],
+              strings: ['8-24'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-08-23</span>
+        <span class="post-time">2021-08-24</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/android/" class="">
-              android
+            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
+              每日一题
             </a>
           
         </div>
@@ -746,57 +746,8 @@
         
       </div>
       <div class="post-content">
-        <h1 id="android基础面试题"><a href="#android基础面试题" class="headerlink" title="android基础面试题"></a>android基础面试题</h1><h2 id="1-什么是ANR？如何避免"><a href="#1-什么是ANR？如何避免" class="headerlink" title="1.什么是ANR？如何避免"></a>1.什么是ANR？如何避免</h2><p>​        在android中，如果应用程序在一段时间响应不够灵敏，系统会向用户显示一个对话框，这个对话框被称作应用程序无响应（ANRApplicationNotResponding）对话框。</p>
-<p>​        不同的组件发生ANR的时间不一样，activity是5秒，broadcastReceiver是10秒，service是20秒。</p>
-<p>​        <strong>解决方案：</strong>将所有的耗时操作，比如网络访问、socket通信、查询大量SQL语句、复杂逻辑计算等都放在子线程中去。然后通过handler.sendMessage、runUIThread、AsyncTask、RxJava等方式更新UI。如果耗时操作需要让用户等待，可以在界面上显示进度条。</p>
-<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649493643&amp;idx=1&amp;sn=34b51d1f61bd2ecaa8fd0a2d39c4d1d1&amp;chksm=8eec9b74b99b126246acc4547597dfe55c836b8f689b2d1a65bdf1ee2054ced2fc070bfa2678&amp;mpshare=1&amp;scene=24&amp;srcid=0116vzNfMMv2dLizhAT8mEYq#rd">https://mp.weixin.qq.com/s?__biz=MzIwMTAzMTMxMg==&amp;mid=2649493643&amp;idx=1&amp;sn=34b51d1f61bd2ecaa8fd0a2d39c4d1d1&amp;chksm=8eec9b74b99b126246acc4547597dfe55c836b8f689b2d1a65bdf1ee2054ced2fc070bfa2678&amp;mpshare=1&amp;scene=24&amp;srcid=0116vzNfMMv2dLizhAT8mEYq#rd</a></p>
-<h2 id="2-Activity和Fragement生命周期有哪些"><a href="#2-Activity和Fragement生命周期有哪些" class="headerlink" title="2.Activity和Fragement生命周期有哪些"></a>2.Activity和Fragement生命周期有哪些</h2><p>​        <img "" class="lazyload placeholder" data-original="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/android.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="activity和fragement" style="zoom:200%;"></p>
-<h2 id="3-横竖屏切换时候activity的生命周期？"><a href="#3-横竖屏切换时候activity的生命周期？" class="headerlink" title="3.横竖屏切换时候activity的生命周期？"></a>3.横竖屏切换时候activity的生命周期？</h2><p>​        1）、Android 3.2 (API 13) 之前：</p>
-<p>​        不设置 Activity 的 android:configChanges 时，切屏会重新调用生命周期，切横屏会调用一次，切竖屏会调用两次。<br>​        设置 Activity 的 android:configChanges=”orientation” 时，切屏会重新调用生命周期，且横竖屏都是调用一次生命周期。<br>​        设置 Activity 的 android:configChanges=”orientation|keyboardHidden” 时，切屏不会重新调用 Activity 的生命周期，但是会调用 onConfigurationChanges() 方法。</p>
-<p>​        2）、从Android 3.2 (API 13) 开始</p>
-<p>​        不设置 Activity 的 android:configChanges 时、设置 Activity 的 android:configChanges=”orientation”<br>​        设置 Activity 的 android:configChanges=”orientaion|keyboardHidden”时切换横屏和竖屏都会重新调用一次生命周期。<br>​        设置 Activity 的 android:configChanges=”orientation|screenSize”时不会重新调用 Activity 的生命周期，但是会调用 onConfigurationChanges() 方法。</p>
-<h2 id="4-AsyncTask-原理-线程池"><a href="#4-AsyncTask-原理-线程池" class="headerlink" title="4.AsyncTask+原理+线程池"></a>4.AsyncTask+原理+线程池</h2><h2 id="5-android中进程的优先级"><a href="#5-android中进程的优先级" class="headerlink" title="5.android中进程的优先级"></a>5.android中进程的优先级</h2><p>​        前台进程：与用户正在交互的activity或者activity用到的service，如果系统内存不足时前台进程最晚被杀死。</p>
-<p>​        可见进程：可以是处于暂停状态（onPause）的activity或者绑定在其上的service。即被用户可见，但由于失去了焦点而不能与用户交互。</p>
-<p>​        服务进程：运行着使用startService方法启动的service，虽然不被用户可见，但却是用户关心的。比如用户正在非音乐界面听的音乐或者正在非下载页面下载的文件等。当系统要空间运行，前两者进程才会被终止。</p>
-<p>​        后台进程：运行着执行onStop方法而停止的程序，不是当前用户关心的。例如后天挂着的QQ，这时进程系统一旦没有内存首先被杀死。</p>
-<p>​        空进程：不包含应用程序的进程，系统一般不让这样的进程存在。</p>
-<h2 id="6-Bunder传递对象序列化，serializable、parcelable的区别。"><a href="#6-Bunder传递对象序列化，serializable、parcelable的区别。" class="headerlink" title="6.Bunder传递对象序列化，serializable、parcelable的区别。"></a>6.Bunder传递对象序列化，serializable、parcelable的区别。</h2><p>​        因为bundle传递数据时，只支持基本数据类型，所以在传递对象时需要序列化转换成可存储或可传输的状态（字节流）、序列化后的对象可以在网络、IPC之间进程传输，也可以存储到本地。</p>
-<p>​        <strong>serializable：</strong>序列化的意思，表示将一个对象转换成可存储或可传输的状态。序列化后的对象可以在网络上传输，也可以存储到本地。</p>
-<p>​        <strong>parcelable：</strong>实现原理是将一个完整的对象进行分解，而分解后的每一部分都是intent所支持的数据类型，也就实现了传递对象的功能。</p>
-<p><img "" class="lazyload placeholder" data-original="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/android2.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="序列化"></p>
-<h2 id="9-context相关"><a href="#9-context相关" class="headerlink" title="9.context相关"></a>9.context相关</h2><p>​        context：上下文，顾名思义就是在某一个场景中本身多包含的一些潜在信息。四大组件，各种资源操作都离不开context。比如：启动Activity (startActivity)、启动服务 (startService)、发送广播 (sendBroadcast), 注册广播接收者 (registerReceiver)、获取ContentResolver (getContentResolver)<br>、获取类加载器 (getClassLoader)、打开或创建数据库 (openOrCreateDatabase)<br>、获取资源 (getResources)</p>
-<img "" class="lazyload placeholder" data-original="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/context.jpg" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="context" style="zoom:200%;">
-
-<ol>
-<li>ContextImpl:<ul>
-<li>Application/Activity/Service通过attach() 调用父类ContextWrapper的attachBaseContext(), 从而设置父类成员变量mBase为ContextImpl对象;</li>
-<li>ContextWrapper的核心工作都是交给mBase(即ContextImpl)来完成;</li>
-</ul>
-</li>
-<li>Application: 四大组件属于某一Application, 获取所在Application:<ul>
-<li>Activity/Service: 是通过调用其方法getApplication(),可主动获取当前所在mApplication;<ul>
-<li>mApplication是由LoadedApk.makeApplication()过程所初始化的;</li>
-</ul>
-</li>
-<li>Receiver: 是通过其方法onReceive()的第一个参数指向通当前所在Application,也就是只有接收到广播的时候才能拿到当前的Application对象;</li>
-<li>provider: 目前没有提供直接获取当前所在Application的方法, 但可通过getContext()可以获取当前的ContextImpl.</li>
-</ul>
-3.context是一个接口，主要提供通用接口4.contextImpl：context接口的具体实现类5.contextWrapper：context的包装类，内部持有contextImpl的实例对象mBase，对context的操作最终都进入contextImpl类。6.ContextThemeWrapper：该类内部包含了主题(Theme)相关的接口，即android:theme属性指定的。Service不需要主题，所以Service直接继承于ContextWrapper类。而Activity继承此类。</li>
-</ol>
-<p>一个应用中包含的context个数：activity个数+service个数+1（Application类本身对应一个context对象）。</p>
-<p><strong>context的类型</strong>：</p>
-<p>​        Application － 是一个运行在你的应用进程中的单例。在Activity或者Service中，它可以通过getApplication()函数获得，或者人和继承于context的对象中，通过getApplicationContext()方法获得。不管你是通过何种方法在哪里获得的，在一个进程内，你总是获得到同一个实例。</p>
-<p>​        Activity/Service － 继承于ContextWrapper，它实现了与context同样API，但是代理这些方法调用到内部隐藏的Context实例，即我们所知道的基础context。任何时候当系统创建一个新的Activity或者Service实例的时候，它也创建一个新的ContextImpl实例来做所有的繁重的工作。每一个Activity和Service以及其对应的基础context，对每个实例来说都是唯一的。</p>
-<p>​        BroadcastReciver － 它本身不是context，也没有context在它里面，但是每当一个新的广播到达的时候，框架都传递一个context对象到onReceive()。这个context是一个ReceiverRestrictedContext实例，它有两个主要函数被禁掉：registerReceiver()和bindService()。这两个函数在BroadcastReceiver.onReceive()不允许调用。每次Receiver处理一个广播，传递进来的context都是一个新的实例。</p>
-<p>​        ContentProvider － 它本身也不是一个Context，但是它可以通过getContext()函数给你一个Context对象。如果ContentProvider是在调用者的的本地（例如，在同一个应用进程），getContext()将返回的是Application单例。然而，如果调用这和ContentProvider在不同的进程的时候，它将返回一个新创建的实例代表这个Provider所运行的包。</p>
-<p>​        <strong>不同context的能力：</strong></p>
-<img "" class="lazyload placeholder" data-original="/2021/08/23/android%E2%80%94%E5%9F%BA%E7%A1%80%E9%9D%A2%E8%AF%95%E9%A2%98/android3.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="context" style="zoom:200%;">
-
-<p><strong>Activity</strong></p>
-<p>1、UI相关的Context都推荐使用Activity，否则有可能会有异常<br>2、Activity的功能最全面，可以在任何需要Context的地方使用Activity<br><strong>Service</strong></p>
-<p>1、不能用来创建Dialog<br>2、如果用来进行视图填充（LayoutInflation），设置的主题不会生效，只会显示默认主题<br>3、如果用来启动一个Activity，新的Activity会在一个新的task任务栈，不建议这么使用<br><strong>Applciation</strong></p>
-<p>1、直接用来创建创建Dialog，会抛异常Crash，除非进行特殊设置，所以不建议这么使用<br>2、和Service相同，不建议用来进行视图填充（LayoutInflation），否则只显示默认主题<br>3、和Service相同，不建议用来启动Activity</p>
-<h2 id="Intent的使用方法，可以传递那些数据类型"><a href="#Intent的使用方法，可以传递那些数据类型" class="headerlink" title="Intent的使用方法，可以传递那些数据类型"></a>Intent的使用方法，可以传递那些数据类型</h2><p>​        Intent/Bundle支持传递基本类型的数据和基本类型的数组数据，以及String、CharSequence类型的数据和String、CharSequence类型的数组数据。对于其他类型的数据，我们需要实现Parcelable和Serialzable接口，然后传输。</p>
+        <h1 id="787-k站中转内最便宜的航班"><a href="#787-k站中转内最便宜的航班" class="headerlink" title="787.k站中转内最便宜的航班"></a>787.k站中转内最便宜的航班</h1><p>​        有 n 个城市通过一些航班连接。给你一个数组 flights ，其中 flights[i] = [fromi, toi, pricei] ，表示该航班都从城市 fromi 开始，以价格 pricei 抵达 toi。</p>
+<p>​        现在给定所有的城市和航班，以及出发城市 src 和目的地 dst，你的任务是找到出一条最多经过 k 站中转的路线，使得从 src 到 dst 的 价格最便宜 ，并返回该价格。 如果不存在这样的路线，则输出 -1。</p>
 
       </div>
       
@@ -807,7 +758,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/08/23/android—基础面试题/" target="_blank" title="android—基础面试题">https://mhshan925.github.io/2021/08/23/android—基础面试题/</a>
+    <a href="/2021/08/24/8-24/" target="_blank" title="8-24">https://mhshan925.github.io/2021/08/24/8-24/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -825,38 +776,21 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/08/23/8-21/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>8-21</div>
-      </div>
-      
-      <!-- <div class="content">
-        443.压缩字符串给你一个字符数组 chars ，请使用下述算法压缩：
-从一个空字符串 s 开始。对于 chars 中的
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/2.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/08/20/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" class="post-nav-link">
+    <a href="/2021/08/23/8-23/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>背包问题</div>
+        <div>8-23</div>
       </div>
       <!-- <div class="content">
-        背包问题（复盘代码随想录背包问题pdf）01背包​        有N件物品和一个可以装重量为W的背包。第i件物品的重量
+        1646.获取生成数组中的最大值给你一个整数 n 。按下述规则生成一个长度为 n + 1 的数组 nums ：
+nums
       </div> -->
     </a>
   </div>

@@ -865,14 +865,7 @@
 <p>另外，onRestoreInstanceState的bundle参数也会传递到onCreate方法中，你也可以选择在onCreate方法中做数据还原。 还有onRestoreInstanceState在onstart之后执行。 至于这两个函数的使用，给出示范代码（留意自定义代码在调用super的前或后）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onSaveInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">        savedInstanceState.putBoolean(&quot;MyBoolean&quot;, true);</span><br><span class="line">        savedInstanceState.putDouble(&quot;myDouble&quot;, 1.9);</span><br><span class="line">        savedInstanceState.putInt(&quot;MyInt&quot;, 1);</span><br><span class="line">        savedInstanceState.putString(&quot;MyString&quot;, &quot;Welcome back to Android&quot;);</span><br><span class="line">        // etc.</span><br><span class="line">        super.onSaveInstanceState(savedInstanceState);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">@Override</span><br><span class="line">public void onRestoreInstanceState(Bundle savedInstanceState) &#123;</span><br><span class="line">        super.onRestoreInstanceState(savedInstanceState);</span><br><span class="line"></span><br><span class="line">        boolean myBoolean = savedInstanceState.getBoolean(&quot;MyBoolean&quot;);</span><br><span class="line">        double myDouble = savedInstanceState.getDouble(&quot;myDouble&quot;);</span><br><span class="line">        int myInt = savedInstanceState.getInt(&quot;MyInt&quot;);</span><br><span class="line">        String myString = savedInstanceState.getString(&quot;MyString&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-
-
-
-
-
-
-
-
+<h2 id="Activity和Fragment声明周期"><a href="#Activity和Fragment声明周期" class="headerlink" title="Activity和Fragment声明周期"></a>Activity和Fragment声明周期</h2><p>​        <img "" class="lazyload placeholder" data-original="/2021/07/25/android-activity/activityAndFragment.png" src="https://img10.360buyimg.com/ddimg/jfs/t1/157667/29/9156/134350/603c6445Ebbc9cabe/41219c5d36d45072.gif" alt="activity和fragment" style="zoom:200%;"></p>
 
       </div>
       
