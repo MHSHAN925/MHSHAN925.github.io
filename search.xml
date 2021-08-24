@@ -939,7 +939,7 @@
       <link href="2021/07/26/android-service/"/>
       <url>2021/07/26/android-service/</url>
       
-        <content type="html"><![CDATA[<h1 id="service"><a href="#service" class="headerlink" title="service"></a>service</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="service问题"><a href="#service问题" class="headerlink" title="service问题"></a>service问题</h1><h2 id="service能否在主线程中执行"><a href="#service能否在主线程中执行" class="headerlink" title="service能否在主线程中执行"></a>service能否在主线程中执行</h2><p>​        service是在主线程中调用的</p><h2 id="service里面是否能执行耗时的操作"><a href="#service里面是否能执行耗时的操作" class="headerlink" title="service里面是否能执行耗时的操作"></a>service里面是否能执行耗时的操作</h2><p>​        不行，耗时的操作会阻塞UI，可以使用创建一个新的线程或者使用Intent</p>]]></content>
       
       
       
