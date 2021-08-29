@@ -4,6 +4,51 @@
   
     
     <entry>
+      <title>8-29</title>
+      <link href="2021/08/29/8-29/"/>
+      <url>2021/08/29/8-29/</url>
+      
+        <content type="html"><![CDATA[<h1 id="1588-所有奇数长度子数组的和"><a href="#1588-所有奇数长度子数组的和" class="headerlink" title="1588.所有奇数长度子数组的和"></a>1588.所有奇数长度子数组的和</h1><p>给你一个正整数数组 arr ，请你计算所有可能的奇数长度子数组的和。</p><p>子数组 定义为原数组中的一个连续子序列。</p><p>请你返回 arr 中 所有奇数长度子数组的和 。</p><p>示例 1：</p><p>输入：arr = [1,4,2,5,3]<br>输出：58<br>解释：所有奇数长度子数组和它们的和为：<br>[1] = 1<br>[4] = 4<br>[2] = 2<br>[5] = 5<br>[3] = 3<br>[1,4,2] = 7<br>[4,2,5] = 11<br>[2,5,3] = 10<br>[1,4,2,5,3] = 15<br>我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</p><p>思路：有输入输出的</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">public class Day8_29 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner input = new Scanner(System.in);</span><br><span class="line">        String sInput = input.next();</span><br><span class="line">        String s2 = sInput.replace(&quot;[&quot;, &quot;&quot;);</span><br><span class="line">        String s = s2.replace(&quot;]&quot;, &quot;&quot;);</span><br><span class="line"></span><br><span class="line">        String[] arrChar = s.split(&quot;,&quot;);</span><br><span class="line">        int[] arr = new int[arrChar.length];</span><br><span class="line">        for (int i = 0; i &lt; arrChar.length; i++)&#123;</span><br><span class="line">            arr[i] = Integer.parseInt(arrChar[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(sumOddLengthSubArrays(arr));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static int sumOddLengthSubArrays(int[] arr)&#123;</span><br><span class="line">        int length = arr.length;</span><br><span class="line">        int window = 0;</span><br><span class="line">        int sum = 0;</span><br><span class="line">        while (window &lt;= length)&#123;</span><br><span class="line">            int left = 0;</span><br><span class="line">            int right = left + window;</span><br><span class="line">            while (right &lt; length)&#123;</span><br><span class="line">                for (int i = left; i &lt;= right; i++)&#123;</span><br><span class="line">                    sum = sum + arr[i];</span><br><span class="line">                &#125;</span><br><span class="line">                left++;</span><br><span class="line">                right++;</span><br><span class="line">            &#125;</span><br><span class="line">            window = window + 2;</span><br><span class="line">        &#125;</span><br><span class="line">        return sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>时间复杂度为o（n），思路求每个数出现的次数</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    int sumOddLengthSubarrays(vector&lt;int&gt;&amp; arr) &#123;</span><br><span class="line">        int n = arr.size(), ans = 0;</span><br><span class="line">        for(int i = 0; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            int left = i+1, right = n-i-1;</span><br><span class="line">            //左边为偶数 * 右边为奇数</span><br><span class="line">            ans += (left/2)*((right+1)/2)*arr[i];</span><br><span class="line">            //左边为奇数 * 右边为偶数</span><br><span class="line">            ans += ((left+1)/2)*(right/2+1)*arr[i];</span><br><span class="line">            //--------------------------^--------- </span><br><span class="line">            //尤其注意这个+1，他表示左边为奇数时不需要右边也能组成符合答案条件的数组</span><br><span class="line">            //因此在图中我用了空数组来表示这种情况。看上图红色箭头部分</span><br><span class="line">            //如果你不明白为什么第一种情况时不需要 +1, 那是因为第一种情况的右边数组不包含当前的数啊！</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 每日一题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8-28</title>
+      <link href="2021/08/29/8-28/"/>
+      <url>2021/08/29/8-28/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>8-27</title>
+      <link href="2021/08/29/8-27/"/>
+      <url>2021/08/29/8-27/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>8-26</title>
       <link href="2021/08/26/8-26/"/>
       <url>2021/08/26/8-26/</url>
