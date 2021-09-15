@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>9-13 | Hexo</title>
+  <title>9-15 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/8.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/10.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['9-13'],
+              strings: ['9-15'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,33 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-13</span>
+        <span class="post-time">2021-09-15</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="447-回旋镖的数量"><a href="#447-回旋镖的数量" class="headerlink" title="447.回旋镖的数量"></a>447.回旋镖的数量</h1><p>给定平面上 n 对 互不相同 的点 points ，其中 points[i] = [xi, yi] 。回旋镖 是由点 (i, j, k) 表示的元组 ，其中 i 和 j 之间的距离和 i 和 k 之间的距离相等（需要考虑元组的顺序）。</p>
-<p>返回平面上所有回旋镖的数量。</p>
-<p>示例 1：</p>
-<p>输入：points = [[0,0],[1,0],[2,0]]<br>输出：2<br>解释：两个回旋镖为 [[1,0],[0,0],[2,0]] 和 [[1,0],[2,0],[0,0]]<br>示例 2：</p>
-<p>输入：points = [[1,1],[2,2],[3,3]]<br>输出：2<br>示例 3：</p>
-<p>输入：points = [[1,1]]<br>输出：0</p>
-<p>思路：我们在统计给定 ii 的情况下，与 ii 距离相等的 (j, k)(j,k) 组合个数为多少。我们可以使用哈希表进行预处理，在统计以 ii 为三元组第一位的回旋镖个数前，先计算出 ii 和其余点的距离，并以 { 距离 : 个数 } 的形式进行存储，然后分别对所有的距离进行累加计数。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">public static int numsTotal(int[][] points)&#123;</span><br><span class="line">        if (points.length &lt;= 2)&#123;</span><br><span class="line">            return 0;</span><br><span class="line">        &#125;</span><br><span class="line">        int ans = 0;</span><br><span class="line">        for (int i = 0; i &lt; points.length; i++) &#123;</span><br><span class="line">            int[] pointA = points[i];</span><br><span class="line">            Map&lt;Double, Integer&gt; map = new HashMap&lt;&gt;();</span><br><span class="line">            for (int j = 0; j &lt; points.length; j++) &#123;</span><br><span class="line">                int[] pointB = points[j];</span><br><span class="line">                double dist = length(pointA[0], pointA[1], pointB[0], pointB[1]);</span><br><span class="line">                map.put(dist, map.getOrDefault(dist, 0) + 1);</span><br><span class="line">            &#125;</span><br><span class="line">            for (double dist : map.keySet())&#123;</span><br><span class="line">                int count = map.get(dist);</span><br><span class="line">                ans += count * (count - 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return ans;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static double length(int x1, int y1, int x2, int y2)&#123;</span><br><span class="line">        return Math.abs(x1 - x2) * Math.abs(x1 - x2) + Math.abs(y1 - y2) * Math.abs(y1 - y2);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       </div>
       
         <div class="copyright">
@@ -765,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/09/13/9-13/" target="_blank" title="9-13">https://mhshan925.github.io/2021/09/13/9-13/</a>
+    <a href="/2021/09/15/9-15/" target="_blank" title="9-15">https://mhshan925.github.io/2021/09/15/9-15/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -783,34 +765,17 @@
 
 
 
+
+
   
-  <div class="post-nav-prev post-nav-item">
+  <div class="post-nav-next post-nav-item">
     <div class="post-nav-img lazyload" data-original="/medias/9.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
     <a href="/2021/09/15/9-14/" class="post-nav-link">
       <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>9-14</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/7.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/09/13/9-12/" class="post-nav-link">
-      <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>9-12</div>
+        <div>9-14</div>
       </div>
       <!-- <div class="content">
         
