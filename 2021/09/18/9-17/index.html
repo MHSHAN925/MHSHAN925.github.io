@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>9-16 | Hexo</title>
+  <title>9-17 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['9-16'],
+              strings: ['9-17'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,38 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-16</span>
+        <span class="post-time">2021-09-18</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="212-单词搜索"><a href="#212-单词搜索" class="headerlink" title="212.单词搜索"></a>212.单词搜索</h1><p>给定一个 m x n 二维字符网格 board 和一个单词（字符串）列表 words，找出所有同时在二维网格和字典中出现的单词。</p>
-<p>单词必须按照字母顺序，通过 相邻的单元格 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p>
-<p>补充：前缀树：根节点不包含字符，除了根节点外的每一个子节点都包含一个字符；从根节点到某一节点，路径上经过的字符连接起来，就是该节点对应的字符串；每个单词的公共前缀作为一个字符节点保存。前缀树是一种树形数据结构，用于高效存储和检索字符串数据集中的键，是一种用于快速查询某个字符串、字符前缀是否存在的数据结构。</p>
-<p>核心：使用边来代表有无字符，使用点来记录是否为单词结尾以及其后续字符串的字符是什么。</p>
-<p>使用范围：</p>
-<p>​        词频统计：在内存有限的情况下，可以用前缀树压缩一下空间，因为公共前缀都是用一个节点保存的。</p>
-<p>​        前缀匹配：</p>
-<p>​        自动补完：</p>
-<p>​        拼写检查：</p>
-<p> 实现前缀树：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实现Trie类：</span><br><span class="line">	Trie() 初始化前缀树对象。</span><br><span class="line">	void insert(String word) 向前缀树中插入字符串 word 。</span><br><span class="line">	boolean search(String word) 如果字符串 word 在前缀树中，返回 true（即，在检索之前已经插入）；否则，返回 false 。</span><br><span class="line">	boolean startsWith(String prefix) 如果之前已经插入的字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Trie &#123;</span><br><span class="line">    TrieNode root;</span><br><span class="line"></span><br><span class="line">    public Trie()&#123;</span><br><span class="line">        root = new TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    public void insert(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                node.children[u] = new TrieNode();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        node.isEnd = true;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean search(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        return node.isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean startWith(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class TrieNode&#123;</span><br><span class="line">    boolean isEnd;</span><br><span class="line">    TrieNode[] children = new TrieNode[26];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       </div>
       
         <div class="copyright">
@@ -770,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/09/16/9-16/" target="_blank" title="9-16">https://mhshan925.github.io/2021/09/16/9-16/</a>
+    <a href="/2021/09/18/9-17/" target="_blank" title="9-17">https://mhshan925.github.io/2021/09/18/9-17/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -790,17 +767,18 @@
 
   
   <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/13.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/09/18/9-17/" class="post-nav-link">
+    <a href="/2021/09/18/9-18/" class="post-nav-link">
       <div class="title">
         <i class="fa fa-angle-left"></i> 上一篇:
-        <div>9-17</div>
+        <div>9-18</div>
       </div>
       
       <!-- <div class="content">
-        
+        292.Nim游戏你和你的朋友，两个人一起玩 Nim 游戏：
+桌子上有一堆石头。你们轮流进行自己的回合，你作为先手。每一
       </div> -->
     </a>
   </div>
@@ -809,16 +787,16 @@
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/09/15/9-15/" class="post-nav-link">
+    <a href="/2021/09/16/9-16/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>9-15</div>
+        <div>9-16</div>
       </div>
       <!-- <div class="content">
-        
+        212.单词搜索给定一个 m x n 二维字符网格 board 和一个单词（字符串）列表 words，找出所有同时在二维
       </div> -->
     </a>
   </div>

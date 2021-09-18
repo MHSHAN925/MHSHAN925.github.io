@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>9-16 | Hexo</title>
+  <title>9-18 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/11.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/13.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['9-16'],
+              strings: ['9-18'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-16</span>
+        <span class="post-time">2021-09-18</span>
       </div>
       
       <div class="post-tags-categories">
@@ -746,19 +746,20 @@
         
       </div>
       <div class="post-content">
-        <h1 id="212-单词搜索"><a href="#212-单词搜索" class="headerlink" title="212.单词搜索"></a>212.单词搜索</h1><p>给定一个 m x n 二维字符网格 board 和一个单词（字符串）列表 words，找出所有同时在二维网格和字典中出现的单词。</p>
-<p>单词必须按照字母顺序，通过 相邻的单元格 内的字母构成，其中“相邻”单元格是那些水平相邻或垂直相邻的单元格。同一个单元格内的字母在一个单词中不允许被重复使用。</p>
-<p>补充：前缀树：根节点不包含字符，除了根节点外的每一个子节点都包含一个字符；从根节点到某一节点，路径上经过的字符连接起来，就是该节点对应的字符串；每个单词的公共前缀作为一个字符节点保存。前缀树是一种树形数据结构，用于高效存储和检索字符串数据集中的键，是一种用于快速查询某个字符串、字符前缀是否存在的数据结构。</p>
-<p>核心：使用边来代表有无字符，使用点来记录是否为单词结尾以及其后续字符串的字符是什么。</p>
-<p>使用范围：</p>
-<p>​        词频统计：在内存有限的情况下，可以用前缀树压缩一下空间，因为公共前缀都是用一个节点保存的。</p>
-<p>​        前缀匹配：</p>
-<p>​        自动补完：</p>
-<p>​        拼写检查：</p>
-<p> 实现前缀树：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">实现Trie类：</span><br><span class="line">	Trie() 初始化前缀树对象。</span><br><span class="line">	void insert(String word) 向前缀树中插入字符串 word 。</span><br><span class="line">	boolean search(String word) 如果字符串 word 在前缀树中，返回 true（即，在检索之前已经插入）；否则，返回 false 。</span><br><span class="line">	boolean startsWith(String prefix) 如果之前已经插入的字符串 word 的前缀之一为 prefix ，返回 true ；否则，返回 false </span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">public class Trie &#123;</span><br><span class="line">    TrieNode root;</span><br><span class="line"></span><br><span class="line">    public Trie()&#123;</span><br><span class="line">        root = new TrieNode();</span><br><span class="line">    &#125;</span><br><span class="line">    public void insert(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                node.children[u] = new TrieNode();</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        node.isEnd = true;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean search(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        return node.isEnd;</span><br><span class="line">    &#125;</span><br><span class="line">    public boolean startWith(String s)&#123;</span><br><span class="line">        TrieNode node = root;</span><br><span class="line">        for (int i = 0; i &lt; s.length(); i++) &#123;</span><br><span class="line">            int u = s.charAt(i) - &#x27;a&#x27;;</span><br><span class="line">            if (node.children[u] == null)&#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125;</span><br><span class="line">            node = node.children[u];</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">class TrieNode&#123;</span><br><span class="line">    boolean isEnd;</span><br><span class="line">    TrieNode[] children = new TrieNode[26];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="292-Nim游戏"><a href="#292-Nim游戏" class="headerlink" title="292.Nim游戏"></a>292.Nim游戏</h1><p>你和你的朋友，两个人一起玩 Nim 游戏：</p>
+<p>桌子上有一堆石头。<br>你们轮流进行自己的回合，你作为先手。<br>每一回合，轮到的人拿掉 1 - 3 块石头。<br>拿掉最后一块石头的人就是获胜者。<br>假设你们每一步都是最优解。请编写一个函数，来判断你是否可以在给定石头数量为 n 的情况下赢得游戏。如果可以赢，返回 true；否则，返回 false 。</p>
+<p>示例 1：</p>
+<p>输入：n = 4<br>输出：false<br>解释：如果堆中有 4 块石头，那么你永远不会赢得比赛；<br>     因为无论你拿走 1 块、2 块 还是 3 块石头，最后一块石头总是会被你的朋友拿走。<br>示例 2：</p>
+<p>输入：n = 1<br>输出：true<br>示例 3：</p>
+<p>输入：n = 2<br>输出：true</p>
+<p>思路介绍：这是一道规律题，数学解释可以从博弈论的角度出发。</p>
+<p>公平组合游戏：1.由两名玩家交替行动；2.由游戏进行的任意时刻，可以执行的合法行动与轮到哪位玩家无关；3.不能行动的玩家判负。</p>
+<p>尼姆游戏（NIM）属于公平组合游戏，但常见的棋类游戏，比如围棋就不是公平组合游戏，因为围棋交战双方分别只能落黑子和白子，胜负判定也比较复杂，不满足条件 2 和 3 。</p>
+<p>其次，我们介绍必胜状态和必败状态两个名词：</p>
+<p>必胜状态：先手进行某一个操作，留给后手是一个必败状态时，对于先手来说是一个必胜状态。即先手可以走到某一个必败状态。<br>必败状态：先手无论如何操作，留给后手都是一个必胜状态时，对于先手来说是一个必败状态。即先手走不到任何一个必败状态。</p>
+<p>证明：如果 n是4 的倍数，那么必可以表示为 n =4K 的形式。那么无论先手选择取走 {1, 2, 3}块石头，后手都可以对应地取走 {3, 2, 1} 块石头，从而将总石头数量变为 n’ = 4(k - 1)<br>那么，按照上述方式，先手和后手各取 k 轮后，后手的最后一次操作完成后，总石头数量变为 0，此时先手不能行动，必败。<br>综上所述，如果石头数量 nn 是 4 的倍数，那么此时对先手来讲为必败状态。</p>
+<p>如果 nn 不是 44 的倍数，那么必可以表示为 n = 4k + r ,r∈[1,2,3]) 的形式（其中 r 为 n 模 44 的余数）。此时，先手第一步取刚好 r 块石头，就可以让后手面临 n 为 4 的倍数的必败状态，所以根据我们上面的定义，这种情况下，先手为必胜状态。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static boolean win(int n)&#123;</span><br><span class="line">        return n % 4 != 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -770,7 +771,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/09/16/9-16/" target="_blank" title="9-16">https://mhshan925.github.io/2021/09/16/9-16/</a>
+    <a href="/2021/09/18/9-18/" target="_blank" title="9-18">https://mhshan925.github.io/2021/09/18/9-18/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -788,34 +789,17 @@
 
 
 
+
+
   
-  <div class="post-nav-prev post-nav-item">
+  <div class="post-nav-next post-nav-item">
     <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
     <a href="/2021/09/18/9-17/" class="post-nav-link">
       <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>9-17</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
-
-
-  
-  <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/09/15/9-15/" class="post-nav-link">
-      <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>9-15</div>
+        <div>9-17</div>
       </div>
       <!-- <div class="content">
         
