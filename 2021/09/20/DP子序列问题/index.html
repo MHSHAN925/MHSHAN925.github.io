@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>9-18 | Hexo</title>
+  <title>DP子序列问题 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/13.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/4.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['9-18'],
+              strings: ['DP子序列问题'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,7 +729,7 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-18</span>
+        <span class="post-time">2021-09-20</span>
       </div>
       
       <div class="post-tags-categories">
@@ -737,8 +737,8 @@
         <div class="tags">
           <i class="iconfont icontag"></i>
           
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
+            <a href="/tags/%E7%AE%97%E6%B3%95/" class="">
+              算法
             </a>
           
         </div>
@@ -746,20 +746,12 @@
         
       </div>
       <div class="post-content">
-        <h1 id="292-Nim游戏"><a href="#292-Nim游戏" class="headerlink" title="292.Nim游戏"></a>292.Nim游戏</h1><p>你和你的朋友，两个人一起玩 Nim 游戏：</p>
-<p>桌子上有一堆石头。<br>你们轮流进行自己的回合，你作为先手。<br>每一回合，轮到的人拿掉 1 - 3 块石头。<br>拿掉最后一块石头的人就是获胜者。<br>假设你们每一步都是最优解。请编写一个函数，来判断你是否可以在给定石头数量为 n 的情况下赢得游戏。如果可以赢，返回 true；否则，返回 false 。</p>
+        <h1 id="DP子序列问题"><a href="#DP子序列问题" class="headerlink" title="DP子序列问题"></a>DP子序列问题</h1><h2 id="674-最长连续递增序列"><a href="#674-最长连续递增序列" class="headerlink" title="674.最长连续递增序列"></a>674.最长连续递增序列</h2><p>给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。</p>
+<p>连续递增的子序列 可以由两个下标 l 和 r（l &lt; r）确定，如果对于每个 l &lt;= i &lt; r，都有 nums[i] &lt; nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], …, nums[r - 1], nums[r]] 就是连续递增子序列。</p>
 <p>示例 1：</p>
-<p>输入：n = 4<br>输出：false<br>解释：如果堆中有 4 块石头，那么你永远不会赢得比赛；<br>     因为无论你拿走 1 块、2 块 还是 3 块石头，最后一块石头总是会被你的朋友拿走。<br>示例 2：</p>
-<p>输入：n = 1<br>输出：true<br>示例 3：</p>
-<p>输入：n = 2<br>输出：true</p>
-<p>思路介绍：这是一道规律题，数学解释可以从博弈论的角度出发。</p>
-<p>公平组合游戏：1.由两名玩家交替行动；2.由游戏进行的任意时刻，可以执行的合法行动与轮到哪位玩家无关；3.不能行动的玩家判负。</p>
-<p>尼姆游戏（NIM）属于公平组合游戏，但常见的棋类游戏，比如围棋就不是公平组合游戏，因为围棋交战双方分别只能落黑子和白子，胜负判定也比较复杂，不满足条件 2 和 3 。</p>
-<p>其次，我们介绍必胜状态和必败状态两个名词：</p>
-<p>必胜状态：先手进行某一个操作，留给后手是一个必败状态时，对于先手来说是一个必胜状态。即先手可以走到某一个必败状态。<br>必败状态：先手无论如何操作，留给后手都是一个必胜状态时，对于先手来说是一个必败状态。即先手走不到任何一个必败状态。</p>
-<p>证明：如果 n是4 的倍数，那么必可以表示为 n =4K 的形式。那么无论先手选择取走 {1, 2, 3}块石头，后手都可以对应地取走 {3, 2, 1} 块石头，从而将总石头数量变为 n’ = 4(k - 1)<br>那么，按照上述方式，先手和后手各取 k 轮后，后手的最后一次操作完成后，总石头数量变为 0，此时先手不能行动，必败。<br>综上所述，如果石头数量 nn 是 4 的倍数，那么此时对先手来讲为必败状态。</p>
-<p>如果 nn 不是 44 的倍数，那么必可以表示为 n = 4k + r ,r∈[1,2,3]) 的形式（其中 r 为 n 模 44 的余数）。此时，先手第一步取刚好 r 块石头，就可以让后手面临 n 为 4 的倍数的必败状态，所以根据我们上面的定义，这种情况下，先手为必胜状态。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public static boolean win(int n)&#123;</span><br><span class="line">        return n % 4 != 0;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>输入：nums = [1,3,5,4,7]<br>输出：3<br>解释：最长连续递增序列是 [1,3,5], 长度为3。<br>尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。<br>示例 2：</p>
+<p>输入：nums = [2,2,2,2,2]<br>输出：1<br>解释：最长连续递增序列是 [2], 长度为1。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 
       </div>
@@ -771,7 +763,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/09/18/9-18/" target="_blank" title="9-18">https://mhshan925.github.io/2021/09/18/9-18/</a>
+    <a href="/2021/09/20/DP子序列问题/" target="_blank" title="DP子序列问题">https://mhshan925.github.io/2021/09/20/DP子序列问题/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -789,38 +781,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/14.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/09/20/9-19/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>9-19</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/12.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/6.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/09/18/9-17/" class="post-nav-link">
+    <a href="/2021/09/20/9-20/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>9-17</div>
+        <div>9-20</div>
       </div>
       <!-- <div class="content">
-        36.有效的数独请你判断一个 9x9 的数独是否有效。只需要 根据以下规则 ，验证已经填入的数字是否有效即可。
-数字 1
+        
       </div> -->
     </a>
   </div>
