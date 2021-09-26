@@ -10,7 +10,7 @@
   <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-  <title>9-23 | Hexo</title>
+  <title>9-26 | Hexo</title>
 
   
     
@@ -693,7 +693,7 @@
 
 
 
-<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/9.jpg" style="background-repeat: no-repeat; background-size: cover; 
+<div class="post-detail-header lazyload" id="thumbnail_canvas" data-original="/medias/12.jpg" style="background-repeat: no-repeat; background-size: cover; 
   background-position: center center;position: relative;">
   <div class="post-detail-header-mask"></div>
   <canvas id="header_canvas"style="position:absolute;bottom:0;pointer-events:none;"></canvas>
@@ -704,7 +704,7 @@
         <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
           <script>
             var typed = new Typed("#post-detail-header-title", {
-              strings: ['9-23'],
+              strings: ['9-26'],
               startDelay: 100,
               typeSpeed: 100,
               loop: false,
@@ -729,35 +729,15 @@
       
       <div class="post-meta">
         <i class="fa fa-clock-o" aria-hidden="true"></i>
-        <span class="post-time">2021-09-23</span>
+        <span class="post-time">2021-09-26</span>
       </div>
       
       <div class="post-tags-categories">
         
-        <div class="tags">
-          <i class="iconfont icontag"></i>
-          
-            <a href="/tags/%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" class="">
-              每日一题
-            </a>
-          
-        </div>
-        
         
       </div>
       <div class="post-content">
-        <h1 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326.3的幂"></a>326.3的幂</h1><p>给定一个整数，写一个函数来判断它是否是 3 的幂次方。如果是，返回 true ；否则，返回 false 。</p>
-<p>整数 n 是 3 的幂次方需满足：存在整数 x 使得 n == 3x</p>
-<p>方法一：试除法，将n对3进行试除，直到n不再与3呈现倍数关系，最后判断n是否为1即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static boolean powThree(int n)&#123;</span><br><span class="line">        if (n &lt;= 0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        while (n % 3 == 0)&#123;</span><br><span class="line">            n /= 3;</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>方法二：倍数和约数。根据传参的数据类型为int，首先分析出int范围内的最大3次幂，约为1162261467。如果n为3的幂的话，n和1162261467存在倍数关系。因此我们只需判断n是否为1162261467的约数即可。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public boolean isPowerOfThree(int n) &#123;</span><br><span class="line">       return n &gt; 0 &amp;&amp; 1162261467 % n == 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>方法三：打表。不适用循环和递归的做法是进行预打表处理。使用static代码块，预处理出不超过int数据范围内的所有3的幂。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Day9_23 &#123;</span><br><span class="line">    static Set&lt;Integer&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">    static &#123;</span><br><span class="line">        int cur = 1;</span><br><span class="line">        set.add(cur);</span><br><span class="line">        while (cur &lt;= Integer.MAX_VALUE / 3)&#123;</span><br><span class="line">            cur = cur * 3;</span><br><span class="line">            set.add(cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean powThree(int n)&#123;</span><br><span class="line">        return n &gt; 0 &amp;&amp; set.contains(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+        
       </div>
       
         <div class="copyright">
@@ -767,7 +747,7 @@
     </li>
     <li class="post-copyright-link">
     <strong>文章链接:  </strong>
-    <a href="/2021/09/23/9-23/" target="_blank" title="9-23">https://mhshan925.github.io/2021/09/23/9-23/</a>
+    <a href="/2021/09/26/9-26/" target="_blank" title="9-26">https://mhshan925.github.io/2021/09/26/9-26/</a>
     </li>
     <li class="post-copyright-license">
       <strong>版权声明:   </strong>
@@ -785,38 +765,20 @@
 
 
 
-  
-  <div class="post-nav-prev post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/10.jpg" style="background-size: cover; 
-      background-position: center center;">
-    </div>
-    <a href="/2021/09/26/9-24/" class="post-nav-link">
-      <div class="title">
-        <i class="fa fa-angle-left"></i> 上一篇:
-        <div>9-24</div>
-      </div>
-      
-      <!-- <div class="content">
-        
-      </div> -->
-    </a>
-  </div>
-
 
 
   
   <div class="post-nav-next post-nav-item">
-    <div class="post-nav-img lazyload" data-original="/medias/8.jpg" style="background-size: cover; 
+    <div class="post-nav-img lazyload" data-original="/medias/11.jpg" style="background-size: cover; 
       background-position: center center;">
     </div>
-    <a href="/2021/09/22/9-22/" class="post-nav-link">
+    <a href="/2021/09/26/9-25/" class="post-nav-link">
       <div class="title">
         下一篇: <i class="fa fa-angle-right"></i>
-        <div>9-22</div>
+        <div>9-25</div>
       </div>
       <!-- <div class="content">
-        725.分割链表给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。
-
+        
       </div> -->
     </a>
   </div>

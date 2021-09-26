@@ -4,13 +4,58 @@
   
     
     <entry>
-      <title>9-23</title>
-      <link href="2021/09/23/9-23/"/>
-      <url>2021/09/23/9-23/</url>
+      <title>9-26</title>
+      <link href="2021/09/26/9-26/"/>
+      <url>2021/09/26/9-26/</url>
       
         <content type="html"><![CDATA[]]></content>
       
       
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-25</title>
+      <link href="2021/09/26/9-25/"/>
+      <url>2021/09/26/9-25/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-24</title>
+      <link href="2021/09/26/9-24/"/>
+      <url>2021/09/26/9-24/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>9-23</title>
+      <link href="2021/09/23/9-23/"/>
+      <url>2021/09/23/9-23/</url>
+      
+        <content type="html"><![CDATA[<h1 id="326-3的幂"><a href="#326-3的幂" class="headerlink" title="326.3的幂"></a>326.3的幂</h1><p>给定一个整数，写一个函数来判断它是否是 3 的幂次方。如果是，返回 true ；否则，返回 false 。</p><p>整数 n 是 3 的幂次方需满足：存在整数 x 使得 n == 3x</p><p>方法一：试除法，将n对3进行试除，直到n不再与3呈现倍数关系，最后判断n是否为1即可。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public static boolean powThree(int n)&#123;</span><br><span class="line">        if (n &lt;= 0)&#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">        while (n % 3 == 0)&#123;</span><br><span class="line">            n /= 3;</span><br><span class="line">        &#125;</span><br><span class="line">        return n == 1;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><p>方法二：倍数和约数。根据传参的数据类型为int，首先分析出int范围内的最大3次幂，约为1162261467。如果n为3的幂的话，n和1162261467存在倍数关系。因此我们只需判断n是否为1162261467的约数即可。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public boolean isPowerOfThree(int n) &#123;</span><br><span class="line">       return n &gt; 0 &amp;&amp; 1162261467 % n == 0;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure><p>方法三：打表。不适用循环和递归的做法是进行预打表处理。使用static代码块，预处理出不超过int数据范围内的所有3的幂。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class Day9_23 &#123;</span><br><span class="line">    static Set&lt;Integer&gt; set = new HashSet&lt;&gt;();</span><br><span class="line">    static &#123;</span><br><span class="line">        int cur = 1;</span><br><span class="line">        set.add(cur);</span><br><span class="line">        while (cur &lt;= Integer.MAX_VALUE / 3)&#123;</span><br><span class="line">            cur = cur * 3;</span><br><span class="line">            set.add(cur);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static boolean powThree(int n)&#123;</span><br><span class="line">        return n &gt; 0 &amp;&amp; set.contains(n);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 每日一题 </tag>
+            
+        </tags>
       
     </entry>
     
